@@ -1,50 +1,60 @@
-<x-layout>
-   
-    <style>
-        .pie-chart {
-            width: 200px;
-            height: 200px;
-            background: conic-gradient(
-                #D6F7FF 0% 50%,
-                #FFF5A6 50% 65%,
-                #F9BABA 65% 95%,
-                #9B9AE4 95% 100%
-            );
-            border-radius: 50%;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+<? php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .pie-chart {
+        width: 200px;
+        height: 200px;
+        background: conic-gradient(
+            #D6F7FF 0% 50%,
+            #FFF5A6 50% 65%,
+            #F9BABA 65% 95%,
+            #9B9AE4 95% 100%
+        );
+        border-radius: 50%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-        .donut-hole {
-            width: 100px;
-            height: 100px;
-            background: #745CC9;
-            border-radius: 50%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
+    .donut-hole {
+        width: 100px;
+        height: 100px;
+        background: #745CC9;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 
-        .legend {
-            display: flex;
-            justify-content: space-evenly;
-            width: 80%;
-            margin-top: 20px;
-        }
+    .legend {
+        display: flex;
+        justify-content: space-evenly;
+        width: 80%;
+        margin-top: 20px;
+    }
 
-        .legend div {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+    .legend div {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
 
-        .legend span {
-            font-size: 14px;
-        }
-      </style>
+    .legend span {
+        font-size: 14px;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 h-screen flex flex-col">
+
+  <!-- Header Section -->
   <header class="w-full p-6">
     <section class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
       <!-- Total Tickets -->
@@ -109,8 +119,6 @@
       <form class="max-w-150  bg-violet-500 text-white shadow rounded-lg p-5 mt-8" action="/update-profile" method="POST">
 
         <h1 class="font-extrabold w-full justify-center text-white text-xs">Ticket Overview</h1><br>
-
-
         <div class="flex">
             <!-- Y-Axis Labels -->
             <div class="flex flex-col justify-between h-64 pr-4 text-white text-sm ">
@@ -184,9 +192,9 @@
                 <span class="mt-2 text-sm text-yellow-500">Dec</span>
             </div>
             </div>
+            </div>
+            </form>
     </section>
-
-
     <!-- Table Section (Footer) -->
     <section class="bg-violet-500 text-white shadow rounded-lg p-6 mt-6">
         <div class="overflow-x-auto">
@@ -263,4 +271,7 @@
       </table>
     </section>
   </main>
-</x-layout>
+</body>
+</html>
+
+
