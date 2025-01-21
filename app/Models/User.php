@@ -20,8 +20,5 @@ class User extends Authenticatable
     //     return $this->hasMany(Project::class);
     // }
 
-    // public function issues(){
-    //     return $this->hasMany(Issue::class);
-    // }
 
 }
