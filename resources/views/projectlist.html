@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'custom-purple': '#745CC9',
+                        'soft-purple': '#AB96FA',
+                        'shade-gray':'#505050',
+                    }
+                }
+            }
+        }
+    </script>
+    <title>Project List</title>
+</head>
+<body>
+        <h1>Project</h1>
+
+        <div class="overflow-x-auto">
+            <table class="table-auto border-collapse border border-gray-300 w-full text-left">
+            <thead>
+                <tr class="bg-gray-100">
+                  <th class="border border-gray-300 px-4 py-2">Project-id</th>
+                  <th class="border border-gray-300 px-4 py-2">Project Type</th>
+                  <th class="border border-gray-300 px-4 py-2">Project Name</th>
+                  <th class="border border-gray-300 px-4 py-2">Organization Name</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="border border-gray-300 px-4 py-2">1</td>
+                  <td class="border border-gray-300 px-4 py-2">John Doe</td>
+                  <td class="border border-gray-300 px-4 py-2">john.doe@example.com</td>
+                  <td class="border border-gray-300 px-4 py-2">Admin</td>
+                </tr>
+                <tr class="bg-gray-50">
+                  <td class="border border-gray-300 px-4 py-2">2</td>
+                  <td class="border border-gray-300 px-4 py-2">Jane Smith</td>
+                  <td class="border border-gray-300 px-4 py-2">jane.smith@example.com</td>
+                  <td class="border border-gray-300 px-4 py-2">User</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+</body>
+</html>
