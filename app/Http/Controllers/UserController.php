@@ -10,11 +10,23 @@ class UserController extends Controller
     public function index()
     {
         return view('users.index',[
-            'users' => User::latest()->get()
+            'users' => User::latest()->paginate(5)
         ]);
     }
 
     public function create(Request $request){
+
+        $validatedData = validator($request->all(), [
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'role' => 'required',
+            'project_id' => 'required',
+            'created_by' => 'required',
+            'updated_by' => 'required',
+            'deleted_by' => 'required',
+        ]);
+        
         $user = new User();
         $user->name = $request->name;   
         $user->email = $request->email;
@@ -27,18 +39,7 @@ class UserController extends Controller
         $user->save();
 
 
-        $validatedData = validator($request->all(), [
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-            'role' => 'required',
-            'project_id' => 'required',
-            'created_by' => 'required',
-            'updated_by' => 'required',
-            'deleted_by' => 'required',
-        ]);
-
-        return view('users.create');
+        return view('auth.create');
     }
 
     public function show($id){
