@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <td class="relative inline-block w-64">
+        <div class="relative">
+          <!-- Custom Dropdown Button -->
+          <button id="dropdownButton" class="w-full bg-white border border-gray-300 px-4 py-3 text-xl rounded-lg leading-tight focus:outline-none flex justify-between items-center">
+            <span id="selectedOption" class="block text-black">Select Status</span>
+            <svg class="fill-current h-4 w-4 text-gray-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+              <path d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+            </svg>
+          </button>
+
+          <!-- Custom Dropdown Menu -->
+          <ul id="dropdownMenu" class="absolute hidden mt-2 w-full bg-white rounded-lg shadow-lg border border-gray-300">
+            <li class="p-2 cursor-pointer bg-red-600 text-white text-center rounded-lg" data-value="high">High</li>
+            <li class="p-2 cursor-pointer bg-yellow-500 text-black text-center rounded-lg" data-value="medium">Medium</li>
+            <li class="p-2 cursor-pointer bg-green-600 text-white text-center rounded-lg" data-value="low">Low</li>
+          </ul>
+        </div>
+      </td>
+
+      <script>
+        // Toggle dropdown visibility
+        const dropdownButton = document.getElementById('dropdownButton');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const selectedOption = document.getElementById('selectedOption');
+
+        dropdownButton.addEventListener('click', () => {
+          dropdownMenu.classList.toggle('hidden');
+        });
+
+        // Handle option selection
+        dropdownMenu.addEventListener('click', (event) => {
+          const selectedItem = event.target;
+          if (selectedItem.tagName.toLowerCase() === 'li') {
+            const selectedValue = selectedItem.getAttribute('data-value');
+            selectedOption.textContent = selectedItem.textContent;
+            selectedOption.style.color = selectedItem.classList.contains('bg-yellow-500') ? 'black' : 'white';  // Dynamic text color
+            selectedOption.style.backgroundColor = selectedItem.style.backgroundColor;  // Set selected background color
+            dropdownMenu.classList.add('hidden');  // Close dropdown
+          }
+        });
+
+        // Close dropdown if clicked outside
+        document.addEventListener('click', (event) => {
+          if (!dropdownButton.contains(event.target)) {
+            dropdownMenu.classList.add('hidden');
+          }
+        });
+      </script>
+
+</body>
+</html>
