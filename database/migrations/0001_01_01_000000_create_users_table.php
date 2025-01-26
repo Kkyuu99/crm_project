@@ -6,11 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+<<<<<<< HEAD
+=======
+    /**
+     * Run the migrations.
+     */
+>>>>>>> origin/thoon
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+<<<<<<< HEAD
             $table->string('password');
             $table->string('email')->unique();
             $table->string('role')->default('user');
@@ -18,6 +25,13 @@ return new class extends Migration
             $table->string('created_by');
             $table->string('updated_by');
             $table->string('deleted_by');
+=======
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
+            $table->timestamps();
+>>>>>>> origin/thoon
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
@@ -36,6 +50,12 @@ return new class extends Migration
         });
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * Reverse the migrations.
+     */
+>>>>>>> origin/thoon
     public function down(): void
     {
         Schema::dropIfExists('users');
