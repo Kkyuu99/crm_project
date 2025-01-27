@@ -10,3 +10,5 @@ Route::get('/user/show', [UserController::class, 'show']);
 Route::patch('/user/edit', [UserController::class, 'edit']);
 Route::delete('/user/delete', [UserController::class, 'delete']);
 
+Route::get('/admin/user/create', [UserController::class, 'create']);
+Route::post('/admin/user/create', [UserController::class, 'store']);
