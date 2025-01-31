@@ -47,7 +47,7 @@
                 <div class="text-center">
                     <button
                         type="submit"
-                        class="bg-custom-purple text-white px-4 py-2 rounded-md hover:bg-purple-600 font-medium focus:outline-none focus:ring-2 focus:ring-purple-400 text-sm">
+                        class="bg-custom-purple text-black px-6 py-2 rounded-md hover:bg-neutral-100 font-medium focus:outline-none focus:ring-2 focus:ring-purple-400 text-sm">
                         Login
                     </button>
                 </div>
