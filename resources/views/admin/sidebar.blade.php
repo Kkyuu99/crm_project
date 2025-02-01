@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body class="bg-neutral-50 font-[Poppins]">
-    <span class="absolute text-white text-4xl top-5
-        left-4 cursor-pointer" onclick="Open()">
+    <span class="absolute text-white text-4xl top-5 left-4 cursor-pointer" onclick="Open()">
             <i class="bi bi-filter-left px-4 bg-gray-900
             rounded-md"></i>
         </span>
@@ -32,19 +31,29 @@
     </div>
 
     <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300
-        cursor-pointer hover:bg-gray-700 text-">
+        cursor-pointer hover:bg-gray-700">
         <i class="bi bi-clipboard-pulse"></i>
         <span class="text-[15px] ml-4 text-purple-300">Dashboard</span>
     </div>
 
     <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300
-        cursor-pointer hover:bg-gray-700">
-        <i class="bi bi-graph-up"></i>
-        <span class="text-[15px] ml-4 text-purple-300">Project</span>
+        cursor-pointer hover:bg-gray-700" onclick="dropdown(project)">
+        <i class="bi bi-clipboard-pulse"></i>
+        <div class="flex justify-between w-full items-center">
+            <span class="text-[15px] ml-4 text-purple-300">Project</span>
+            <span class="text-sm rotate-180" id="arrow">
+             <i class="bi bi-chevron-up"></i>
+            </span>
+        </div>
+    </div>
+
+    <div class="text-left text-sm font-thin mt-2 w-4/5 mx-auto text-gray-200" id="submenu-issues">
+        <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Project List</h1>
+        <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">New Project</h1>
     </div>
 
     <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300
-        cursor-pointer hover:bg-gray-700" onclick="dropdown()">
+        cursor-pointer hover:bg-gray-700" onclick="dropdown(issues)">
         <i class="bi bi-clipboard-pulse"></i>
         <div class="flex justify-between w-full items-center">
             <span class="text-[15px] ml-4 text-purple-300">Issues</span>
@@ -54,24 +63,24 @@
         </div>
     </div>
 
-    <div class="text-left text-sm font-thin mt-2 w-4/5 mx-auto text-gray-200" id="submenu">
+    <div class="text-left text-sm font-thin mt-2 w-4/5 mx-auto text-gray-200" id="submenu-issues">
         <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Issue List</h1>
         <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Issue Detail</h1>
         <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">New Issue</h1>
     </div>
 
     <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300
-        cursor-pointer hover:bg-gray-700" onclick="dropdown()">
+        cursor-pointer hover:bg-gray-700" onclick="dropdown(users)">
         <i class="bi bi-person"></i>
         <div class="flex justify-between w-full items-center">
-            <span class="text-[15px] ml-4 text-purple-300">Users</span>
+            <span class="text-[15px] ml-4 text-gray-200">Users</span>
             <span class="text-sm rotate-180" id="arrow">
             <i class="bi bi-chevron-up"></i>   
             </span>
         </div>
     </div>
 
-    <div class="text-left text-sm font-thin mt-2 w-4/5 mx-auto text-gray-200" id="user">
+    <div class="text-left text-sm font-thin mt-2 w-4/5 mx-auto text-gray-200" id="submenu-user">
         <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">User List</h1>
         <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">User Edit</h1>
         <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">New User</h1>
@@ -87,14 +96,10 @@
     </div>
 
     <script type="text/javascript">
-        function dropdown(){
-            document.querySelector('#submenu').classList.toggle('hidden');
+        function dropdown(project){
+            document.querySelector('#submenu-project').classList.toggle('hidden');
             document.querySelector('#arrow').classList.toggle('rotate.0');
-        }
-        function dropdown(){
-            document.querySelector('#user').classList.toggle('hidden');
-            document.querySelector('#arrow').classList.toggle('rotate.0');
-        }
+        } 
         dropdown()
         function Open(){
             document.querySelector('.sidebar').classList.toggle('left-[-300px]');
