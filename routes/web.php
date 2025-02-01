@@ -5,10 +5,9 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [UserController::class, 'index']);
-Route::post('/user/create', [UserController::class, 'create']);
+Route::get('/user/add', [UserController::class, 'create']);
+Route::post('/user/store', [UserController::class, 'store']);
 Route::get('/user/show', [UserController::class, 'show']);
-Route::patch('/user/edit', [UserController::class, 'edit']);
-Route::delete('/user/delete', [UserController::class, 'delete']);
+Route::patch('/user/{user:name}/edit', [UserController::class, 'edit']);
+Route::delete('/user/{user:name}/delete', [UserController::class, 'delete']);
 
-Route::get('/admin/user/create', [UserController::class, 'create']);
-Route::post('/admin/user/create', [UserController::class, 'store']);

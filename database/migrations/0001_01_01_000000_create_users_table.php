@@ -14,7 +14,6 @@ return new class extends Migration
             $table->string('password');
             $table->string('email')->unique();
             $table->string('role')->default('user');
-            $table->foreignId('project_id');
             $table->string('created_by');
             $table->string('updated_by');
             $table->string('deleted_by');
