@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('issues', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('project_id');
+            $table->foreignId('project_id')->constrained()->onDelete('cascade');
             $table->string('issue_status');
             $table->string('subject');
             $table->text('description');
-            $table->string('priority');
-            $table->string('attachment');
+            $table->string('priority')->default('medium');
+            $table->string('attachment')->nullable();
             $table->string('assignor_user');
-            $table->text('remark');
+            $table->text('remark')->nullable();
             $table->string('total_duration');
             $table->timestamps();
         });
