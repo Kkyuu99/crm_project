@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -10,11 +11,13 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view('users.index');
+        return view('users.index', [
+            'users' => User::with('projects')->get()
+        ]);
     }
 
     public function create(){
-        return view('auth.create');
+        return view('users.add');
     }
 
     public function store(){
@@ -30,10 +33,10 @@ class UserController extends Controller
         ]);
 
         $formData['password'] = bcrypt($formData['password']);
+        $formData['project_id']=Project::where('name', request('project_name'))->id;
 
         $user = User::create($formData);
         return redirect('/')->with('success', 'User created successfully');
-
      }                 
 
     // public function show($id){
@@ -43,7 +46,11 @@ class UserController extends Controller
     //     ]);
     // }
 
-    public function edit(Request $request){
+    public function edit(){
+        return view('users.edit');
+    }
+
+    public function update(User $user){
         $formData = request()->validate([
             'name'=>['required','min:3','max:255'],
             'password'=>['required','min:5'],
@@ -57,12 +64,11 @@ class UserController extends Controller
 
         $formData['password'] = bcrypt($formData['password']);
 
-        $user = User::create($formData);
+        $user->create($formData);
         return redirect('/')->with('success', 'User updated successfully');
     }
 
-    public function delete($id){
-        $user = User::findOrFail($id);
+    public function delete(User $user){
         $user->delete();
         return redirect('/')->with('success', 'User deleted successfully');  
     }
