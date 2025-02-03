@@ -4,18 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'custom-purple': '#745CC9',
-                        'soft-purple': '#AB96FA',
-                    }
-                }
-            }
-        }
-    </script>
     <title>Login Screen</title>
 </head>
 <body>

@@ -61,7 +61,15 @@
                         </div>
                         </div>
                     </td>
-                <td class="border border-gray-300 px-8 py-6 text-xl"></td>
+        
+                    <td class="border border-gray-300 px-8 py-6 text-xl">
+                        Check Payment Detail: Verify your payment info(card number,expiry,CVV) is correct.
+                    </td>
+                    <td class="flex justify-center">
+                        <a class="bg-yellow-400 px-4 py-2 mr-2">Edit</a>
+                        <a class="bg-red-400 px-4 py-2">Delete</a>
+                    </td>
+                    
                 </tr>
 
                 <tr class="hover:bg-gray-100">
@@ -100,7 +108,13 @@
                                 <path d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
                         </div>
                     </td>
-                    <td class="border border-gray-300 px-8 py-6 text-xl"></td>
+                    <td class="border border-gray-300 px-8 py-6 text-xl">
+                        Check Payment Detail: Verify your payment info(card number,expiry,CVV) is correct.
+                    </td>
+                    <td class="flex justify-center">
+                        <a class="bg-yellow-400 px-4 py-2 mr-2">Edit</a>
+                        <a class="bg-red-400 px-4 py-2">Delete</a>
+                    </td>
                 </tr>
 
                 <tr class="hover:bg-gray-100">
@@ -115,9 +129,9 @@
                         <div class="relative">
                             <select class="block w-full py-14 bg-gray-500 border border-gray-300 px-9 text-xl rounded-lg leading-tight focus:outline-none"
                             onChange="this.className=this.option[this.selectedIndex].className">
-                            <option value="high" class="bg-orange-400 text-white px-9 border-2 py-14 w-full">Low</option>
+                            <option value="high" class="bg-orange-200 text-white px-9 border-2 py-14 w-full">Low</option>
                             <option value="medium" class="bg-orange-300 text-white px-9 border-2 py-14 w-full">Medium</option>
-                            <option value="low" class="bg-orange-200 text-white px-9 border-2 py-14 w-full">High</option>
+                            <option value="low" class="bg-orange-400 text-white px-9 border-2 py-14 w-full">High</option>
                             <option value="urgent" class="bg-orange-600 text-white px-9 border-2 py-14 w-full">Urgent</option>
                           </select>
                         </div>
@@ -140,7 +154,15 @@
                         </div>
                         </div>
                     </td>
-                    <td class="border border-gray-300 px-8 py-6 text-xl"></td>
+                    <td class="border border-gray-300 px-8 py-6 text-xl">
+                        Check Payment Detail: Verify your payment info(card number,expiry,CVV) is correct.
+                    </td>
+                    <td class="flex justify-center">
+                        <a class="bg-yellow-400 px-4 py-2 mr-2">Edit</a>
+                        <a class="bg-red-400 px-4 py-2">Delete</a>
+                    </td>
+                    
+                    
                 </tr>
 
                 <tr class="hover:bg-gray-100">
@@ -155,10 +177,10 @@
                         <div class="relative">
                             <select class="block w-full py-14 bg-gray-500 border border-gray-300 px-9 text-xl rounded-lg leading-tight focus:outline-none"
                             onChange="this.className=this.option[this.selectedIndex].className">
-                            <option value="high" class="bg-orange-400 text-white px-9 border-2 py-14 w-full">Urgent</option>
-                            <option value="medium" class="bg-orange-300 text-white px-9 border-2 py-14 w-full">High</option>
+                            <option value="high" class="bg-orange-600 text-white px-9 border-2 py-14 w-full">Urgent</option>
+                            <option value="medium" class="bg-orange-400 text-white px-9 border-2 py-14 w-full">High</option>
                             <option value="low" class="bg-orange-200 text-white px-9 border-2 py-14 w-full">Low</option>
-                            <option value="urgent" class="bg-orange-600 text-white px-9 border-2 py-14 w-full">Medium</option>
+                            <option value="urgent" class="bg-orange-300 text-white px-9 border-2 py-14 w-full">Medium</option>
                           </select>
                         </div>
                       </td>
@@ -178,9 +200,6 @@
                             <path d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />  
                         </div>
                         </div>
-                    </td>
-                    <td class="border border-gray-300 px-8 py-6 text-xl">
-                        Check Payment Detail: Verify your payment info(card number,expiry,CVV) is correct.
                     </td>
                 </tr>
             </tbody>
