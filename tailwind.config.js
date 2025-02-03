@@ -1,15 +1,12 @@
-import defaultTheme from 'tailwindcss/defaultTheme';
-
 /** @type {import('tailwindcss').Config} */
 export default {
     content: [
-        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
-        './storage/framework/views/*.php',
-        './resources/**/*.blade.php',
-        './resources/**/*.js',
-        './resources/**/*.vue',
+      "./resources/**/*.blade.php",
+      "./resources/**/*.js",
+      "./resources/**/*.vue",
     ],
     theme: {
+<<<<<<< HEAD
         extend: {
             colors: {
                 'gray-g': '#EEEEEE',
@@ -19,6 +16,14 @@ export default {
                 ''
             },
         },
+=======
+      extend: {
+        colors: {
+          'custom-purple': '#745CC9',
+          'soft-purple': '#AB96FA',
+      }
+      },
+>>>>>>> 480cedcd2aa14cde844ea1487ed77f6a20afcf79
     },
     plugins: [],
-};
+  }
