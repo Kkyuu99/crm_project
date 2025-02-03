@@ -11,13 +11,24 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view('users.index', [
+        return view('user.dashboard', [
             'users' => User::with('projects')->get()
         ]);
     }
 
     public function create(){
         return view('users.add');
+    }
+
+    public function project_list(){
+        return view('user.project-list');
+    }
+    public function issue_list(){
+        return view('issue.project-list');
+    }
+
+    public function issue_detail(){
+        return view('user.issue-detail');
     }
 
     public function store(){

@@ -1,24 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'blue-b': '#17147B',
-                        'soft-purple': '#AB96FA'  /* Custom purple color */
-                    }
-                }
-            }
-        }
-    </script>
-    <title>Issue</title>
-</head>
-<body>
+<x-layout>
 
     <h1 class="text-4xl font-bold text-black mb-8 text-center">Assigned Issues</h1>
 
@@ -111,5 +91,4 @@
 
     </div>
 
-</body>
-</html>
+</x-layout>

@@ -1,25 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'custom-purple': '#745CC9',
-                        'soft-purple': '#AB96FA',
-                        'shade-gray':'#505050',
-                    }
-                }
-            }
-        }
-    </script>
-    <title>Forgot password</title>
-</head>
-<body>
+<x-layout>
     <section class="bg-custom-purple min-h-screen flex items-center justify-center">
         <div class="bg-gray-100 flex rounded-lg shadow-lg w-3/4 max-w-4xl overflow-hidden">
             <div class="w-full p-8">
@@ -47,5 +26,4 @@
             </div>
         </div>
     </section>
-</body>
-</html>
+</x-layout>
