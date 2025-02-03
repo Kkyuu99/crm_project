@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+<<<<<<< HEAD
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,12 @@ Route::get('/admin/user/user-detail', [UserController::class, 'show']);
 Route::patch('/user/{user:name}/edit', [UserController::class, 'edit']);
 Route::delete('/user/{user:name}/delete', [UserController::class, 'delete']);
 
+=======
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/login', [AdminController::class, 'login']);
+>>>>>>> 2b88040 (1st user table)
