@@ -6,6 +6,10 @@
     <title>Document</title>
 </head>
 <body>
+<<<<<<< HEAD
     <h1>Na Na</h1>
+=======
+    <h1>Nawni</h1>
+>>>>>>> 8cb3433c3c4f69e7aa92b7867ff4f7dc08eb8799
 </body>
 </html>
