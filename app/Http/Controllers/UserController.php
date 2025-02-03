@@ -12,7 +12,7 @@ class UserController extends Controller
     public function index()
     {
         return view('user.dashboard', [
-            'users' => User::with('projects')->get()
+            'users' => User::paginate(5)
         ]);
     }
 
@@ -20,9 +20,7 @@ class UserController extends Controller
         return view('users.add');
     }
 
-    public function project_list(){
-        return view('user.project-list');
-    }
+   
     public function issue_list(){
         return view('issue.project-list');
     }
