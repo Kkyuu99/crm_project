@@ -1,59 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    .pie-chart {
-        width: 200px;
-        height: 200px;
-        background: conic-gradient(
-            #D6F7FF 0% 50%,
-            #FFF5A6 50% 65%,
-            #F9BABA 65% 95%,
-            #9B9AE4 95% 100%
-        );
-        border-radius: 50%;
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .donut-hole {
-        width: 100px;
-        height: 100px;
-        background: #745CC9;
-        border-radius: 50%;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-    .legend {
-        display: flex;
-        justify-content: space-evenly;
-        width: 80%;
-        margin-top: 20px;
-    }
-
-    .legend div {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .legend span {
-        font-size: 14px;
-    }
-  </style>
-</head>
-<body class="bg-gray-100 h-screen flex flex-col">
-
-  <!-- Header Section -->
+<x-layout>
   <header class="w-full p-6">
     <section class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
       <!-- Total Tickets -->
@@ -272,5 +217,4 @@
       </table>
     </section>
   </main>
-</body>
-</html>
+</x-layout>
