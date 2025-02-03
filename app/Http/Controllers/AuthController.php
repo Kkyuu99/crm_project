@@ -19,7 +19,12 @@ class AuthController extends Controller
         ]);
 
         if (auth()->attempt($formData)){
-            return back();
+            if (auth()->user()->role == 'admin'){
+                return redirect('/');
+            }
+            else{
+                return back();
+            }
         }
     }
 }

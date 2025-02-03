@@ -12,23 +12,12 @@ class UserController extends Controller
     public function index()
     {
         return view('user.dashboard', [
-            'users' => User::with('projects')->get()
+            'users' => User::all()
         ]);
     }
 
     public function create(){
         return view('users.add');
-    }
-
-    public function project_list(){
-        return view('user.project-list');
-    }
-    public function issue_list(){
-        return view('issue.project-list');
-    }
-
-    public function issue_detail(){
-        return view('user.issue-detail');
     }
 
     public function store(){
@@ -44,21 +33,21 @@ class UserController extends Controller
         ]);
 
         $formData['password'] = bcrypt($formData['password']);
-        $formData['project_id']=Project::where('name', request('project_name'))->id;
+        $formData['project_id']=Project::where('project_name', request('project_name'))->id;
 
         $user = User::create($formData);
         return redirect('/')->with('success', 'User created successfully');
      }                 
 
-    // public function show($id){
-    //     return view('users.show',
-    //     [
-    //         'user' => User::findOrFail($id)
-    //     ]);
-    // }
+    public function show($id){
+        return view('users.show',
+        [
+            'user' => User::findOrFail($id)
+        ]);
+    }
 
     public function edit(){
-        return view('users.edit');
+        return view('user.edit');
     }
 
     public function update(User $user){
@@ -66,11 +55,7 @@ class UserController extends Controller
             'name'=>['required','min:3','max:255'],
             'password'=>['required','min:5'],
             'email'=>['required','email',Rule::unique('users','email')],
-            'role'=>['required'],
-            'project_id'=>['required'],
-            'created_by'=>['required'],
-            'updated_by'=>['required'],
-            'deleted_by'=>['required']
+            'role'=>['required']
         ]);
 
         $formData['password'] = bcrypt($formData['password']);
