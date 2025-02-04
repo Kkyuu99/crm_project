@@ -22,7 +22,8 @@
         </a>
     
         <!-- Dropdown for Project -->
-        <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-700" onclick="dropdown('projects')">
+        <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-700" 
+        onclick="dropdown('projects')">
             <i class="bi bi-clipboard-pulse"></i>
             <div class="flex justify-between w-full items-center">
                 <span class="text-[15px] ml-4 text-purple-300">Project</span>
@@ -87,10 +88,21 @@
         <hr class="my-2 text-gray-600">
     
         <!-- Logout Button -->
-        <a href="logout.html">
+        <form action="/user/logout" method="POST"
+        class=" mt-3 flex items-center rounded-md duration-300 cursor-pointer hover:bg-gray-700"
+        >
+            @csrf
+            <button type="submit">
+                <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-700">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span class="text-[15px] ml-4 text-purple-300">Logout</span>
+                </div>
+            </button>
+        </form>
+        <a href="/user/login">
             <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-700">
                 <i class="bi bi-box-arrow-left"></i>
-                <span class="text-[15px] ml-4 text-purple-300">Logout</span>
+                <span class="text-[15px] ml-4 text-purple-300">Login</span>
             </div>
         </a>
     </div>
