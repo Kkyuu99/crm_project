@@ -1,19 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Issue;
 use Illuminate\Http\Request;
-use app\Models\Issue;
+
 
 class IssueController extends Controller
 {
-    public function index(){
-        $issues = Issue::all();
-        //return view('issues.index', compact('issues'));
+    public function issue_list(){
+        return view('user.issue-list', [
+            'issues' => Issue::paginate(5)
+        ]);
     }
 
     public function create(){
-        return view('issues.create');
+        return view('user.new-issue');
     }
 
     public function store(Request $request)
@@ -46,15 +47,14 @@ class IssueController extends Controller
             'created' => $request->created_at,
             'updated' => $request->updated_at,
         ]);
+
+        return redirect('/');
     }
 
-    public function list(){
-        $issues = Issue::all();
-        //return view('issues.list',compact('issues'));
-    }
-
-    public function edit(Issue $issues){
-        return view('issues.edit',compact('issues'));
+    public function edit(){
+        return view('issues.edit',[
+            'issues' => Issue::all()
+        ]);
     }
 
     public function update(Request $request, Issue $issue)
@@ -87,11 +87,13 @@ class IssueController extends Controller
             'created' => $request->created_at,
             'updated' => $request->updated_at,
         ]);
+
+        return redirect('/');
     }
 
     public function delete(Issue $issues){
         $issues->delete();
-
+        return back();
     }
 }
 ?>

@@ -1,16 +1,14 @@
-    <span class="absolute text-white text-4xl top-5 left-4 cursor-pointer" onclick="Open()">
-        <i class="bi bi-filter-left px-4 bg-gray-900 rounded-md"></i>
-    </span>
-    
-    <!-- Sidebar -->
-    <div class="sidebar fixed top-0 bottom-0 lg:left-0 left-[-300px] p-2 w-[300px] overflow-auto text-center bg-purple-500">
-        <div class="text-gray-100 text-xl">
-            <div class="p-2 mt-1 flex items-center">
-                <i class="bi bi-person-circle px-2 py-1 text-black rounded-md"></i>
-                <h1 class="font-bold text-gray-200 text-[25px] ml-3">Username</h1>
-                <i class="bi bi-x ml-20 cursor-pointer" onclick="Open()"></i>
-            </div>
-            <hr class="my-2 text-gray-600">
+<span class="absolute text-white text-4xl top-5 left-4 cursor-pointer" onclick="Open()">
+    <i class="bi bi-filter-left px-4 bg-gray-900 rounded-md"></i>
+</span>
+
+<!-- Sidebar -->
+<div class="sidebar fixed top-0 bottom-0 lg:left-0 left-[-300px] p-2 w-[300px] overflow-auto text-center bg-purple-500">
+    <div class="text-gray-100 text-xl">
+        <div class="p-2 mt-1 flex items-center">
+            <i class="bi bi-person-circle px-2 py-1 text-black rounded-md"></i>
+            <h1 class="font-bold text-gray-200 text-[25px] ml-3">Username</h1>
+            <i class="bi bi-x ml-20 cursor-pointer" onclick="Open()"></i>
         </div>
     
         <!-- Sidebar Items -->
