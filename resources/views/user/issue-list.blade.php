@@ -1,12 +1,10 @@
 <x-layout>
-
   <h1 class="text-xl font-bold text-black my-4 text-center">Assigned Issues</h1>
 
   <!-- Table Wrapper with Horizontal and Vertical Scroll -->
-  <div
-    class="overflow-x-auto overflow-y-auto max-w-full px-4 mb-8 rounded-md">
+  <div class="overflow-x-auto overflow-y-auto max-w-full px-4 mb-8 border border-gray-300 rounded-md scrollbar-thin scrollbar-thumb-soft-purple scrollbar-track-gray-200">
     <table class="table-auto border-collapse border border-gray-300 min-w-[1500px] text-left">
-      <thead>
+        <thead>
         <tr class="bg-white text-blue-b">
           <th class="border border-gray-300 px-10 py-3 text-xl">ID</th>
           <th class="border border-gray-300 px-10 py-3 text-xl">Subject</th>
@@ -31,7 +29,7 @@
         {{$issue->priority}}
         </td>
         <td class="border border-gray-300 px-8 py-2 text-md">
-          <a href="" class="inline text-blue-500 hover:underline text-sm mt-4">image.jpg</a>
+        <a href="" class="inline text-blue-500 hover:underline text-sm mt-4">image.jpg</a>
         </td>
         <td class="border border-gray-300 px-8 py-2 text-lg">
         {{$issue->issue_status}}
@@ -59,11 +57,10 @@
 
   <div class="my-4 flex justify-center">
     <div class="bg-white shadow-md rounded-lg px-6 py-4">
-        <ul class="space-x-2">
-            {{ $issues->links() }}
-        </ul>
+      <ul class="space-x-2">
+        {{ $issues->links() }}
+      </ul>
     </div>
   </div>
-</div>
-
+  </div>
 </x-layout>

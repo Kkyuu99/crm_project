@@ -31,9 +31,6 @@ class UserController extends Controller
             'email'=>['required','email',Rule::unique('users','email')],
             'role'=>['required'],
             'project_id'=>['required'],
-            'created_by'=>['required'],
-            'updated_by'=>['required'],
-            'deleted_by'=>['required']
         ]);
 
         $formData['password'] = bcrypt($formData['password']);
