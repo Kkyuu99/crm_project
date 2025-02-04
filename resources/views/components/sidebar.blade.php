@@ -20,8 +20,9 @@
         </a>
     
         <!-- Dropdown for Project -->
-        <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-700" 
-        onclick="dropdown('projects')">
+        <a href="/user/project-list">
+            <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-700" 
+                onclick="dropdown('projects')">
             <i class="bi bi-clipboard-pulse"></i>
             <div class="flex justify-between w-full items-center">
                 <span class="text-[15px] ml-4 text-purple-300">Project</span>
@@ -30,6 +31,7 @@
                 </span>
             </div>
         </div>
+        </a>
         <div class="text-left text-sm font-thin mt-2 w-4/5 mx-auto text-gray-200 hidden" id="submenu-projects">
             <a href="/user/project-list"">
                 <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Project List</h1>
@@ -40,6 +42,7 @@
         </div>
     
         <!-- Dropdown for Issues -->
+        <a href="/user/issue-list">
         <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-700" onclick="dropdown('issues')">
             <i class="bi bi-clipboard-pulse"></i>
             <div class="flex justify-between w-full items-center">
@@ -49,6 +52,7 @@
                 </span>
             </div>
         </div>
+        </a>
         <div class="text-left text-sm font-thin mt-2 w-4/5 mx-auto text-gray-200 hidden" id="submenu-issues">
             <a href="user/issue_list"">
                 <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Issue List</h1>

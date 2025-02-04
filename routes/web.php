@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [UserController::class, 'index']);
 Route::get('/user/dashboard', [UserController::class, 'index']);
-Route::get('/user/project_list', [ProjectController::class, 'project_list']);
-Route::get('/user/issue_list', [IssueController::class, 'issue_list']);
+Route::get('/user/project-list', [ProjectController::class, 'project_list']);
+Route::get('/user/issue-list', [IssueController::class, 'issue_list']);
 Route::get('/user/user_list', [UserController::class, 'user_list']);
 Route::get('/user/issue-create', [IssueController::class, 'create']);
 

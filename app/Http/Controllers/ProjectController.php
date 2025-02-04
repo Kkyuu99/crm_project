@@ -22,10 +22,6 @@ class ProjectController extends Controller
         return view('Project.create');
     }
 
-    public function project_list(){
-        return view('user.project-list');
-    }
-
     public function store(Request $request)
     {
         $request->validate([
