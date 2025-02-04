@@ -11,7 +11,7 @@
     <div class="flex flex-1">
         <x-sidebar class="flex-1" />
         <main class="flex-1 bg-white mx-auto ml-80 mt-1 mr-2
-         rounded-lg border border-y-2 border-x-2 border-gray-400 shadow-md">
+         rounded-lg border border-y-1 border-x-1 border-gray-400 shadow-md">
             {{ $slot }}
         </main>
     </div>
