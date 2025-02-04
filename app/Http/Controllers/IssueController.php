@@ -9,7 +9,7 @@ class IssueController extends Controller
 {
     public function issue_list(){
         return view('user.issue-list', [
-            'issues' => Issue::all()
+            'issues' => Issue::paginate(5)
         ]);
     }
 

@@ -2,14 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use Illuminate\Http\Request;
-use app\Models\Project;
 
 class ProjectController extends Controller
 {
     public function index(){
-        $issues = Project::all();
+        $issues = Project::paginate(5);
         //return view('Project.index', compact('Project'));
+    }
+
+    public function project_list(){
+        return view('user.project-list',[
+            'projects' => Project::paginate(5)
+        ]);
     }
 
     public function create(){
