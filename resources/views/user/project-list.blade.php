@@ -30,7 +30,13 @@
                     <td class="border border-gray-300 px-8 py-3 text-xl">{{$project->created_at}}</td>
                     <td class="border border-gray-300 px-8 py-3 text-xl text-green-500">Open</td>
                     <td class="flex justify-center py-3">
-                        <button class="bg-red-400 px-4 py-2 mx-2 text-black hover:bg-red-600 hover:text-white">Delete</button>
+                        <form action="/project/{{$project->project_name}}/delete" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button 
+                            type="submit"
+                            class="bg-red-400 px-4 py-2 mx-2 text-black hover:bg-red-600 hover:text-white">Delete</button>
+                        </form>
                         <button class="bg-yellow-400 px-4 py-2 text-center hover:bg-yellow-600 hover:text-white">Update</button>
                     </td>
                 </tr>

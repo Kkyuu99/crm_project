@@ -13,6 +13,8 @@
           <th class="border border-gray-300 px-10 py-3 text-xl">Attachment</th>
           <th class="border border-gray-300 px-10 py-3 text-xl">Status</th>
           <th class="border border-gray-300 px-10 py-3 text-xl">Solution</th>
+          <th class="border border-gray-300 px-10 py-3 text-xl">Action</th>
+
         </tr>
       </thead>
       <tbody>
@@ -43,6 +45,16 @@
         </div>
         </td>
         <td class="border border-gray-300 px-8 py-2 text-md">{{$issue->remark}}</td>
+        <td class="flex justify-center py-3">
+          <form action="/issue/{{$issue->subject}}/delete" method="POST">
+              @csrf
+              @method('DELETE')
+              <button 
+              type="submit"
+              class="bg-red-400 px-4 py-2 mx-2 text-black hover:bg-red-600 hover:text-white">Delete</button>
+          </form>
+          <button class="bg-yellow-400 px-4 py-2 text-center hover:bg-yellow-600 hover:text-white">Update</button>
+      </td>
       </tr>
     @endforeach
       </tbody>

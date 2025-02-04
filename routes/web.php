@@ -12,6 +12,10 @@ Route::get('/user/project-list', [ProjectController::class, 'project_list']);
 Route::get('/user/issue-list', [IssueController::class, 'issue_list']);
 Route::get('/user/user_list', [UserController::class, 'user_list']);
 Route::get('/user/issue-create', [IssueController::class, 'create']);
+Route::post('/user/issue-update', [IssueController::class, 'store']);
+
+Route::delete('/project/{project:project_name}/delete', [ProjectController::class, 'delete']);
+Route::delete('/issue/{issue:subject}/delete', [IssueController::class, 'delete']);
 
 Route::get('/user/login', [AuthController::class, 'get_login']);
 Route::post('/user/login', [AuthController::class, 'post_login']);

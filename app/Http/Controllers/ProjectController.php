@@ -96,8 +96,8 @@ class ProjectController extends Controller
         ]);
     }
 
-    public function delete(Project $projects){
-        $projects->delete();
-        return redirect('/');
+    public function delete(Project $project){
+        $project->delete();
+        return redirect('/user/project-list');
     }
 }

@@ -11,6 +11,9 @@ class Issue extends Model
 
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
+
+    protected $guarded = [];
+    
     public function project(){
         return $this->belongsTo(Project::class);
     }
