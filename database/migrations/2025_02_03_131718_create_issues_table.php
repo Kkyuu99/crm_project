@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('attachment')->nullable();
             $table->string('assignor_user');
             $table->text('remark');
-            $table->integer('total_duration');
+            $table->integer('total_duration')->nullable();
             $table->timestamps();
         });
     }

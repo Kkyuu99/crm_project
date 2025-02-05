@@ -9,7 +9,7 @@ class IssueController extends Controller
 {
     public function issue_list(){
         return view('user.issue-list', [
-            'issues' => Issue::paginate(5)
+            'issues' => Issue::latest()->paginate(5)
         ]);
     }
 
@@ -31,12 +31,12 @@ class IssueController extends Controller
         $formData['project_id'] = request()->input('project_id');
 
         Issue::create($formData);
-        return redirect('/user/issue_list');
+        return redirect('/user/issue-list');
 
     }
 
     public function edit(){
-        return view('issues.edit',[
+        return view('user.issue-edit',[
             'issues' => Issue::all()
         ]);
     }

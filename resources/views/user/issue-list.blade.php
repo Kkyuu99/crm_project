@@ -2,7 +2,7 @@
   <h1 class="text-xl font-bold text-black my-4 text-center">Assigned Issues</h1>
 
   <!-- Table Wrapper with Horizontal and Vertical Scroll -->
-  <div class="overflow-x-auto overflow-y-auto max-w-full px-4 mb-8 border border-gray-300 rounded-md scrollbar-thin scrollbar-thumb-soft-purple scrollbar-track-gray-200">
+  <div class="overflow-x-auto overflow-y-auto max-w-full px-4 mb-8 rounded-md scrollbar-thin scrollbar-thumb-soft-purple scrollbar-track-gray-200">
     <table class="table-auto border-collapse border border-gray-300 min-w-[1500px] text-left">
         <thead>
         <tr class="bg-white text-blue-b">
@@ -14,13 +14,11 @@
           <th class="border border-gray-300 px-10 py-3 text-xl">Status</th>
           <th class="border border-gray-300 px-10 py-3 text-xl">Solution</th>
           <th class="border border-gray-300 px-10 py-3 text-xl">Action</th>
-
         </tr>
       </thead>
       <tbody>
 
-        @foreach ($issues as $issue)
-
+      @foreach ($issues as $issue)
       <tr class="hover:bg-gray-100">
         <td class="border border-gray-300 px-8 py-2 text-md">{{$issue->id}}</td>
         <td class="border border-gray-300 px-8 py-2 text-md">{{$issue->subject}}</td>
@@ -53,10 +51,20 @@
               type="submit"
               class="bg-red-400 px-4 py-2 mx-2 text-black hover:bg-red-600 hover:text-white">Delete</button>
           </form>
-          <button class="bg-yellow-400 px-4 py-2 text-center hover:bg-yellow-600 hover:text-white">Update</button>
+          {{-- <a href="/user/{{$issue->id}}/edit">
+            <button class="bg-yellow-400 px-4 py-2 text-center hover:bg-yellow-600 hover:text-white">Update</button>
+          </a> --}}
+          <form action="/user/{{$issue->id}}/issue-edit" method="POST">
+            @csrf
+            <input type="hidden" name="_method" value="PUT">
+            <button 
+            type="submit"
+            class="bg-yellow-400 px-4 py-2 text-center hover:bg-yellow-600 hover:text-white">
+            Update</button>
+          </form>
       </td>
       </tr>
-    @endforeach
+      @endforeach
       </tbody>
     </table>
   </div>
