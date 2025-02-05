@@ -21,10 +21,10 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->string('contact_name');
             $table->string('contact_phone');
-            $table->string('contact_email');
+            $table->string('contact_email')->unique();
             $table->string('created_by');
             $table->string('updated_by');
-            $table->string('deleted_by')->nullable();
+            $table->string('deleted_by');
             $table->timestamps();
         });
     }
