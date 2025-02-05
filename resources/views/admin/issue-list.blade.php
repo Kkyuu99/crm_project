@@ -20,46 +20,43 @@
                     <td class="border border-gray-300 px-8 py-6 text-xl">ID_0001</td>
                     <td class="border border-gray-300 px-8 py-6 text-xl">Immediate Assistance Required</td>
                     <td class="border border-gray-300 px-8 py-6 text-xl">
-                        I'm experiencing an urgent issue with my account. I've been unable to log in 
+                        I'm experiencing an urgent...
                         <div class="text-gray-400">since yesterday, receiving the error</div>
                     </td>
                     
-                        <td class="relative inline-block w-64">
-                          <div class="relative">
-                            <select class="block w-full py-14 bg-gray-500 border border-gray-300 px-9 text-xl rounded-lg leading-tight focus:outline-none"
-                            onChange="this.className=this.option[this.selectedIndex].className">
-                              <option value="high" class="bg-orange-400 text-white px-9 border-2 py-14 w-full">High</option>
-                              <option value="medium" class="bg-orange-300 text-white px-9 border-2 py-14 w-full">Medium</option>
-                              <option value="low" class="bg-orange-200 text-white px-9 border-2 py-14 w-full">Low</option>
-                              <option value="urgent" class="bg-orange-600 text-white px-9 border-2 py-14 w-full">Urgent</option>
+                        <td class="inline-block w-64">
+                          <div>
+                          <select class="block w-full py-14 bg-[#ffffff] border border-gray-300 px-9 text-xl rounded-lg leading-tight  focus:outline-none">
+                              <option value="high" class=" text-black">High</option>
+                              <option value="medium" class="text-black">Medium</option>
+                              <option value="low" class="text-black">Low</option>
+                              <option value="urgent" class="text-black">Urgent</option>
                             </select>
                           </div>
                         </td>
                     <td class="border border-gray-300 px-8 py-6 text-xl">
                         <a href="" class="inline text-blue-500 hover:underline text-xl mt-4">Name</a>
                     </td>
-                    <td class="relative inline-block w-64">
-                        <div class="relative bg-gray-500">
-                            <select class="block w-full py-14 bg-gray-500 border border-gray-300 px-9 text-xl rounded-lg leading-tight focus:outline-none"
-                            onChange="this.className=this.option[this.selectedIndex].className">
-                            <option value="high" class="bg-amber-200 text-white">Investigating</option>
-                            <option value="medium" class="bg-neutral-300 text-black">New</option>
-                            <option value="low" class="bg-neutral-400 text-white">Closed</option>
-                            <option value="urgent" class="bg-green-300 text-white">Resolved</option>
+                    <td class="inline-block w-64">
+                        <div class="bg-gray-500">
+                        <select class="block w-full py-14 bg-gray-500 border border-gray-300 px-9 text-xl rounded-lg leading-tight  focus:outline-none">
+                            <option value="high" class="text-white">Investigating</option>
+                            <option value="medium" class="text-black">New</option>
+                            <option value="low" class="text-black">Closed</option>
+                            <option value="urgent" class="text-white">Resolved</option>
                         </select>
+                        <td class="border border-gray-300 px-8 py-6 text-xl">
+                        Check Payment Detail: Verify your payment info(card number,expiry,CVV) is correct.
+                    </td>
+                    <td class="inline-block flex justify-center">
+                        <a class="bg-yellow-400 px-4 py-2 mr-2">Edit</a>
+                        <a class="bg-red-400 px-4 py-2">Delete</a>
+                    </td>
                         
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                                 <path d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />  
                         </div>
                         </div>
-                    </td>
-        
-                    <td class="border border-gray-300 px-8 py-6 text-xl">
-                        Check Payment Detail: Verify your payment info(card number,expiry,CVV) is correct.
-                    </td>
-                    <td class="flex justify-center">
-                        <a class="bg-yellow-400 px-4 py-2 mr-2">Edit</a>
-                        <a class="bg-red-400 px-4 py-2">Delete</a>
                     </td>
                     
                 </tr>
@@ -72,10 +69,8 @@
                         <div class="text-gray-400">since my credentials but after clicking</div>
                     </td>
                     
-                    <td class="relative inline-block w-64">
-                        <div class="relative">
-                            <select class="block w-full py-14 bg-gray-500 border border-gray-300 px-9 text-xl rounded-lg leading-tight focus:outline-none"
-                            onChange="this.className=this.option[this.selectedIndex].className">
+                    <td class="inline-block w-64">
+                        <div>
                             <option value="high" class="bg-orange-400 text-white px-9 border-2 py-14 w-full">Medium</option>
                             <option value="medium" class="bg-orange-300 text-white px-9 border-2 py-14 w-full">High</option>
                             <option value="low" class="bg-orange-200 text-white px-9 border-2 py-14 w-full">Low</option>
@@ -87,8 +82,8 @@
                         <a href="" class="inline text-blue-500 hover:underline text-xl mt-4">Name</a>
                     </td>
 
-                    <td class="relative inline-block w-64">
-                        <div class="relative bg-gray-500">
+                    <td class="inline-block w-64">
+                        <div class="bg-gray-500">
                             <select class="block w-full py-14 bg-gray-500 border border-gray-300 px-9 text-xl rounded-lg leading-tight focus:outline-none"
                             onChange="this.className=this.option[this.selectedIndex].className">
                             <option value="high" class="bg-amber-200 text-white">New</option>
@@ -117,8 +112,8 @@
                         <div class="text-gray-400">hasn't updated for the last few days.</div>
                     </td>
                     
-                    <td class="relative inline-block w-64">
-                        <div class="relative">
+                    <td class="inline-block w-64">
+                        <div>
                             <select class="block w-full py-14 bg-gray-500 border border-gray-300 px-9 text-xl rounded-lg leading-tight focus:outline-none"
                             onChange="this.className=this.option[this.selectedIndex].className">
                             <option value="high" class="bg-orange-200 text-white px-9 border-2 py-14 w-full">Low</option>
@@ -132,10 +127,8 @@
                         <a class="inline text-blue-500 hover:underline text-xl mt-4">Name</a>
                     </td>
 
-                    <td class="relative inline-block w-64">
-                        <div class="relative bg-gray-500">
-                            <select class="block w-full py-14 bg-gray-500 border border-gray-300 px-9 text-xl rounded-lg leading-tight focus:outline-none"
-                            onChange="this.className=this.option[this.selectedIndex].className">
+                    <td class="inline-block w-64">
+                        <div class="bg-gray-500">
                             <option value="high" class="bg-amber-200 text-white">Closed</option>
                             <option value="medium" class="bg-neutral-300 text-black">Investigating</option>
                             <option value="low" class="bg-neutral-400 text-white">New</option>
@@ -165,10 +158,8 @@
                         <div class="text-gray-400">purchase due to a "payment error"</div>
                     </td>
                     
-                    <td class="relative inline-block w-64">
-                        <div class="relative">
-                            <select class="block w-full py-14 bg-gray-500 border border-gray-300 px-9 text-xl rounded-lg leading-tight focus:outline-none"
-                            onChange="this.className=this.option[this.selectedIndex].className">
+                    <td class="inline-block w-64">
+                        <div>
                             <option value="high" class="bg-orange-600 text-white px-9 border-2 py-14 w-full">Urgent</option>
                             <option value="medium" class="bg-orange-400 text-white px-9 border-2 py-14 w-full">High</option>
                             <option value="low" class="bg-orange-200 text-white px-9 border-2 py-14 w-full">Low</option>
@@ -180,10 +171,8 @@
                         <a href="" class="inline text-blue-500 hover:underline text-xl mt-4">Name</a>
                     </td>
 
-                    <td class="relative inline-block w-64">
-                        <div class="relative">
-                            <select class="block w-full py-14 bg-gray-500 border border-gray-300 px-9 text-xl rounded-lg leading-tight focus:outline-none"
-                            onChange="this.className=this.option[this.selectedIndex].className">
+                    <td class="inline-block w-64">
+                        <div>
                             <option value="high" class="bg-amber-200 text-white">Resolved</option>
                             <option value="medium" class="bg-neutral-300 text-black">New</option>
                             <option value="low" class="bg-neutral-400 text-white">Closed</option>

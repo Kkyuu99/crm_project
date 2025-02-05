@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Issue_detail</title>
-</head>
-<body class="bg-gray-100">
+<x-layout>
     <h1 class="text-4xl font-bold text-black mb-8 text-center">New Issue</h1>
     <hr class=" border-t-2 border-gray-300 my-4">
 
@@ -73,5 +65,4 @@
             </div>
         </form>
     </div>
-</body>
-</html>
+</x-layout>

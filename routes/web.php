@@ -10,6 +10,9 @@ Route::get('/user/project-list', [UserController::class, 'project_list']);
 Route::get('/user/issue-list', [UserController::class, 'issue_list']);
 Route::get('/user/issue-detail', [UserController::class, 'issue_detail']);
 
+Route::get('/admin/sidebar', [UserController::class, 'sidebar']);
+Route::get('/admin/issue-list', [UserController::class, 'issue-list']);
+
 
 Route::get('/admin/user/add', [UserController::class, 'create']);
 Route::post('/admin/user/store', [UserController::class, 'store']);
