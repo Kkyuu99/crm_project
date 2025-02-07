@@ -18,12 +18,11 @@ return new class extends Migration
             $table->string('project_type');
             $table->string('project_manager');
             $table->foreignId('issue_id');
-            $table->foreignId('user_id');
             $table->string('contact_name');
             $table->string('contact_phone');
             $table->string('contact_email');
-            $table->string('created_by');
-            $table->string('updated_by');
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
             $table->string('deleted_by')->nullable();
             $table->timestamps();
         });

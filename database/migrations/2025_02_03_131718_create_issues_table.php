@@ -17,11 +17,11 @@ return new class extends Migration
             $table->string('issue_status');
             $table->string('subject');
             $table->text('description');
-            $table->string('priority')->default('medium');
+            $table->string('priority');
             $table->string('attachment')->nullable();
             $table->string('assignor_user');
             $table->text('remark')->nullable();
-            $table->string('total_duration');
+            $table->integer('total_duration');
             $table->timestamps();
         });
     }

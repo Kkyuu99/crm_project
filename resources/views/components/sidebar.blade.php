@@ -1,4 +1,3 @@
-
 <span class="absolute text-white text-4xl top-5 left-4 cursor-pointer" onclick="Open()">
     <i class="bi bi-filter-left px-4 bg-gray-900 rounded-md"></i>
 </span>
@@ -15,7 +14,7 @@
     </div>
 
     <!-- Sidebar Items -->
-    <a href="/"
+    <a href="/user/dashboard"
             class="{{ request()->is('user/dashboard') ? 'bg-blue-50 text-blue-600' : 'text-gray-800' }} group flex items-center px-3 py-2 rounded-md hover:bg-blue-50 hover:text-blue-600 transition-colors">
             <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
