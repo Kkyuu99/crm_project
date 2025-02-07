@@ -9,14 +9,22 @@ class IssueController extends Controller
 {
     public function index(){
         $issues = Issue::all();
-        //return view('issues.index', compact('issues'));
+        return view('user.dashboard');
     }
 
     public function create(){
-        return view('issues.create');
+        return view('user.add');
     }
 
-    public function store(Request $request)
+    public function issue_list(){
+        return view('user.project-list');
+    }
+
+    public function issue_detail(){
+        return view('user.issue-detail');
+    }
+
+    public function store(Request $request, Issue $issues)
     {
         $request->validate([
             'project_id' =>'required',
@@ -46,15 +54,18 @@ class IssueController extends Controller
             'created' => $request->created_at,
             'updated' => $request->updated_at,
         ]);
+
+        $issue = Issue::create($request);
+        return redirect('/')->with('success', 'Issue created successfully');
     }
 
     public function list(){
         $issues = Issue::all();
-        //return view('issues.list',compact('issues'));
+        return view('user.issue-list');
     }
 
     public function edit(Issue $issues){
-        return view('issues.edit',compact('issues'));
+        return view('user.issue-list');
     }
 
     public function update(Request $request, Issue $issue)
@@ -87,11 +98,14 @@ class IssueController extends Controller
             'created' => $request->created_at,
             'updated' => $request->updated_at,
         ]);
+
+        $issue->create($request);
+        return redirect('/')->with('success', 'Issue updated successfully');
     }
 
     public function delete(Issue $issues){
         $issues->delete();
-
+        return redirect('/')->with('success', 'Issue deleted successfully');
     }
 }
 ?>
