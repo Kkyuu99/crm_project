@@ -15,7 +15,7 @@ class UserController extends Controller
            // 'users' => User::with('projects')->get()
         //]);
 
-        return view('admin.login');
+        return view('admin.issue-list');
     }
 
 

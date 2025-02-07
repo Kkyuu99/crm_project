@@ -2,7 +2,7 @@
     <section class="bg-purple-500 min-h-screen flex items-center justify-center">
         <div class="bg-white flex flex-col rounded-lg shadow-lg w-full max-w-sm p-6">
             <h1 class="text-2xl font-bold text-black mb-4 text-center">Login</h1>
-            <form>
+            <form action="/admin/sidebar" method="post">
                 <div class="mb-3">
                     <label for="email" class="block text-black text-sm font-bold mb-1">Email</label>
                     <input
