@@ -43,8 +43,9 @@
             <div class="relative w-full max-w-xs">
               <input 
                 type="date" 
-                class="w-full  bg-neutral-100 border border-gray-300 rounded-lg px-4 py-2 pr-10"
-              />
+                class="w-full  bg-neutral-100 border border-gray-300 rounded-lg px-4 py-2 pr-10">
+            </div>
+        </div>
           
                 <div class="mb-3">
                     <label class="font-regular text-slate-600 justify-start text-xl">Status</label>
@@ -56,7 +57,6 @@
                         <OPTION Value="Resolved">Resolved</OPTION>
                         </SELECT>
                 </div>
-              </div>
               
 
         <div class="flex justify-center space-x-4">

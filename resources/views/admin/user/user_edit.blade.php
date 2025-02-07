@@ -43,15 +43,7 @@
             <div class="relative w-full max-w-xs">
               <input 
                 type="date" 
-                class="w-full  bg-neutral-100 border border-gray-300 rounded-lg px-4 py-2 pr-10"
-              />
-              <div class="absolute inset-y-0 right-3 flex items-center pointer-events-none">
-                <svg class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
-              </div>
+                class="w-full  bg-neutral-100 border border-gray-300 rounded-lg px-4 py-2 pr-10">
             </div>
           </div>
           
@@ -63,7 +55,6 @@
                         <OPTION Value="User">User</OPTION>
                         </SELECT>
                 </div>
-              </div>
               
 
         <div class="flex justify-center space-x-4">
