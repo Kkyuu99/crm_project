@@ -2,11 +2,13 @@
     <section class="bg-purple-500 min-h-screen flex items-center justify-center">
         <div class="bg-white flex flex-col rounded-lg shadow-lg w-full max-w-sm p-6">
             <h1 class="text-2xl font-bold text-black mb-4 text-center">Login</h1>
-            <form method="POST">
+            <form method="POST" action="/login">
                 @csrf
                 <div class="mb-3">
                     <label for="email" class="block text-black text-sm font-bold mb-1">Email</label>
                     <input
+                    required
+                    name="email"
                         type="email"
                         id="email"
                         class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-400 focus:outline-none"
@@ -16,6 +18,8 @@
                 <div class="mb-3">
                     <label for="password" class="block text-black text-sm font-bold mb-1">Password</label>
                     <input
+                    required
+                    name="password"
                         type="password"
                         id="password"
                         class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-400 focus:outline-none"

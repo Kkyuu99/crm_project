@@ -86,8 +86,15 @@
 
     <hr class="my-2 text-gray-600">
 
+    <a href="/login">
+        <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-700">
+            <i class="bi bi-box-arrow-left"></i>
+            <span class="text-[15px] ml-4 text-purple-300">Login</span>
+        </div>
+    </a>
+
     <!-- Logout Button -->
-    <a href="">
+    <a href="/logout">
         <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-700">
             <i class="bi bi-box-arrow-left"></i>
             <span class="text-[15px] ml-4 text-purple-300">Logout</span>

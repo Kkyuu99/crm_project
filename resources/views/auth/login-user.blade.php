@@ -32,14 +32,14 @@
                         class="w-full px-4 py-2 rounded-lg focus:outline-none">
                     </div>
 
-                    {{-- <!-- Remember Me and Forgot Password -->
+                    <!-- Remember Me and Forgot Password -->
                     <div class="flex items-center justify-between mb-4 ">
                         <label class="flex items-center text-white text-sm">
                             <input type="checkbox" class="mr-2 rounded focus:outline-none">
                             Remember Me
                         </label>
-                        <a href="#" class="text-purple-200 hover:underline text-sm">Forgot Password?</a>
-                    </div> --}}
+                        <a href="/auth/forgot-password" class="text-purple-200 hover:underline text-sm">Forgot Password?</a>
+                    </div>
                     <div class="w-32 mx-auto">
                         
                         <button
