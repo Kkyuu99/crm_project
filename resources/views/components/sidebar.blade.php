@@ -1,4 +1,3 @@
-
 <span class="absolute text-white text-4xl top-5 left-4 cursor-pointer" onclick="Open()">
     <i class="bi bi-filter-left px-4 bg-gray-900 rounded-md"></i>
 </span>
