@@ -19,7 +19,7 @@
                 <tr class="hover:bg-gray-100">
                     <td class="border border-gray-300 px-8 py-6 text-xl">ID_0001</td>
                     <td class="border border-gray-300 px-8 py-6 text-xl">Immediate Assistance Required</td>
-                    <td class="border border-gray-300 px-8 py-6 text-xl">I'm experiencing an urgent issue with my account I've been unable to log in
+                    <td class="border border-gray-300 px-8 py-6 text-xl">I'm experiencing an urgent issue with my account.
                         <div class=" text-gray-400">since yesterday receiving the error</div>
                     </td>
 
@@ -64,7 +64,7 @@
                 <tr class="hover:bg-gray-100">
                     <td class="border border-gray-300 px-8 py-6 text-xl">ID_0002</td>
                     <td class="border border-gray-300 px-8 py-6 text-xl">Account Access</td>
-                    <td class="border border-gray-300 px-8 py-6 text-xl">I'm exoeriencing a minor issue with logging into my account.I'm able to
+                    <td class="border border-gray-300 px-8 py-6 text-xl">I'm exoeriencing a minor issue with logging into my account.
                         <div class=" text-gray-400">enter my credentials but after clicking</div>
                     </td>
 
@@ -105,19 +105,19 @@
                 <tr class="hover:bg-gray-100">
                     <td class="border border-gray-300 px-8 py-6 text-xl">ID_0003</td>
                     <td class="border border-gray-300 px-8 py-6 text-xl">Delivery Delay</td>
-                    <td class="border border-gray-300 px-8 py-6 text-xl">I wanted to follow up on the delivery of my recent order. The tracking status
+                    <td class="border border-gray-300 px-8 py-6 text-xl">I wanted to follow up on the delivery of my recent order.
                         <div class=" text-gray-400">hasn't updated for the last few days</div>
                     </td>
 
                           <td class="inline-block w-64">
                             <div class="bg-gray-500">
-                              <select class="block w-full py-14 bg-gray-500 border border-gray-300 px-9 text-xl rounded-lg leading-tight  focus:outline-none"
-                              onChange="this.className=this.options[this.selectedIndex].className">
-                              <option value="high" class="bg-[#FF9900] text-black px-9 border border-gray-300 border-2 bor py-14 w-full">High</option>
-                                <option value="medium" class="bg-[#FFCC99] text-black border border-gray-300 border-2 px-9 py-14 w-full">Medium</option>
-                                <option value="low" class="bg-[#FFFFCC] text-black border border-gray-300 border-2 px-9 py-14 w-full">Low</option>
-                                <option value="urgent" class="bg-[#FF9933] text-black border border-gray-300 border-2 px-9 py-14 w-full">Urgent</option>
-                              </select>
+                            <select class="block w-full py-14 bg-gray-500 border border-gray-300 px-9 text-xl rounded-lg leading-tight  focus:outline-none"
+                          onChange="this.className=this.options[this.selectedIndex].className">
+                          <option value="high" class="bg-[#FF9900] text-black px-9 border border-gray-300 border-2 bor py-14 w-full">Investigating</option>
+                          <option value="medium" class="bg-[#FFCC99] text-black border border-gray-300 border-2 px-9 py-14 w-full">New</option>
+                          <option value="low" class="bg-[#FFFFCC] text-black px-9 border border-gray-300 border-2 bor py-14 w-full">Closed</option>
+                          <option value="urgent" class="bg-[#FF9933] text-black border border-gray-300 border-2 px-9 py-14 w-full">Resolved</option>
+                          </select>
                             </div>
                           </td>
 
@@ -146,7 +146,7 @@
                 <tr class="hover:bg-gray-100">
                     <td class="border border-gray-300 px-8 py-6 text-xl">ID_0004</td>
                     <td class="border border-gray-300 px-8 py-6 text-xl">Urgent Issue</td>
-                    <td class="border border-gray-300 px-8 py-6 text-xl">I'm urgently experiencing an issue with my account. I'm unable to complete my
+                    <td class="border border-gray-300 px-8 py-6 text-xl">I'm urgently experiencing an issue with my account.
                         <div class=" text-gray-400">purchase due to a "payment error"</div>
                     </td>
 

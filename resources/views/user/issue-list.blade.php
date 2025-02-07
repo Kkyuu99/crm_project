@@ -61,7 +61,7 @@
             </tbody>
         </table>
     </div>
-    <button class="flex items-center justify-start bg-soft-purple text-white px-6 py-1 rounded-md hover:bg-purple-500 font-medium text-sm mx-2">
+    <button class="flex items-center justify-start bg-purple-500 text-white px-6 py-1 rounded-md hover:bg-purple-400 font-medium text-sm mx-2">
       Add New
     </button>
     <div class="flex items-center justify-end bg-gray-100 p-2 rounded-md w-fit ml-auto">
@@ -75,7 +75,7 @@
 
         <!-- Center Label -->
         <div
-          class="bg-soft-purple text-white px-6 py-1 rounded-md font-medium text-sm mx-2">
+          class="bg-purple-400 text-white px-6 py-1 rounded-md font-medium text-sm mx-2">
           1
         </div>
 
