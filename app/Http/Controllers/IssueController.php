@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use app\Models\Issue;
+use App\Models\Issue;
 
 class IssueController extends Controller
 {
@@ -17,7 +17,9 @@ class IssueController extends Controller
     }
 
     public function issue_list(){
-        return view('user.project-list');
+        return view('user.issue-list',[
+            'issues' => Issue::paginate(5)
+        ]);
     }
 
     public function issue_detail(){
@@ -65,7 +67,7 @@ class IssueController extends Controller
     }
 
     public function edit(Issue $issues){
-        return view('user.issue-list');
+        return view('user.issue-edit');
     }
 
     public function update(Request $request, Issue $issue)

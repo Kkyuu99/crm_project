@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('priority');
             $table->string('attachment')->nullable();
             $table->string('assignor_user');
-            $table->text('remark');
-            $table->integer('total_duration')->nullable();
+            $table->text('remark')->nullable();
+            $table->integer('total_duration');
             $table->timestamps();
         });
     }
