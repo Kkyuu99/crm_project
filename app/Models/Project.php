@@ -8,13 +8,14 @@ use Illuminate\Notifications\Notifiable;
 
 class Project extends Model
 {
+    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
+    
     public function issues(){
-        return $this->hasMany(issue::class);
+        return $this->hasMany(Issue::class);
     }
 
-    public function users()
-{
-    return $this->belongsToMany(User::class, 'project_user', 'project_id', 'user_id');
-}
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }

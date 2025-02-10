@@ -6,7 +6,12 @@ export default {
       "./resources/**/*.vue",
     ],
     theme: {
-      extend: {},
+      extend: {
+        colors: {
+          'custom-purple': '#745CC9',
+          'soft-purple': '#AB96FA',
+      }
+      },
     },
     plugins: [],
   }

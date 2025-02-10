@@ -1,71 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'blue': '#17147B',
-                        'soft-purple': '#9B4D96'  /* Custom purple color */
-                    }
-                }
-            }
-        }
-    </script>
-    <title>Project List</title>
-</head>
-<body >
-
-    <h1 class="text-4xl font-bold text-black mb-8 text-center">Projects</h1>
-
+<x-layout>
+    <h1 class="text-xl text-blue-500 font-bold my-4 text-left ml-4">Project Lists</h1>
     <!-- Table Horizontal and Vertical Scroll -->
-    <div class="overflow-x-auto overflow-y-auto max-w-full px-4 mb-8 border border-gray-300 rounded-md scrollbar-thin scrollbar-thumb-soft-purple scrollbar-track-gray-200">
+    <div class="overflow-x-auto overflow-y-auto max-w-full px-4 mb-8 rounded-md scrollbar-thin scrollbar-thumb-soft-purple scrollbar-track-gray-200">
         <table class="table-auto border-collapse border border-gray-300 min-w-[1500px] text-left">
             <thead>
                 <tr class="bg-white text-blue">
-                    <th class="border border-gray-300 px-19 py-6 text-xl">Project-id</th>
-                    <th class="border border-gray-300 px-19 py-6 text-xl">Project Type</th>
-                    <th class="border border-gray-300 px-19 py-6 text-xl">Project Name</th>
-                    <th class="border border-gray-300 px-19 py-6 text-xl">Organization Name</th>
-                    <th class="border border-gray-300 px-19 py-6 text-xl">Contact Name</th>
-                    <th class="border border-gray-300 px-19 py-6 text-xl">Contact Email</th>
-                    <th class="border border-gray-300 px-19 py-6 text-xl">Contact Phone</th>
-                    <th class="border border-gray-300 px-19 py-6 text-xl">Created Date</th>
-                    <th class="border border-gray-300 px-19 py-6 text-xl">Status</th>
-                    <th class="border border-gray-300 px-19 py-6 text-xl">Action</th>
+                    <th class="border border-gray-300 px-19 py-3 text-lg truncate">Project id</th>
+                    <th class="border border-gray-300 px-19 py-3 text-lg truncate">Project Name</th>
+                    <th class="border border-gray-300 px-19 py-3 text-lg truncate">Project Type</th>
+                    <th class="border border-gray-300 px-19 py-3 text-lg truncate">Organization Name</th>
+                    <th class="border border-gray-300 px-19 py-3 text-lg truncate">Contact Name</th>
+                    <th class="border border-gray-300 px-19 py-3 text-lg truncate">Contact Email</th>
+                    <th class="border border-gray-300 px-19 py-3 text-lg truncate">Contact Phone</th>
+                    <th class="border border-gray-300 px-19 py-3 text-lg truncate">Created Date</th>
+                    <th class="border border-gray-300 px-19 py-3 text-lg truncate">Status</th>
+                    <th class="border border-gray-300 px-19 py-3 text-lg truncate">Action</th>
                 </tr>
             </thead>
+            <tbody>
+                @foreach ($projects as $project)
                 <tr class="hover:bg-gray-100">
-                    <td class="border border-gray-300 px-8 py-6 text-xl">P001</td>
-                    <td class="border border-gray-300 px-8 py-6 text-xl">Type A</td>
-                    <td class="border border-gray-300 px-8 py-6 text-xl">Project A</td>
-                    <td class="border border-gray-300 px-8 py-6 text-xl">Organization A</td>
-                    <td class="border border-gray-300 px-8 py-6 text-xl">John</td>
-                    <td class="border border-gray-300 px-8 py-6 text-xl">john@gmail.com</td>
-                    <td class="border border-gray-300 px-8 py-6 text-xl">09-799456324</td>
-                    <td class="border border-gray-300 px-8 py-6 text-xl">15-01-2022</td>
-                    <td class="border border-gray-300 px-8 py-6 text-xl text-green-500">Inactive</td>
+                    <td class="border border-gray-300 px-8 py-3 text-xl">{{$project->id}}</td>
+                    <td class="border border-gray-300 px-8 py-3 text-xl">{{$project->project_name}}</td>
+                    <td class="border border-gray-300 px-8 py-3 text-xl">{{$project->project_type}}</td>
+                    <td class="border border-gray-300 px-8 py-3 text-xl">{{$project->organization_name}}</td>
+                    <td class="border border-gray-300 px-8 py-3 text-xl">{{$project->contact_name}}</td>
+                    <td class="border border-gray-300 px-8 py-3 text-xl">{{$project->contact_phone}}</td>
+                    <td class="border border-gray-300 px-8 py-3 text-xl">{{$project->contact_email}}</td>
+                    <td class="border border-gray-300 px-8 py-3 text-xl">{{$project->created_at}}</td>
+                    <td class="border border-gray-300 px-8 py-3 text-xl text-green-500">Open</td>
+                    <td class="flex justify-between items-center">
+                        <form action="/project/{{$project->project_name}}/delete" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button
+                            type="submit"
+                            class="bg-red-400 px-4 py-2 mx-2 text-black hover:bg-red-600 hover:text-white">Delete</button>
+                        </form>
+                        <button class="bg-yellow-400 px-4 py-2 text-center hover:bg-yellow-600 hover:text-white">Update</button>
+                    </td>
                 </tr>
-                <tr class="hover:bg-gray-100">
-                    <td class="border border-gray-300 px-8 py-6 text-xl">P002</td>
-                    <td class="border border-gray-300 px-8 py-6 text-xl">Type B</td>
-                    <td class="border border-gray-300 px-8 py-6 text-xl">Project B</td>
-                    <td class="border border-gray-300 px-8 py-6 text-xl">Organization B</td>
-                    <td class="border border-gray-300 px-8 py-6 text-xl">Alice</td>
-                    <td class="border border-gray-300 px-8 py-6 text-xl">alice@gmail.com</td>
-                    <td class="border border-gray-300 px-8 py-6 text-xl">09-788456321</td>
-                    <td class="border border-gray-300 px-8 py-6 text-xl">01-02-2023</td>
-                    <td class="border border-gray-300 px-8 py-6 text-xl text-green-500">Active</td>
-
-                </tr>
+                @endforeach
+        
             </tbody>
         </table>
     </div>
-    <div class="flex items-center justify-end bg-gray-100 p-2 rounded-md w-fit ml-auto">
+
+    
+    <div class="my-4 flex justify-center">
+        <div class="bg-white shadow-md rounded-lg px-6 py-4">
+            <ul class="space-x-2">
+                {{ $projects->links() }}
+            </ul>
+        </div>
+    </div>
+    {{-- <div class="flex items-center justify-end bg-gray-100 p-2 rounded-md w-fit ml-auto">
         <!-- Left Arrow -->
         <button
           class="arr left bg-gray-100 inline-flex items-center px-6 rounded-md cursor-pointer hover:bg-gray-200 transition text-sm"
@@ -90,7 +79,5 @@
       </div>
 
 
-    </div>
-
-</body>
-</html>
+    </div> --}}
+</x-layout>

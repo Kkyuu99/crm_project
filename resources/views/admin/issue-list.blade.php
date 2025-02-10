@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <title>Issue</title>
-</head>
-<body>
+<x-layout>
     <h1 class="text-4xl font-bold text-black mb-8 text-center">Issue List</h1>
-    
     <div class="overflow-x-auto overflow-y-auto max-w-full px-4 mb-8 border border-gray-300 rounded-md scrollbar-thin scrollbar-thumb-soft-purple scrollbar-track-gray-200">
         <table class="table-auto border-collapse border border-gray-300 min-w-[2000px] text-left">
             <thead>
@@ -232,5 +223,4 @@
           </button>
         </div>
 </div>
-</body>
-</html>
+</x-layout>
