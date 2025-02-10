@@ -70,7 +70,7 @@
   </div>
   <a href="/user/issue-create">
     <button
-      class="flex items-center justify-start bg-soft-purple px-6 py-3 rounded-md hover:bg-purple-500 font-medium text-sm mx-2">
+      class="flex items-center justify-start bg-purple-500 px-6 py-3 rounded-md hover:bg-purple-400 font-medium text-sm mx-2">
       Add New
     </button>
   </a>

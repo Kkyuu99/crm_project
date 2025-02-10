@@ -1,7 +1,7 @@
 <x-layout>
     <section class="bg-gray-100 min-h-screen flex items-center justify-center">
         <!-- Login container -->
-        <div class="bg-custom-purple flex rounded-lg shadow-lg w-3/4 max-w-4xl overflow-hidden">
+        <div class="bg-[#745CC9] flex rounded-lg shadow-lg w-3/4 max-w-4xl overflow-hidden">
             <!-- Left: Form -->
             <div class="w-1/2 p-8">
                 <h2 class="text-3xl font-bold text-white mb-6 text-center">Login Form</h2>
