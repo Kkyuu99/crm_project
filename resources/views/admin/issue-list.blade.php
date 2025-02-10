@@ -19,10 +19,10 @@
                     <td class="border border-gray-300 px-8 py-6 text-xl">ID_0001</td>
                     <td class="border border-gray-300 px-8 py-6 text-xl">Immediate Assistance Required</td>
                     <td class="border border-gray-300 px-8 py-6 text-xl">
-                        I'm experiencing an urgent issue with my account. I've been unable to log in 
+                        I'm experiencing an urgent issue with my account. I've been unable to log in
                         <div class="text-gray-400">since yesterday, receiving the error</div>
                     </td>
-                    
+
                         <td class="relative inline-block w-64">
                           <div class="relative">
                             <select class="block w-full py-14 bg-gray-500 border border-gray-300 px-9 text-xl rounded-lg leading-tight focus:outline-none"
@@ -46,9 +46,9 @@
                             <option value="low" class="bg-neutral-400 text-white">Closed</option>
                             <option value="urgent" class="bg-green-300 text-white">Resolved</option>
                         </select>
-                        
+
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                <path d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />  
+                                <path d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
                         </div>
                         </div>
                     </td>
@@ -59,10 +59,10 @@
                     <td class="border border-gray-300 px-8 py-6 text-xl">ID_0002</td>
                     <td class="border border-gray-300 px-8 py-6 text-xl">Account Access</td>
                     <td class="border border-gray-300 px-8 py-6 text-xl">
-                        I'm experiencing a minor issue with logging into my account. I'm able to 
+                        I'm experiencing a minor issue with logging into my account. I'm able to
                         <div class="text-gray-400">since my credentials but after clicking</div>
                     </td>
-                    
+
                     <td class="relative inline-block w-64">
                         <div class="relative">
                             <select class="block w-full py-14 bg-gray-500 border border-gray-300 px-9 text-xl rounded-lg leading-tight focus:outline-none"
@@ -101,7 +101,7 @@
                         I wanted to follow up on the delivery of my recent order. The tracking status
                         <div class="text-gray-400">hasn't updated for the last few days.</div>
                     </td>
-                    
+
                     <td class="relative inline-block w-64">
                         <div class="relative">
                             <select class="block w-full py-14 bg-gray-500 border border-gray-300 px-9 text-xl rounded-lg leading-tight focus:outline-none"
@@ -127,7 +127,7 @@
                             <option value="urgent" class="bg-green-300 text-white">Resolved</option>
                         </select>
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                <path d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />  
+                                <path d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
                         </div>
                         </div>
                     </td>
@@ -141,7 +141,7 @@
                         I'm urgently experiencing an issue with my account. I'm unable to complete my
                         <div class="text-gray-400">purchase due to a "payment error"</div>
                     </td>
-                    
+
                     <td class="relative inline-block w-64">
                         <div class="relative">
                             <select class="block w-full py-14 bg-gray-500 border border-gray-300 px-9 text-xl rounded-lg leading-tight focus:outline-none"
@@ -166,7 +166,7 @@
                             <option value="low" class="bg-neutral-400 text-white">Closed</option>
                             <option value="urgent" class="bg-green-300 text-white">Investigating</option>
                         </select>
-                            <path d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />  
+                            <path d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
                         </div>
                         </div>
                     </td>
@@ -188,7 +188,7 @@
             title="Previous">
             <span>&lt;</span>
           </button>
-    
+
           <!-- Center Label -->
           <div
             class="bg-purple-400 text-white px-6 py-1 rounded-md font-medium text-sm mx-2">

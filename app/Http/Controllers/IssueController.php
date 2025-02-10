@@ -13,7 +13,7 @@ class IssueController extends Controller
     }
 
     public function create(){
-        return view('user.add');
+        return view('user.new-issue');
     }
 
     public function issue_list(){
