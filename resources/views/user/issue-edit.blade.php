@@ -1,34 +1,37 @@
 <x-layout>
-    <h1 class="text-3xl font-bold text-black my-4 text-center">Issue Create Form</h1>
+    <h1 class="text-3xl font-bold text-black my-4 text-center">Issue Update Form</h1>
 
     <hr class="border-t-2 border-gray-300 my-4" />
+
     <div class="w-full mb-5 max-w-4xl mx-auto p-8 bg-white rounded-lg shadow-md">
-        <form action="/user/issue-store" method="POST">
+        <form action="/user/issue-update" method="POST">
             @csrf
             <div class="mb-4">
                 <label for="project_id" class="block text-black text-sm mb-2">Project Id</label>
                 <input
                 required
-                type="text"
-                id="project_id"
-                name="project_id"
+                type="text" 
+                id="project_id" 
+                name="project_id" 
+                value="{{ old('project_id') }}"
                 class="w-full px-4 py-2 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
             <div class="mb-4">
                 <label for="subject" class="block text-black text-sm mb-2">Subject</label>
-                <input
+                <input 
                 required
-                type="text"
-                id="subject"
-                name="subject"
+                type="text" 
+                id="subject" 
+                name="subject" 
+                value="{{ old('subject') }}"
                 class="w-full px-4 py-2 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
             <div class="mb-4">
                 <label for="description" class="block text-black text-sm mb-2">Description</label>
                 {{-- <input type="text" id="desc" class="w-full px-24 py-12 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"> --}}
-                <textarea
+                <textarea 
                 required
-                name="description"
+                name="description" 
                 id="description"
                 cols="50"
                 rows="2"
@@ -45,13 +48,14 @@
                     </select>
                 </div>
                 <div class="flex-1">
-                    <label for="assignor_user"
+                    <label for="assignor_user" 
                     class="block text-black text-sm font-bold mb-2">Assignor</label>
-                    <input
+                    <input 
                     required
-                    type="text"
-                    id="assignor_user"
-                    name="assignor_user"
+                    type="text" 
+                    id="assignor_user" 
+                    name="assignor_user" 
+                    value="{{ old('assignor_user') }}"
                     class="w-full px-2 py-1 rounded-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
                 <div class="flex-1">
@@ -65,9 +69,9 @@
             </div>
             <div class="mb-4">
                 <label for="attachment" class="block text-black text-sm mb-2">Attachment</label>
-                <input
-                type="file"
-                id="attachment"
+                <input 
+                type="file" 
+                id="attachment" 
                 name="attachment"
                 class="w-full px-4 py-2 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
@@ -75,32 +79,9 @@
             <div class="mb-4">
                 <label for="remark" class="block text-black text-sm mb-2">Remark</label>
                 {{-- <input type="text" id="desc" class="w-full px-24 py-12 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"> --}}
-                <textarea
-                name="remark"
-                id="remark"
-                cols="50"
-                rows="2"
-                class="p-2 border bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                ></textarea>
-            </div>
-
-            <div class="mb-4">
-                <label for="remark" class="block text-black text-sm mb-2">Total Duration</label>
-                {{-- <input type="text" id="desc" class="w-full px-24 py-12 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"> --}}
-                <textarea
-                name="remark"
-                id="remark"
-                cols="50"
-                rows="2"
-                class="p-2 border bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                ></textarea>
-            </div>
-
-            <div class="mb-4">
-                <label for="remark" class="block text-black text-sm mb-2">Solution</label>
-                {{-- <input type="text" id="desc" class="w-full px-24 py-12 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"> --}}
-                <textarea
-                name="remark"
+                <textarea 
+                required
+                name="remark" 
                 id="remark"
                 cols="50"
                 rows="2"
@@ -109,17 +90,11 @@
             </div>
 
 
-
-            <div class="flex flex-row-reverse  space-x-16 space-x-reverse">
-                <button
-                type="submit"
-                class="bg-purple-400 text-black px-10 py-4 rounded-md hover:bg-purple-700 font-medium text-sm hover:text-white">
-                 Cancel
-             </button>
-                <button
+            <div class="flex flex-row-reverse">
+                <button 
                    type="submit"
                    class="bg-purple-400 text-black px-10 py-4 rounded-md hover:bg-purple-700 font-medium text-sm hover:text-white">
-                    Save
+                    Update
                 </button>
             </div>
         </form>

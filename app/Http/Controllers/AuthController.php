@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class AuthController extends Controller
 {
     public function get_login(){
-        return view('auth.create');
+        return view('auth.login-user');
     }
 
     public function post_login(){
@@ -19,7 +19,16 @@ class AuthController extends Controller
         ]);
 
         if (auth()->attempt($formData)){
-            return back();
+            return redirect('/user/dashboard');
         }
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect('/user/login');
+    }
+
+    public function forgot(){
+        return view('auth.forgot-password');
     }
 }
