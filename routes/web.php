@@ -16,5 +16,5 @@ Route::get('/', function () {
 });
 
 Route::get('/user/create', function () {
-    return view('user.new_user');
+    return view('user.profile');
 });
