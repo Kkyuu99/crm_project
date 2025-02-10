@@ -1,6 +1,5 @@
 {
     "private": true,
-    "type": "module",
     "devDependencies": {
         "@tailwindcss/line-clamp": "^0.4.4",
         "autoprefixer": "^10.4.20",
