@@ -33,10 +33,4 @@ Route::get('/admin/user/user-detail', [UserController::class, 'show']);
 Route::patch('/user/{user:name}/edit', [UserController::class, 'edit']);
 Route::delete('/user/{user:name}/delete', [UserController::class, 'delete']);
 
-Route::get('/', function () {
-    return view('admin.user.sidebar');
-});
 
-Route::get('/user/create', function () {
-    return view('user.profile');
-});
