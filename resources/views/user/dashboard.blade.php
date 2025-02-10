@@ -1,4 +1,50 @@
 <x-layout>
+
+    <style>
+        .pie-chart {
+            width: 200px;
+            height: 200px;
+            background: conic-gradient(
+                #D6F7FF 0% 50%,
+                #FFF5A6 50% 65%,
+                #F9BABA 65% 95%,
+                #9B9AE4 95% 100%
+            );
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .donut-hole {
+            width: 100px;
+            height: 100px;
+            background: #745CC9;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .legend {
+            display: flex;
+            justify-content: space-evenly;
+            width: 80%;
+            margin-top: 20px;
+        }
+
+        .legend div {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .legend span {
+            font-size: 14px;
+        }
+      </style>
   <header class="w-full p-6">
     <section class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
       <!-- Total Tickets -->
@@ -60,7 +106,11 @@
         </div>
       </div>
 
+<<<<<<< HEAD
       <form class="w-full bg-violet-500 text-white shadow rounded-lg p-5 mt-8">
+=======
+      <form class="w-full bg-violet-500 text-white shadow rounded-lg p-5 mt-8 col-span-2">
+>>>>>>> 66cb5a88b26befa9badb52c9b3e7fab299954c61
         <h1 class="font-extrabold w-full justify-center text-white text-xs">Ticket Overview</h1><br>
         <div class="flex">
           <!-- Y-Axis Labels -->
