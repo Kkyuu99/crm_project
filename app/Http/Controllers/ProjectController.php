@@ -58,7 +58,7 @@ class ProjectController extends Controller
 
     public function list(){
         $project = Project::all();
-        //return view('project.list',compact('projects'));
+        //return view('project-list',compact('projects'));
     }
 
     public function edit(Project $projects){

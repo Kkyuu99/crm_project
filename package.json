@@ -1,9 +1,6 @@
 {
     "private": true,
-<<<<<<< HEAD
     "type": "module",
-=======
->>>>>>> 66cb5a88b26befa9badb52c9b3e7fab299954c61
     "devDependencies": {
         "@tailwindcss/line-clamp": "^0.4.4",
         "autoprefixer": "^10.4.20",
