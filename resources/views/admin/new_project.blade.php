@@ -15,18 +15,18 @@
         <hr class="mb-6">
 
         <div class="mb-3">
-            <label class="font-regular text-black justify-start text-sm">Name</label>
+            <label class="font-normal text-black justify-start text-sm">Name</label>
             <input type="text" id="firstName" name="firstName" class="w-full p-1 text-slate-600 text-sm bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="Sample Name">
         </div>
 
         <div class="mb-3">
-            <label class="font-regular text-black justify-start text-sm">Organization Name</label>
+            <label class="font-normal text-black justify-start text-sm">Organization Name</label>
             <input type="text" id="name" name="name" class="w-full p-1 text-slate-600 text-sm bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="Sample Name">
         </div>
 
         <div class="flex gap-8">
         <div class="mb-3 ">
-            <label class="font-regular text-black justify-start text-sm">Project Type</label>
+            <label class="font-normal text-black justify-start text-sm">Project Type</label>
             <SELECT class="w-44 p-1 text-slate-600 text-sm bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="Sample Name">
 
                 <OPTION Value="Pending">Pending</OPTION>
@@ -37,19 +37,19 @@
         </div>
 
         <div class="mb-4 px-0">
-            <label class="font-regular text-black justify-start text-sm">Project Manager/Account Manager</label>
+            <label class="font-normal text-black justify-start text-sm">Project Manager/Account Manager</label>
             <input type="text" id="name" name="name" class="w-64 p-1 text-slate-600 text-sm bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="Sample Name">
         </div>
         </div>
 
         <div class="flex gap-8">
         <div class="mb-3">
-            <label class="font-regular text-black justify-start text-sm">Contact Name</label>
+            <label class="font-normal text-black justify-start text-sm">Contact Name</label>
             <input type="text" id="name" name="name" class="w-44 p-1 text-slate-600 text-sm bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="Sample Name">
         </div>
 
         <div class="mb-3 px-0">
-            <label class="block font-regular text-black text-sm justify-start">Created Date</label>
+            <label class="block font-normal text-black text-sm justify-start">Created Date</label>
             <div>
               <input 
                 type="date" 
@@ -60,12 +60,12 @@
 
         <div class="flex gap-8">
         <div class="mb-3">
-            <label class="font-regular text-black justify-start text-sm">Contact Phone</label>
+            <label class="font-normal text-black justify-start text-sm">Contact Phone</label>
             <input type="text" id="phone" name="phone" class="w-44 p-1 text-slate-600 text-sm bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="+959-000000000">
         </div>
 
         <div class="mb-3 px-0">
-            <label class="font-regular text-black justify-start text-sm">Status</label>
+            <label class="font-normal text-black justify-start text-sm">Status</label>
             <SELECT class="w-64 p-1 text-black text-sm bg-sky-300 border border-gray-300 rounded-lg shadow-sm">
 
                 <OPTION Value="Pending">active</OPTION>
@@ -78,7 +78,7 @@
 
         <div class="flex gap-8">
         <div class="mb-3">
-            <label class="font-regular text-black justify-start text-sm">Contact Email</label>
+            <label class="font-normal text-black justify-start text-sm">Contact Email</label>
             <input type="text" id="email" name="email" class="w-44 p-1 text-slate-600 text-sm bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="Sample@gmail.comm">
         </div>
 
