@@ -12,7 +12,7 @@
         <div class="flex flex-1 flex-col">
             <x-sidebar class="flex-1" />
             <main class="flex-1 bg-white mx-auto mr-3 ml-80 mt-1
-             rounded-lg border border-y-1 border-x-1 border-gray-600 shadow-lg">
+             rounded-lg ">
                 {{ $slot }}
             </main>
         </div>
