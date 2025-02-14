@@ -78,11 +78,7 @@
   </div>
   <a href="/user/issue-create">
     <button
-<<<<<<< HEAD
-      class="flex items-center justify-start bg-soft-purple px-6 py-3 rounded-md hover:bg-purple-500 font-medium text-sm mx-2">
-=======
       class="flex items-center justify-start bg-purple-500 px-6 py-3 rounded-md hover:bg-purple-500 font-medium text-sm mx-2">
->>>>>>> 66cb5a88b26befa9badb52c9b3e7fab299954c61
       Add New
     </button>
   </a>
@@ -95,8 +91,4 @@
     </div>
   </div>
   </div>
-<<<<<<< HEAD
 </x-layout>
-=======
-</x-layout>
->>>>>>> 66cb5a88b26befa9badb52c9b3e7fab299954c61
