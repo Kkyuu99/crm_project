@@ -27,14 +27,16 @@ class IssueFactory extends Factory
         //     'remark'=>fake()->paragraph()
         // ];
         return [
-            'project_id' => fake()->numberBetween(1, 10),
-            'issue_status' => fake()->randomElement(['open', 'closed', 'in_progress']),
+            'id' => fake()->unique()->numberBetween(1, 1000),
+            'project_id' => Project::factory(),
+            'issue_status' => fake()->randomElement(['Open', 'Closed', 'In progress', 'Resolved']),
             'subject' => fake()->name(),
             'description' => fake()->text(),
-            'priority' => fake()->randomElement(['low', 'medium', 'high']),
+            'priority' => fake()->randomElement(['Low', 'Medium', 'High', 'Urgent']),
             'attachment' => fake()->fileExtension(),
             'assignor_user' => fake()->name(),
             'remark' => fake()->text(),
+            'solution' => fake()->text(),
             'total_duration' => fake()->numberBetween(1, 100),
         ];
     }

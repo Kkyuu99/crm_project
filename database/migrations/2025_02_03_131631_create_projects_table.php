@@ -17,13 +17,9 @@ return new class extends Migration
             $table->string('organization_name');
             $table->string('project_type');
             $table->string('project_manager');
-            $table->foreignId('issue_id');
             $table->string('contact_name');
             $table->string('contact_phone');
             $table->string('contact_email');
-            $table->string('created_by')->nullable();
-            $table->string('updated_by')->nullable();
-            $table->string('deleted_by')->nullable();
             $table->timestamps();
         });
     }
@@ -33,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('project');
+        Schema::dropIfExists('projects');
     }
 };

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('issues', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('project_id');
+            $table->foreignId('project_id')->constrained('projects')->onDelete('cascade');
             $table->string('issue_status');
             $table->string('subject');
             $table->text('description');
@@ -21,7 +21,8 @@ return new class extends Migration
             $table->string('attachment')->nullable();
             $table->string('assignor_user');
             $table->text('remark')->nullable();
-            $table->integer('total_duration');
+            $table->integer('total_duration')->default(0);
+            $table->text('solution')->nullable();
             $table->timestamps();
         });
     }

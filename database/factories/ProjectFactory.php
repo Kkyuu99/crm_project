@@ -32,18 +32,17 @@ class ProjectFactory extends Factory
         //     'updated_by'=>fake()->name(),
         //     'deleted_by'=>fake()->name()
         // ];
+
         return [
+            'id' => fake()->unique()->numberBetween(1, 1000),
             'project_name' => fake()->name(),
             'organization_name' => fake()->company(),
             'project_type' => fake()->word(),
             'project_manager' => fake()->name(),
-            'issue_id' => fake()->numberBetween(1, 10),
+            //'issue_id' => str_pad(fake()->unique()->numberBetween(1, 1000), 4, '0', STR_PAD_LEFT),
             'contact_name' => fake()->name(),
             'contact_phone' => fake()->phoneNumber(),
             'contact_email' => fake()->email(),
-            'created_by' => fake()->name(), 
-            'updated_by' => fake()->name(),
-            'deleted_by' => fake()->name(),
         ];
     }
 }
