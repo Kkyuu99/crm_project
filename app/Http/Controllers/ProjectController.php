@@ -25,7 +25,6 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'issue_id' =>'required',
             'project_name' => 'required|string|max:255',
             'organization_name' => 'required',
             'project_type' => 'required|string|max:255',
@@ -40,7 +39,6 @@ class ProjectController extends Controller
 
         Project::create([
             'id' => $request->input('id'),
-            'issue_id' => $request->input('issue_id'),
             'project_name' => $request->input('project_name'),
             'organization_name' => $request->input('organization_name'),
             'project_type' => $request->input('project_type'),
@@ -68,7 +66,6 @@ class ProjectController extends Controller
     public function update(Request $request, Project $project)
     {
         $request->validate([
-            'issue_id' =>'required',
             'project_name' => 'required|string|max:255',
             'organization_name' => 'required',
             'project_type' => 'required|string|max:255',
@@ -82,7 +79,6 @@ class ProjectController extends Controller
 
         $project->update([
             'id' => $request->input('id'),
-            'issue_id' => $request->input('issue_id'),
             'project_name' => $request->input('project_name'),
             'organization_name' => $request->input('organization_name'),
             'project_type' => $request->input('project_type'),
