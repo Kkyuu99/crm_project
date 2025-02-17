@@ -38,7 +38,7 @@ class UserController extends Controller
 
         $user = User::create($formData);
         return redirect('/')->with('success', 'User created successfully');
-     }                 
+     }
 
     public function show($id){
         return view('users.show',
@@ -67,7 +67,7 @@ class UserController extends Controller
 
     public function delete(User $user){
         $user->delete();
-        return redirect('/')->with('success', 'User deleted successfully');  
+        return redirect('/')->with('success', 'User deleted successfully');
     }
-    
+
 }

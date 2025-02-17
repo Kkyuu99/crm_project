@@ -88,8 +88,8 @@
                 <label for="remark" class="block text-black text-sm mb-2">Total Duration</label>
                 {{-- <input type="text" id="desc" class="w-full px-24 py-12 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"> --}}
                 <textarea
-                name="remark"
-                id="remark"
+                name="total_duration"
+                id="total_duration"
                 cols="50"
                 rows="2"
                 class="p-2 border bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -100,8 +100,8 @@
                 <label for="remark" class="block text-black text-sm mb-2">Solution</label>
                 {{-- <input type="text" id="desc" class="w-full px-24 py-12 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"> --}}
                 <textarea
-                name="remark"
-                id="remark"
+                name="solution"
+                id="solution"
                 cols="50"
                 rows="2"
                 class="p-2 border bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -112,7 +112,7 @@
 
             <div class="flex flex-row-reverse  space-x-16 space-x-reverse">
                 <button
-                type="submit"
+                type="cancel"
                 class="bg-purple-400 text-black px-10 py-4 rounded-md hover:bg-purple-700 font-medium text-sm hover:text-white">
                  Cancel
              </button>

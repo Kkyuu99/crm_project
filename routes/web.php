@@ -5,6 +5,9 @@ use App\Http\Controllers\IssueController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+
+
 
 Route::get('/', [UserController::class, 'index']);
 Route::get('/user/dashboard', [UserController::class, 'index']);
@@ -14,6 +17,11 @@ Route::get('/user/issue-create', [IssueController::class, 'create']);
 Route::post('/user/issue-store', [IssueController::class, 'store']);
 Route::put('/user/{issue:id}/issue-edit', [IssueController::class, 'edit']);
 Route::post('/user/issue-update', [IssueController::class, 'store']);
+
+Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+Route::post('/posts', [PostController::class, 'store'])->withoutMiddleware('auth');
+Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+
 
 
 Route::delete('/project/{project:project_name}/delete', [ProjectController::class, 'delete']);
@@ -32,4 +40,11 @@ Route::post('/admin/user/store', [UserController::class, 'store']);
 Route::get('/admin/user/user-detail', [UserController::class, 'show']);
 Route::patch('/user/{user:name}/edit', [UserController::class, 'edit']);
 Route::delete('/user/{user:name}/delete', [UserController::class, 'delete']);
+
+Route ::post('/login','PostController@login');
+// Dashboard Route
+Route::get('/user/dashboard', function () {
+    return view('/user/dashboard');
+})->name('dashboard');
+
 

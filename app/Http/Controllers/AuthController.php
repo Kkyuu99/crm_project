@@ -11,6 +11,11 @@ class AuthController extends Controller
     public function get_login(){
         return view('auth.login-user');
     }
+    public function store(Request $request)
+    {
+        dd($request->all());
+    }
+
 
     public function post_login(){
         $formData = request()->validate([

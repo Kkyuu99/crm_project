@@ -3,7 +3,7 @@
 </span>
 
 <!-- Sidebar -->
-<div class="sidebar fixed space-y-5 top-0 bottom-0 lg:left-0 left-[-300px] p-2 w-[300px] overflow-auto text-center bg-purple-500">
+<div class="sidebar fixed space-y-5 top-0 bottom-0 lg:left-0 left-[-300px] p-2 w-[300px] overflow-auto text-center bg-violet-500">
     <div class="text-gray-100 text-xl">
         <div class="p-2 mt-1 flex items-center">
             <i class="bi bi-person-circle px-2 py-1 text-black rounded-md"></i>
@@ -63,8 +63,8 @@
     </div>
 
     <!-- Dropdown for Users -->
-    <a href="/user/user-list" 
-         class="{{ request()->is('user/user-list') ? 'bg-blue-50 text-blue-600' : 'text-gray-800' }} group flex items-center px-3 py-2 rounded-md 
+    <a href="/user/user-list"
+         class="{{ request()->is('user/user-list') ? 'bg-blue-50 text-blue-600' : 'text-gray-800' }} group flex items-center px-3 py-2 rounded-md
           hover:bg-blue-50 hover:text-blue-8 transition-colors">
             <svg class="h-5 w-5 mr-3 text-inherit" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
