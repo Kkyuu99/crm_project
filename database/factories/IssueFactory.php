@@ -27,7 +27,6 @@ class IssueFactory extends Factory
         //     'remark'=>fake()->paragraph()
         // ];
         return [
-            'id' => fake()->unique()->numberBetween(1, 1000),
             'project_id' => Project::factory(),
             'issue_status' => fake()->randomElement(['Open', 'Closed', 'In progress', 'Resolved']),
             'subject' => fake()->name(),
@@ -38,6 +37,7 @@ class IssueFactory extends Factory
             'remark' => fake()->text(),
             'solution' => fake()->text(),
             'total_duration' => fake()->numberBetween(1, 100),
+            'due_date' => $this->faker->dateTimeBetween('now', '+30 days')->format('Y-m-d'),
         ];
     }
 }
