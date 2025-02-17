@@ -27,7 +27,7 @@
         <td class="border border-gray-300 px-8 py-2 text-md">{{ $loop->iteration + (($issues->currentPage() - 1) * $issues->perPage()) }}</td>
         <td class="border border-gray-300 px-8 py-2 text-md">{{$issue->id}}</td>
         <td class="border border-gray-300 px-8 py-2 text-md">{{$issue->subject}}</td>
-        <td class="border border-gray-300 px-8 py-2 text-md" style="background: linear-gradient(to bottom, black 50%, white 100%); -webkit-background-clip: text; color: transparent;">
+        <td class="border border-gray-300 px-8 py-2 text-md bg-[linear-gradient(to_bottom,_black_30%,_white_90%)] bg-clip-text text-transparent">
             <div class="description" data-full-text="{{ $issue->description }}">
               <span class="short-text">{{ Str::limit($issue->description, 60) }}</span>
               <span class="full-text hidden">{{ $issue->description }}</span>
@@ -56,13 +56,13 @@
         </div>
         </td> -->
         <td class="border border-gray-300 px-8 py-2">{{$issue->total_duration}}</td>
-        <td class="border border-gray-300 px-8 py-2 text-md" style="background: linear-gradient(to bottom, black 50%, white 100%); -webkit-background-clip: text; color: transparent;">
+        <td class="border border-gray-300 px-8 py-2 text-md bg-[linear-gradient(to_bottom,_black_30%,_white_90%)] bg-clip-text text-transparent">
             <div class="solution" data-full-text="{{ $issue->solution }}">
               <span class="short-text">{{ Str::limit($issue->solution, 60) }}</span>
               <span class="full-text hidden">{{ $issue->solution }}</span>
             </div>
         </td>
-        <td class="border border-gray-300 px-8 py-2 text-md" style="background: linear-gradient(to bottom, black 50%, white 100%); -webkit-background-clip: text; color: transparent;">
+        <td class="border border-gray-300 px-8 py-2 text-md bg-[linear-gradient(to_bottom,_black_30%,_white_90%)] bg-clip-text text-transparent">
             <div class="remark" data-full-text="{{ $issue->remark }}">
               <span class="short-text">{{ Str::limit($issue->remark, 60) }}</span>
               <span class="full-text hidden">{{ $issue->remark }}</span>
