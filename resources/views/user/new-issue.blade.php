@@ -59,7 +59,7 @@
             <div class="mb-6 flex justify-between space-x-4">
                 <div class="flex-1">
                     <label for="priority" class="block text-black text-sm mb-2">Priority</label>
-                    <select id="priority" name="priority" class="w-full bg-white border border-gray-300 px-4 py-2 text-sm rounded-lg leading-tight focus:outline-none appearance-none">
+                    <select id="priority" name="priority" class="w-full bg-white border border-gray-300 px-4 py-2 text-sm rounded-lg leading-tight focus:outline-none">
                         <option value="Low" class="bg-yellow-200 text-black">Low</option>
                         <option value="Medium" class="bg-yellow-500 text-black">Medium</option>
                         <option value="High" class="bg-orange-400 text-black">High</option>
@@ -79,7 +79,7 @@
                 </div>
                 <div class="flex-1">
                     <label for="issue_status" class="block text-black text-sm mb-2">Status</label>
-                    <select id="issue_status" name="issue_status" class="w-full bg-white border rounded-lg border-gray-300 px-4 py-2 text-sm leading-tight focus:outline-none appearance-none">
+                    <select id="issue_status" name="issue_status" class="w-full bg-white border rounded-lg border-gray-300 px-4 py-2 text-sm leading-tight focus:outline-none">
                         <option value="Open" class="bg-white-300 text-black">Open</option>
                         <option value="In-progress" class="bg-gray-300 text-black">In progress</option>
                         <option value="Closed" class="bg-red-400 text-white">Closed</option>
