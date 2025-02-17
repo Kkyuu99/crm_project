@@ -1,16 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Project</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="./output.css" rel="stylesheet">
-</head>
-
-<body class="flex justify-center items-center min-h-screen bg-gray-100">
-    <form class="w-full max-w-lg bg-white p-6 rounded-lg shadow-md" action="/update-profile" method="POST">
+<x-layout>
+    <form class="w-full max-w-lg bg-white p-6 rounded-lg shadow-md" action="admin/" method="POST">
         <h1 class="text-xl font-bold text-left mb-4">New Project</h1>
         <hr class="mb-6">
 
@@ -89,6 +78,4 @@
         </div>
         </div>   
     </form>
-</body>
-
-</html>
+</x-layout>
