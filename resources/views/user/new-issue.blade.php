@@ -5,7 +5,7 @@
         <form action="/user/issue-store" method="POST" enctype="multipart/form-data">
             @csrf
             
-            <div class="mb-4">
+            <!-- <div class="mb-4">
                 <label for="project_id" class="block text-black text-sm mb-2">Project ID</label>
                 <input
                 required
@@ -14,7 +14,22 @@
                 name="project_id"
                 placeholder="Enter project ID"
                 class="w-full px-4 py-2 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div> -->
+            <div class="mb-4">
+                <label for="project_id" class="block text-black text-sm mb-2">Project ID</label>
+                <select
+                    required
+                    id="project_id"
+                    name="project_id"
+                    class="w-full px-4 py-2 rounded-lg border border-gray-300 bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                    <option value="">Select a project</option>
+                    @foreach($projects as $project)
+                        <option value="{{ $project->id }}">{{ $project->id }} : {{ $project->project_name }}</option>
+                    @endforeach
+                </select>
             </div>
+            
             <div class="mb-4">
                 <label for="subject" class="block text-black text-sm mb-2">Subject</label>
                 <input
@@ -88,6 +103,7 @@
             <div class="mb-4">
             <label for="duration" class="block text-black text-sm mb-2">Total duration</label>
                 <input
+                required
                 type="text"
                 name="total_duration"
                 id="total_duration"

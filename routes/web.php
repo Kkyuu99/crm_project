@@ -16,10 +16,11 @@ Route::delete('/project/{project:project_name}/delete', [ProjectController::clas
 Route::get('/user/issue-list', [IssueController::class, 'issue_list']);
 Route::get('/user/issue-create', [IssueController::class, 'create']);
 Route::post('/user/issue-store', [IssueController::class, 'store']);
-Route::get('/user/issues/{id}',[IssueController::class,'show']);
+Route::get('/user/issues/{id}',[IssueController::class,'show'])->name('issue-detail');
 Route::put('/user/{id}/issue-edit', [IssueController::class, 'edit'])->name('issue-edit');
 Route::post('/user/issues/{id}', [IssueController::class, 'update'])->name('issue-update');
 Route::delete('/user/{id}/issue-delete', [IssueController::class, 'delete']);
+Route::delete('user/issues/{id}/remove-attachment', [IssueController::class, 'removeAttachment'])->name('remove-attachment');
 
 
 

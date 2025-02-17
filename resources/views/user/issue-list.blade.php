@@ -23,7 +23,7 @@
       <tbody>
 
       @foreach ($issues as $issue)
-      <tr class="hover:bg-gray-100">
+      <tr class="hover:bg-gray-100 cursor-pointer" onclick="window.location.href='{{ url('/user/issues/' . $issue->id) }}'">
         <td class="border border-gray-300 px-8 py-2 text-md">{{ $loop->iteration + (($issues->currentPage() - 1) * $issues->perPage()) }}</td>
         <td class="border border-gray-300 px-8 py-2 text-md">{{$issue->id}}</td>
         <td class="border border-gray-300 px-8 py-2 text-md">{{$issue->subject}}</td>
@@ -37,15 +37,11 @@
         <td class="border border-gray-300 px-8 py-2 text-md">{{$issue->priority}}</td>
         <td class="border border-gray-300 px-8 py-2 text-md">       
             @if ($issue->attachment)
-            <a href="{{ asset('storage/' . $issue->attachment) }}" class="inline text-blue-500 hover:underline text-sm mt-4">
-              <!-- Display the file name -->
-              <div class="description" data-full-text="{{ $issue->attachment }}">
-                <span class="short-text">{{ Str::limit(basename($issue->attachment), 10) }}</span>
-                <span class="full-text hidden">{{  basename($issue->attachment) }}</span>
-              </div>
+              <a href="{{ asset('storage/' . $issue->attachment) }}" target="_blank" class="text-blue-500 underline">
+              View Attachment
               </a>
             @else
-              No attachment
+              <span class="text-gray-500">No Attachment</span>
             @endif
           
         </td>

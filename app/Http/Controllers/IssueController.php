@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Issue;
+use App\Models\Project;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -17,7 +18,7 @@ class IssueController extends Controller
 
     public function issue_list(){
 
-        $issues = Issue::paginate(5);
+        $issues = Issue::orderBy('created_at', 'desc')->paginate(5);
         return view('user.issue-list',[
             'issues' => $issues
         ]);
@@ -29,7 +30,9 @@ class IssueController extends Controller
 
     //show the new issue create form
     public function create(){
-        return view('user.new-issue');
+        
+        $projects = Project::all();;
+        return view('user.new-issue', compact('projects'));
     }
 
     //store new issue
@@ -64,14 +67,17 @@ class IssueController extends Controller
 
     public function show($id){
         $issue = Issue::findOrFail($id);
-        return view('issue.show', compact('issue'));
+        
+        $projects = Project::all();;
+        return view('user.issue-detail', compact('issue','projects'));
     }
 
     //show the form for editing existing issue
     public function edit($id)
     {
         $issue = Issue::findOrFail($id);
-        return view(('user.issue-edit'), compact('issue'));
+        $projects = Project::all();;
+        return view('user.issue-edit', compact('issue','projects'));
     }
 
     //update existing issue
@@ -98,6 +104,12 @@ class IssueController extends Controller
             }
             $validated['attachment'] = $request->file('attachment')->store('attachments', 'public');
         }
+        if ($request->has('remove_attachment')) {
+            if ($issue->attachment) {
+                Storage::disk('public')->delete($issue->attachment);
+            }
+            $issue->update(['attachment' => null]);
+        }
 
         //update issue in the database
         $issue->update($validated);
@@ -116,16 +128,17 @@ class IssueController extends Controller
     }
     
     //delete attachment when editing
-    // public function removeAttachment($id)
-    // {
-    //     $issue = Issue::findOrFail($id);
-    //     if ($issue->attachment) {
-    //         Storage::disk('public')->delete($issue->attachment);
-    //         $issue->attachment = null;
-    //         $issue->save();
-    //     }
-    //     return redirect()->route('issue-edit', $id)->with('success', 'Attachment removed successfully.');
-    // }
+    public function removeAttachment($id)
+    {
+        $issue = Issue::findOrFail($id);
+        if ($issue && $issue->attachment) {
+            Storage::disk('public')->delete($issue->attachment);
+            $issue->attachment = null;
+            $issue->save();
+            return redirect()->back()->with('success', 'Attachment removed successfully.');
+        }
+        return redirect()->back()->with('error', 'No attachment found to remove.');
+    }
 
     
 

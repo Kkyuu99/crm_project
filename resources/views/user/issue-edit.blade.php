@@ -17,15 +17,23 @@
             </div>
             <div class="mb-4">
                 <label for="project_id" class="block text-black text-sm mb-2">Project ID</label>
-                <input
-                required
-                type="text" 
-                id="project_id" 
-                name="project_id" 
-                placeholder="Enter project ID"
-                value="{{ old('project_id', $issue->project_id) }}"
-                class="w-full px-4 py-2 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <select
+                    required
+                    id="project_id"
+                    name="project_id"
+                    class="w-full px-4 py-2 rounded-lg border border-gray-300 bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                <option value="">Select a project</option>
+
+                @foreach($projects as $project)
+                    <option value="{{ $project->id }}" 
+                        {{ old('project_id', $issue->project_id ?? '') == $project->id ? 'selected' : '' }}>
+                        {{ $project->id }} : {{ $project->project_name }}
+                    </option>
+                @endforeach
+            </select>
             </div>
+
             <div class="mb-4">
                 <label for="subject" class="block text-black text-sm mb-2">Subject</label>
                 <input 
@@ -77,8 +85,8 @@
                     <select id="issue_status" name="issue_status" class="w-full bg-white border rounded-lg border-gray-300 px-4 py-2 text-sm leading-tight focus:outline-none appearance-none">
                         <option value="Open" {{ old('issue_status', $issue->issue_status) == 'Open' ? 'selected' : '' }}  class="bg-white-300 text-black">Open</option>
                         <option value="In-progress" {{ old('issue_status', $issue->issue_status) == 'In-progress' ? 'selected' : '' }}  class="bg-gray-300 text-black">In progress</option>
-                        <option value="Closed" {{ old('issue_status', $issue->issue_status) == 'Low' ? 'Closed' : '' }}  class="bg-red-400 text-white">Closed</option>
-                        <option value="Resolved" {{ old('priorissue_statusity', $issue->issue_status) == 'Resolved' ? 'selected' : '' }}  class="bg-green-400 text-white">Resolved</option>
+                        <option value="Closed" {{ old('issue_status', $issue->issue_status) == 'Closed' ? 'selected' : '' }}  class="bg-red-400 text-white">Closed</option>
+                        <option value="Resolved" {{ old('issue_status', $issue->issue_status) == 'Resolved' ? 'selected' : '' }}  class="bg-green-400 text-white">Resolved</option>
                     </select>
                 </div>
             </div>
@@ -96,14 +104,19 @@
                         <div class="w-full max-w-md mx-auto">
                             <img src="{{ asset('storage/' . $issue->attachment) }}" alt="Attachment Preview" class="w-full h-auto rounded-md shadow-lg">
                         </div>
+                        
+                        <div class="mt-2">
+                            <input type="checkbox" id="remove_attachment" name="remove_attachment" value="1">
+                            <label for="remove_attachment" class="text-sm text-red-500 font-semibold">Remove Attachment</label>
+                        </div>
                     </div>
                 @endif
-
             </div>
 
             <div class="mb-4">
             <label for="duration" class="block text-black text-sm mb-2">Total duration</label>
                 <input
+                required
                 type="text"
                 name="total_duration"
                 id="total_duration"
@@ -123,7 +136,7 @@
                 rows="4"
                 style="resize: height; overflow: hidden; width:100%; height:100%; border-radius:8px; max-width:100%;"
                 class="p-2 border bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >{{ old('description', $issue->solution) }}</textarea>
+                >{{ old('solution', $issue->solution) }}</textarea>
             </div>
 
             <div class="mb-4">
@@ -136,7 +149,7 @@
                 rows="4"
                 style="resize: height; overflow: hidden; width:100%; height:100%; border-radius:8px; max-width:100%;"
                 class="p-2 border bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >{{ old('description', $issue->remark) }}</textarea>
+                >{{ old('remark', $issue->remark) }}</textarea>
             </div>
 
 
@@ -147,7 +160,7 @@
                 </a>
                 <button 
                    type="submit"
-                   class="bg-purple-400 text-white px-6 py24 rounded-md hover:bg-purple-700 font-medium text-sm hover:text-white">
+                   class="bg-purple-400 text-white px-6 py-2 rounded-md hover:bg-purple-700 font-medium text-sm hover:text-white">
                     Update
                 </button>
             </div>
