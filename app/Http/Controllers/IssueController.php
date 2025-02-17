@@ -49,6 +49,7 @@ class IssueController extends Controller
             'remark' => 'nullable',
             'solution' => 'nullable',
             'total_duration' => 'required|string|max:255',
+            'due_date' => 'required|date',
         ], [
             'attachment.max' => 'The file size must not exceed 10MB.',
             'attachment.mimes' => 'Only JPG, PNG, and PDF files are allowed.',
@@ -96,6 +97,7 @@ class IssueController extends Controller
             'remark' => 'nullable',
             'solution' => 'nullable',
             'total_duration' => 'required|string|max:255',
+            'due_date' => 'required|date',
         ]);
 
         if ($request->hasFile('attachment')) {

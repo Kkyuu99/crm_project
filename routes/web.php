@@ -4,11 +4,14 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IssueController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Routing\RouteUri;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/user/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 Route::get('/', [UserController::class, 'index']);
-Route::get('/user/dashboard', [UserController::class, 'index']);
+//Route::get('/user/dashboard', [UserController::class, 'index']);
 Route::get('/user/project-list', [ProjectController::class, 'project_list']);
 Route::delete('/project/{project:project_name}/delete', [ProjectController::class, 'delete']);
 

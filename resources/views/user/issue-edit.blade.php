@@ -90,6 +90,18 @@
                     </select>
                 </div>
             </div>
+
+            <div class="mb-4">
+                <label for="due_date" class="block text-black text-sm mb-2">Due Date</label>
+                <input
+                required
+                type="date"
+                id="due"
+                name="due"
+                value="{{ old('subject', $issue->due_date) }}"
+                class="w-75 px-4 py-2 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
             <div class="mb-4">
                 <label for="attachment" class="block text-black text-sm mb-2">Attachment</label>
                 <input 

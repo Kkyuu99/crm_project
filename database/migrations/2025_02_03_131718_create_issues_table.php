@@ -23,6 +23,7 @@ return new class extends Migration
             $table->text('remark')->nullable();
             $table->integer('total_duration')->default(0);
             $table->text('solution')->nullable();
+            $table->date('due_date');
             $table->timestamps();
         });
     }

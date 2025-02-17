@@ -14,6 +14,7 @@
           <th class="border border-gray-300 px-10 py-3 text-xl text-center bg-gray-100 text-gray-500" style="font-size: 16px;">Priority</th>
           <th class="border border-gray-300 px-10 py-3 text-xl text-center bg-gray-100 text-gray-500" style="font-size: 16px;">Attachment</th>
           <th class="border border-gray-300 px-10 py-3 text-xl text-center bg-gray-100 text-gray-500" style="font-size: 16px;">Status</th>
+          <th class="border border-gray-300 px-10 py-3 text-xl text-center bg-gray-100 text-gray-500" style="font-size: 16px;">Due date</th>
           <th class="border border-gray-300 px-10 py-3 text-xl text-center bg-gray-100 text-gray-500" style="font-size: 16px;">Total Duration</th>
           <th class="border border-gray-300 px-10 py-3 text-xl text-center bg-gray-100 text-gray-500" style="font-size: 16px;">Solution</th>
           <th class="border border-gray-300 px-10 py-3 text-xl text-center bg-gray-100 text-gray-500" style="font-size: 16px;">Remark</th>
@@ -46,7 +47,7 @@
           
         </td>
         <td class="border border-gray-300 px-8 py-2">{{$issue->issue_status}}</td>
-        
+        <td class="border border-gray-300 px-8 py-2">{{$issue->due_date}}</td>
         <!-- Custom Arrow Icon -->
         <!-- <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
