@@ -33,6 +33,7 @@
             <div class="mb-4">
                 <label for="subject" class="block text-black text-sm mb-2">Subject</label>
                 <input
+                <input
                 required
                 type="text"
                 id="subject"
@@ -46,6 +47,7 @@
                 {{-- <input type="text" id="desc" class="w-full px-4 py-2 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"> --}}
                 <textarea
                 required
+                name="description"
                 name="description"
                 id="description"
                 cols="100"
@@ -100,6 +102,9 @@
 
             <div class="mb-4">
                 <label for="attachment" class="block text-black text-sm mb-2">Attachment</label>
+                <input
+                type="file"
+                id="attachment"
                 <input
                 type="file"
                 id="attachment"
