@@ -12,7 +12,12 @@
         <hr class="my-2 text-gray-600">
     </div>
 
-    
+    <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300
+        cursor-pointer bg-[#FFFFFF] text-white">
+            <i class="bi bi-search text-sm"></i>
+            <input type="text" placeholder="Search" class="text-[15px] ml-4 w-full
+            bg-transparent focus:outline-none">
+    </div>
 
     <!-- Sidebar Items -->
     <a href="/user/dashboard"
@@ -34,7 +39,7 @@
             Projects
     </a>
     <div class="text-left text-sm font-thin mt-2 w-4/5 mx-auto text-gray-200 hidden" id="submenu-projects">
-        <a href="/user/project-list"">
+        <a href="/user/project-list">
             <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Project List</h1>
         </a>
         <a href="#" onclick="loadContent('projectdetail.html')">
@@ -52,10 +57,10 @@
             Issues
     </a>
     <div class="text-left text-sm font-thin mt-2 w-4/5 mx-auto text-gray-200 hidden" id="submenu-issues">
-        <a href="user/issue_list"">
+        <a href="user/issue_list">
             <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Issue List</h1>
         </a>
-        <a href="/user/issue-detail"">
+        <a href="/user/issue-detail">
             <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Issue Detail</h1>
         </a>
         <a href="#" onclick="loadContent('new_issue.html')">
@@ -87,18 +92,22 @@
 
     <hr class="my-2 text-white">
 
-    <a href="/login">
-        <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-700">
-            <i class="bi bi-box-arrow-left"></i>
-            <span class="text-[18px] ml-4 text-white">Login</span>
-        </div>
-    </a>
+    <a href="/login" 
+         class="{{ request()->is('user/user-list') ? 'bg-blue-50 text-blue-600' : 'text-white' }} group flex items-center px-3 py-2 rounded-md 
+          hover:bg-blue-50 hover:text-blue-600 transition-colors">
+            <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+            </svg>
+            Login
+         </a>
 
     <!-- Logout Button -->
-    <a href="/logout">
-        <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-700">
-            <i class="bi bi-box-arrow-left"></i>
-            <span class="text-[18px] ml-4 text-white">Logout</span>
-        </div>
-    </a>
+    <a href="/logout" 
+         class="{{ request()->is('user/user-list') ? 'bg-blue-50 text-blue-600' : 'text-white' }} group flex items-center px-3 py-2 rounded-md 
+          hover:bg-blue-50 hover:text-blue-600 transition-colors">
+            <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+            </svg>
+            Logout
+         </a>
 </div>
