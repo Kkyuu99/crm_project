@@ -51,10 +51,10 @@
             Issues
     </a>
     <div class="text-left text-sm font-thin mt-2 w-4/5 mx-auto text-gray-200 hidden" id="submenu-issues">
-        <a href="user/issue_list"">
+        <a href="user/issue_list">
             <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Issue List</h1>
         </a>
-        <a href="/user/issue-detail"">
+        <a href="/user/issue-detail">
             <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Issue Detail</h1>
         </a>
         <a href="#" onclick="loadContent('new_issue.html')">

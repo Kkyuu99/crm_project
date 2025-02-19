@@ -1,7 +1,16 @@
 <x-layout>
-    <form class="w-full bg-white p-6 rounded-lg shadow-md" action="/update-profile" method="POST">
+    <form class="w-full bg-white p-6 rounded-lg shadow-md" action="user/project-list" method="PUT">
+        @csrf
         <h1 class="text-xl font-bold text-center mb-4">Project Detail</h1>
         <hr class="mb-6">
+
+        <div>
+            @if($session()->has('success'))
+            <div>
+                    {{session('success')}}
+            </div>
+            @endif
+        </div>
     
         <div class="mb-4 flex space-x-4 px-20">
             <label class="text-sm text-black font-normal">Project ID</label>

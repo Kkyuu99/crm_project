@@ -8,10 +8,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [UserController::class, 'index']);
 Route::get('/user/dashboard', [UserController::class, 'index']);
+Route::get('/user/new_project', [ProjectController::class, 'project_create']);
 Route::get('/user/project-list', [ProjectController::class, 'project_list']);
+Route::post('/user/project-store', [ProjectController::class, 'store']);
+Route::put('/user/project_detail', [ProjectController::class, 'update']);
+Route::get('/admin/project-list', [ProjectController::class, 'admin_project_list']);
 Route::get('/user/issue-list', [IssueController::class, 'issue_list']);
 Route::get('/user/issue-create', [IssueController::class, 'create']);
 Route::post('/user/issue-store', [IssueController::class, 'store']);
+
 Route::put('/user/{issue:id}/issue-edit', [IssueController::class, 'edit']);
 Route::post('/user/issue-update', [IssueController::class, 'store']);
 
