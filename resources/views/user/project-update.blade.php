@@ -3,7 +3,7 @@
 <x-layout>
     <h1 class="text-xl font-bold my-4 text-left ml-4">Update Project</h1>
 
-    <form action="{{ route('user.projects-update', $project->id) }}" method="POST">
+    <form action="{{ route('user.project-update', $project->id) }}" method="POST">
         @csrf
         @method('PUT')
         

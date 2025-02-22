@@ -19,9 +19,17 @@ class ProjectController extends Controller
         return view('user.project-list',compact('projects'));
     }
 
-    public function project_detail(){
-        return view('user.project_detail');
+    public function edit($id){
+    $project = Project::findOrFail($id);
+
+    // If the project is not found, you can handle it (optional)
+    if (!$project) {
+        return redirect()->route('user.project-list')->with('error', 'Project not found');
     }
+
+    return view('user.project_edit', compact('project'));
+    }
+
 
     public function project_create(){
         return view('user.new_project');
@@ -29,61 +37,36 @@ class ProjectController extends Controller
 
     public function store(Request $request){
         //validate the incoming request
-        $data = $request->validate([
-        
-        'project_name' => 'required|string|max:255',
-        'organization_name' => 'required|max:255',
-        'project_type' => 'required|string|max:255',
-        'project_manager' => 'required|string|max:255',
-        'contact_name' => 'required|string|max:255',
-        'contact_phone' => 'required|string|max:255',
-        'contact_email' => 'nullable|string|max:255',
-        'status' => 'required|string', 
-        'created_by' => 'required|integer',
-        'updated_by' => 'nullable|exists:users,id',
-        'deleted_by' => 'nullable|exists:users,id',
+        $validated = $request->validate([
+            'project_name' => 'required|string|max:255',
+            'organization_name' => 'required|max:255',
+            'project_type' => 'required|string|max:255',
+            'project_manager' => 'required|string|max:255',
+            'contact_name' => 'required|string|max:255',
+            'contact_phone' => 'required|string|max:255',
+            'contact_email' => 'nullable|string|max:255',
+            'status' => 'required|string',
         ]);
 
          // Create the new project instance
-         $project = new Project();
-         $project->project_name = $request->project_name;
-         $project->organization_name = $request->organization_name;
-         $project->project_type = $request->project_type;
-         $project->project_manager = $request->project_manager;
-         $project->contact_name = $request->contact_name;
-         $project->contact_phone = $request->contact_phone;
-         $project->contact_email = $request->contact_email;
-         $project->status = $request->status;
+        //  $project = new Project();
+        //  $project->project_name = $request->project_name;
+        //  $project->organization_name = $request->organization_name;
+        //  $project->project_type = $request->project_type;
+        //  $project->project_manager = $request->project_manager;
+        //  $project->contact_name = $request->contact_name;
+        //  $project->contact_phone = $request->contact_phone;
+        //  $project->contact_email = $request->contact_email;
+        //  $project->status = $request->status;
          // Assign the logged-in user's ID to created_by
          //$project->created_by = Auth::id();
 
-        // Save the new project to the database
-        $project->save();
+        // Create and save the new project
+        Project::create($validated);
 
         // Assign the logged-in user's ID to created_by and updated_by if not already set
         //$data['created_by'] = $data['created_by'] ?? Auth::id();
-        //$data['updated_by'] = $data['updated_by'] ?? Auth::id();
-
-         //create the new project in db
-        $newProject = Project::project_create($data);
-    
-    //     $project=Project::create($valiade);
-    
-    //     Project::create([
-    //         'id' => $request->input('id'),
-    //         'issue_id' => $request->input('issue_id'),
-    //         'project_name' => $request->input('project_name'),
-    //         'organization_name' => $request->input('organization_name'),
-    //         'project_type' => $request->input('project_type'),
-    //         'project_manager' => $request->input('project_manager'),
-    //         'contact_name' => 'nullable|string|max:255',
-    //         'contact_phone' => $request->input('contact_phone'),
-    //         'contact_email' => 'nullable|string|max:255' ,
-    //         'created_by' => $request->created_at,
-    //         'updated_by' => $request->updated_at,
-    //         'deleted_by' => $request->deleteed_at,
-    //     ]);
-        
+        //$data['updated_by'] = $data['updated_by'] ?? Auth::id();  
 
          return redirect('/user/project-list')->with('success', 'Project created successfully!');
      }
@@ -99,8 +82,10 @@ class ProjectController extends Controller
 
     public function update(Request $request, $id)
     {
-        $data = $request->validate([
-        
+        // Find the project by ID
+        $project = Project::findOrFail($id);
+        //validate the request data
+        $validated = $request->validate([
             'project_name' => 'required|string|max:255',
             'organization_name' => 'required|max:255',
             'project_type' => 'required|string|max:255',
@@ -109,35 +94,27 @@ class ProjectController extends Controller
             'contact_phone' => 'required|string|max:255',
             'contact_email' => 'nullable|string|max:255',
             'status' => 'required|string', 
-            'created_by' => 'required|integer',
-            'updated_by' => 'nullable|exists:users,id',
-            'deleted_by' => 'nullable|exists:users,id',
             ]);
 
-            $project->update(data);
+        // Update the project with the validated data
+        $project->update($validated);
 
-            return redirect('/user/project-list')->with('success', 'Project created successfully!');
-        }
+        $project->save();
 
-    //     $project->update([
-    //         'id' => $request->input('id'),
-    //         'issue_id' => $request->input('issue_id'),
-    //         'project_name' => $request->input('project_name'),
-    //         'organization_name' => $request->input('organization_name'),
-    //         'project_type' => $request->input('project_type'),
-    //         'project_manager' => $request->input('project_manager'),
-    //         'contact_name' => $request->input('contact_name'),
-    //         'contact_phone' => $request->input('assignor_user'),
-    //         'contact_email' => $request->input('remark'),
-    //         'created_by' => $request->created_at,
-    //         'updated_by' => $request->created_at,
-    //         'deleted_by' => $request->updated_at,
+
+    // $project->update([
+    //     'project_name' => $request->input('project_name'),
+    //     'contact_name' => $request->input('contact_name'),
+    //     'contact_email' => $request->input('contact_email'),
+    //     'contact_phone' => $request->input('contact_phone'),
+    //     'status' => $request->input('status'),
     //     ]);
-    // }
+
+        return redirect()->route('user.project-list')->with('success', 'Project updated successfully!');
+    }
 
     public function delete(Project $project){
         $project->delete();
         return redirect('/user/project-list');
     }
-
 }
