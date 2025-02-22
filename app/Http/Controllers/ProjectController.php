@@ -99,8 +99,6 @@ class ProjectController extends Controller
         // Update the project with the validated data
         $project->update($validated);
 
-        $project->save();
-
 
     // $project->update([
     //     'project_name' => $request->input('project_name'),

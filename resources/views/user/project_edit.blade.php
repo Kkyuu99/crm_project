@@ -1,49 +1,58 @@
 <x-layout>
-    <h1>Edit Project</h1>
-
-    <!-- Check for any validation errors -->
-    @if($errors->any())
-        <div>
-            <ul>
-                @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-    <form action="{{ route('user.project_edit', $project->id) }}" method="POST">
+    <form class="w-full bg-white p-6 rounded-lg shadow-md" action="{{ route('user.project-update', $project->id) }}" method="POST">
         @csrf
         @method('PUT')
+        <h1 class="text-xl font-bold text-center mb-4">Project Detail</h1>
+        <hr class="mb-6">
 
-        <div>
-            <label for="project_name">Project Name</label>
-            <input type="text" name="project_name" value="{{ old('project_name', $project->project_name) }}" required>
+        <!-- Success Message -->
+        @if(session('success'))
+            <div class="bg-green-500 text-white p-4 rounded-md mb-4">
+                {{ session('success') }}
+            </div>
+        @endif
+    
+        <div class="mb-4 flex space-x-4 px-20">
+            <label class="text-sm text-black font-normal">Project ID</label>
+            <input type="text" id="Project-id" name="Project-id" value="{{ old('Project-id', $project->id) }}" class="w-96 px-4 py-2 justify-end text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm">
         </div>
 
-        <div>
-            <label for="contact_name">Contact Name</label>
-            <input type="text" name="contact_name" value="{{ old('contact_name', $project->contact_name) }}" required>
+        <div class="mb-4 flex justify-start space-x-4 px-14">
+            <label class="text-sm text-black font-normal">Project Name</label>
+            <input type="text" id="project-name" name="project-name" value="{{ old('project-name', $project->name) }}" class="w-96 px-4 py-2 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm">
         </div>
 
-        <div>
-            <label for="contact_email">Contact Email</label>
-            <input type="email" name="contact_email" value="{{ old('contact_email', $project->contact_email) }}" required>
+        <div class="mb-4 flex justify-start space-x-4 px-5">
+            <label class="text-sm text-black font-normal">Organization Name</label>
+            <input type="text" id="organization-name" name="organization-name" value="{{ old('organization-name', $project->organization_name) }}" class="w-96 px-2 py-1 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm">
         </div>
 
-        <div>
-            <label for="contact_phone">Contact Phone</label>
-            <input type="text" name="contact_phone" value="{{ old('contact_phone', $project->contact_phone) }}" required>
+        <div class="mb-4 flex justify-start space-x-4 px-16">
+            <label class="text-sm text-black font-normal">Project Type</label>
+            <input type="text" id="project-type" name="project-type" value="{{ old('project-type', $project->type) }}" class="w-96 px-2 py-1 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm">
         </div>
 
-        <div>
-            <label for="status">Status</label>
-            <select name="status" required>
-                <option value="Active" {{ $project->status == 'Active' ? 'selected' : '' }}>Active</option>
-                <option value="Inactive" {{ $project->status == 'Inactive' ? 'selected' : '' }}>Inactive</option>
-            </select>
+        <div class="mb-4 flex justify-start space-x-4 px-10">
+            <label class="text-sm text-black font-normal">Project Manager</label>
+            <input type="text" id="project-manager" name="project-manager" value="{{ old('project-manager', $project->manager) }}" class="w-96 px-2 py-1 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm">
         </div>
 
-        <button type="submit">Update Project</button>
+        <div class="mb-4 flex justify-start space-x-4 px-24">
+            <label class="text-sm text-black font-normal">Status</label>
+            <input type="text" id="status" name="status" value="{{ old('status', $project->status) }}" class="w-96 px-2 py-1 text-green-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm">
+        </div>
+
+        <div class="flex justify-start space-x-4 px-24">
+            <label class="text-sm text-black font-normal">Action</label>
+            <!-- Close Button: JavaScript-based redirect -->
+            <button type="button" onclick="window.location.href='{{ route('user.project-list') }}';" class="px-4 py-0 bg-orange-600 text-white font-normal rounded-lg shadow-md hover:bg-orange-500">
+                Close
+            </button>
+            <!-- Update Button: Form submit -->
+            <button type="submit"  class="px-4 py-0 bg-orange-600 text-white font-normal rounded-lg shadow-md hover:bg-orange-500">
+                Update
+            </button>
+        </div>
+        
     </form>
 </x-layout>
