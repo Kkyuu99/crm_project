@@ -43,18 +43,17 @@
 
                         <!-- Conditional Update or Edit Button -->
                         @if($project->status == 'Active')
-                            <!-- Update Button -->
-                            <form action="{{ route('user.project_edit', $project->id) }}" method="POST">
-                                @csrf
-                                @method('PUT')
-                                <button type="submit" class="bg-yellow-400 px-4 py-2 text-center hover:bg-yellow-600 hover:text-white">Update</button>
-                            </form>
+                            <!-- Update Button for Active Projects -->
+                            <a href="{{ route('user.project_edit', $project->id) }}" class="btn btn-update">
+                                <button class="bg-yellow-400 px-4 py-2 text-center hover:bg-yellow-600 hover:text-white">Update</button>
+                            </a>
                         @else
                             <!-- Edit Button for Inactive Projects -->
-                            <a href="{{ route('user.project_edit', $project->id) }}">
+                            <a href="{{ route('user.project_edit', $project->id) }}" class="btn btn-update">
                                 <button class="bg-yellow-400 px-4 py-2 text-center hover:bg-yellow-600 hover:text-white">Edit</button>
                             </a>
                         @endif
+
                     </td>
                 </tr>
             @endforeach

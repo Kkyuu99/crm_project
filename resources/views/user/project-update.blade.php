@@ -1,12 +1,10 @@
-<!-- resources/views/update.blade.php -->
-
 <x-layout>
     <h1 class="text-xl font-bold my-4 text-left ml-4">Update Project</h1>
 
-    <form action="{{ route('user.project-update', $project->id) }}" method="POST">
+    <form class="w-full bg-white p-6 rounded-lg shadow-md" action="{{ route('user.project-update', $project->id) }}" method="POST">
         @csrf
-        @method('PUT')
-        
+        @method('PUT')  <!-- This tells Laravel that it's a PUT request -->
+
         <!-- Project Name -->
         <div class="mb-4">
             <label for="project_name" class="block text-sm font-medium text-gray-700">Project Name</label>
@@ -25,23 +23,23 @@
             <input type="text" name="organization_name" id="organization_name" value="{{ old('organization_name', $project->organization_name) }}" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md" required>
         </div>
 
-        <!-- Contact Name -->
+        <!-- Contact Name
         <div class="mb-4">
             <label for="contact_name" class="block text-sm font-medium text-gray-700">Contact Name</label>
             <input type="text" name="contact_name" id="contact_name" value="{{ old('contact_name', $project->contact_name) }}" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md" required>
-        </div>
+        </div> -->
 
-        <!-- Contact Email -->
+        <!-- Contact Email
         <div class="mb-4">
             <label for="contact_email" class="block text-sm font-medium text-gray-700">Contact Email</label>
             <input type="email" name="contact_email" id="contact_email" value="{{ old('contact_email', $project->contact_email) }}" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md" required>
-        </div>
+        </div> -->
 
-        <!-- Contact Phone -->
+        <!-- Contact Phone
         <div class="mb-4">
             <label for="contact_phone" class="block text-sm font-medium text-gray-700">Contact Phone</label>
             <input type="text" name="contact_phone" id="contact_phone" value="{{ old('contact_phone', $project->contact_phone) }}" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md" required>
-        </div>
+        </div> -->
 
         <!-- Status -->
         <div class="mb-4">

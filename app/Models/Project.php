@@ -16,11 +16,11 @@ class Project extends Model
             $data['issue_id'] = null; 
         }
 
-        // $project=new Project();
-        // $project->fill($data);
-        // $project->save();
+        $project=new Project();
+        $project->fill($data);
+        $project->save();
 
-        //return $project;
+        return $project;
     }
     
     public function issues(){
@@ -40,6 +40,7 @@ class Project extends Model
         'contact_name',
         'contact_phone',
         'contact_email',
-        'created_by'
+        'created_by',
+        'status',
     ];
 }

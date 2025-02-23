@@ -10,8 +10,9 @@ Route::get('/', [UserController::class, 'index']);
 Route::get('/user/dashboard', [UserController::class, 'index']);
 Route::get('/user/new_project', [ProjectController::class, 'project_create']);
 Route::get('/user/project-list', [ProjectController::class, 'project_list'])->name('user.project-list');
-Route::put('/user/project_edit/{id}', [ProjectController::class, 'edit'])->name('user.project_edit');
+Route::get('/user/project_edit/{id}', [ProjectController::class, 'edit'])->name('user.project_edit');
 Route::put('/user/project-update/{id}', [ProjectController::class, 'update'])->name('user.project-update');
+
 Route::post('/user/project-store', [ProjectController::class, 'store']);
 Route::get('/admin/project-list', [ProjectController::class, 'admin_project_list']);
 Route::get('/user/issue-list', [IssueController::class, 'issue_list']);

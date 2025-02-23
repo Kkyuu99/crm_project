@@ -1,6 +1,7 @@
 <x-layout>
-    <form class="w-full bg-white p-6 rounded-lg shadow-md" action="user/project-list" method="PUT">
+    <form class="w-full bg-white p-6 rounded-lg shadow-md" action="user/project-list" method="POST">
         @csrf
+        @method('PUT')
         <h1 class="text-xl font-bold text-center mb-4">Project Detail</h1>
         <hr class="mb-6">
 
