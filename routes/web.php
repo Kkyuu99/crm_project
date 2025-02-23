@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [UserController::class, 'index']);
 Route::get('/user/dashboard', [UserController::class, 'index']);
 Route::get('/user/new_project', [ProjectController::class, 'project_create']);
-Route::get('/user/project-list', [ProjectController::class, 'project-list'])->name('user.project-list');
+Route::get('/user/project-list', [ProjectController::class, 'project_list'])->name('user.project-list');
 Route::get('/user/project_edit/{id}', [ProjectController::class, 'edit'])->name('user.project_edit');
 Route::get('/user/project-detail/{id}', [ProjectController::class, 'show'])->name('user.project-detail');
 Route::put('/user/project-update/{id}', [ProjectController::class, 'update'])->name('user.project-update');
