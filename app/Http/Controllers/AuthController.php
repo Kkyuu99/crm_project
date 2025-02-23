@@ -18,9 +18,9 @@ class AuthController extends Controller
             'password'=>['required', 'min:5']
         ]);
 
-        if (auth()->attempt($formData)){
-            return redirect('/user/dashboard');
-        }
+        // if (auth()->attempt($formData)){
+        //     return redirect('/user/dashboard');
+        // }
     }
 
     public function logout(){

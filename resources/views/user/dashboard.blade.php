@@ -106,11 +106,7 @@
         </div>
       </div>
 
-<<<<<<< HEAD
-      <form class="w-full bg-violet-500 text-white shadow rounded-lg p-5 mt-8">
-=======
       <form class="w-full bg-violet-500 text-white shadow rounded-lg p-5 mt-8 col-span-2">
->>>>>>> 66cb5a88b26befa9badb52c9b3e7fab299954c61
         <h1 class="font-extrabold w-full justify-center text-white text-xs">Ticket Overview</h1><br>
         <div class="flex">
           <!-- Y-Axis Labels -->
