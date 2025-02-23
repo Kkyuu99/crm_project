@@ -11,8 +11,8 @@ Route::get('/user/dashboard', [UserController::class, 'index']);
 Route::get('/user/new_project', [ProjectController::class, 'project_create']);
 Route::get('/user/project-list', [ProjectController::class, 'project_list'])->name('user.project-list');
 Route::get('/user/project_edit/{id}', [ProjectController::class, 'edit'])->name('user.project_edit');
+Route::get('/user/project-detail/{id}', [ProjectController::class, 'show'])->name('user.project-detail');
 Route::put('/user/project-update/{id}', [ProjectController::class, 'update'])->name('user.project-update');
-
 Route::post('/user/project-store', [ProjectController::class, 'store']);
 Route::get('/admin/project-list', [ProjectController::class, 'admin_project_list']);
 Route::get('/user/issue-list', [IssueController::class, 'issue_list']);
@@ -23,7 +23,7 @@ Route::put('/user/{issue:id}/issue-edit', [IssueController::class, 'edit']);
 Route::put('/user/issue-update', [IssueController::class, 'store']);
 
 
-Route::delete('/project/{project:project_name}/delete', [ProjectController::class, 'delete']);
+Route::delete('/project/{project:id}/delete', [ProjectController::class, 'delete'])->name('user.project-delete');
 Route::delete('/issue/{issue:subject}/delete', [IssueController::class, 'delete']);
 
 

@@ -58,17 +58,17 @@ class ProjectController extends Controller
          return redirect('/user/project-list')->with('success', 'Project created successfully!');
      }
 
-    // public function admin_project_list(){
-    //     $project = Project::all();
-    //     return view('admin.project_list');
-    // }
+     public function show($id)
+     {
+         // Find the project by ID
+         $project = Project::findOrFail($id);
+     
+         // Return the view with the project data
+         return view('user.project_detail', compact('project'));
+     }
+     
 
-    // public function edit(Project $projects){
-    //     return view('projects.edit',compact('projects'));
-    // }
-
-    public function update(Request $request, $id)
-{
+    public function update(Request $request, $id){
     // Find the project by ID
     $project = Project::find($id);
 
@@ -92,7 +92,7 @@ class ProjectController extends Controller
     $project->update($validated);
 
     return redirect()->route('user.project-list')->with('success', 'Project updated successfully!');
-}
+    }
 
     public function delete(Project $project){
         $project->delete();

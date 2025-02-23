@@ -1,65 +1,42 @@
 <x-layout>
-    <form class="w-full bg-white p-6 rounded-lg shadow-md" action="user/project-list" method="POST">
-        @csrf
-        @method('PUT')
-        <h1 class="text-xl font-bold text-center mb-4">Project Detail</h1>
+    <div class="w-full bg-white p-6 rounded-lg shadow-md">
+        <h1 class="text-xl font-bold text-center mb-4">Project Details</h1>
         <hr class="mb-6">
 
-        <div>
-            @if($session()->has('success'))
-            <div>
-                    {{session('success')}}
-            </div>
-            @endif
+        <!-- Project Details -->
+        <div class="mb-4">
+            <strong>Project ID: </strong>{{ $project->id }}
         </div>
-    
-        <div class="mb-4 flex space-x-4 px-20">
-            <label class="text-sm text-black font-normal">Project ID</label>
-            <input type="text" id="Project-id" name="Project-id" class="w-96 px-4 py-2 justify-end text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="">
+        <div class="mb-4">
+            <strong>Project Name: </strong>{{ $project->project_name }}
         </div>
-
-        <div class="mb-4 flex justify-start space-x-4 px-14">
-            <label class="text-sm text-black font-normal">Project Name</label>
-            <input type="text" id="project-name" name="project-name" class="w-96 px-4 py-2 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="">
+        <div class="mb-4">
+            <strong>Organization Name: </strong>{{ $project->organization_name }}
         </div>
-
-        <div class="mb-4 flex justify-start space-x-4 px-5">
-            <label class="text-sm text-black font-normal">Organization Name</label>
-            <input type="text" id="organization-name" name="organization-name" class="w-96 px-2 py-1 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="">
+        <div class="mb-4">
+            <strong>Project Type: </strong>{{ $project->project_type }}
         </div>
-
-        <div class="mb-4 flex justify-start space-x-4 px-16">
-            <label class="text-sm text-black font-normal">Project Type</label>
-            <input type="text" id="project-type" name="project-type" class="w-96 px-2 py-1 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="">
+        <div class="mb-4">
+            <strong>Project Manager: </strong>{{ $project->project_manager }}
         </div>
-
-        <div class="mb-4 flex justify-start space-x-4 px-10">
-            <label class="text-sm text-black font-normal">Project Manager</label>
-            <input type="text" id="project-manager" name="project-manager" class="w-96 px-2 py-1 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="">
+        <div class="mb-4">
+            <strong>Contact Name: </strong>{{ $project->contact_name }}
+        </div>
+        <div class="mb-4">
+            <strong>Contact Phone: </strong>{{ $project->contact_phone }}
+        </div>
+        <div class="mb-4">
+            <strong>Contact Email: </strong>{{ $project->contact_email }}
+        </div>
+        <div class="mb-4">
+            <strong>Status: </strong>{{ $project->status }}
         </div>
 
-        <div class="mb-4 flex justify-start space-x-4 px-24">
-            <label class="text-sm text-black font-normal">Status</label>
-            <input type="text" id="status" name="status" class="w-96 px-2 py-1 text-green-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="">
+        <!-- Back Button -->
+        <div class="mt-6">
+            <a href="{{ route('user.project-list') }}" class="px-4 py-2 bg-orange-600 text-white font-normal rounded-lg shadow-md hover:bg-orange-500">
+                Back to Project List
+            </a>
         </div>
-
-        <div class="flex justify-start space-x-4 px-24">
-            <label class="text-sm text-black font-normal">Action</label>
-            <button type="close" class=" px-4 py-0 bg-orange-600 text-white font-normal rounded-lg shadow-md hover:bg-orange-500">
-                Close
-            </button>
-            <button type="delete" class="px-4 py-0 bg-orange-600 text-white font-normal rounded-lg shadow-md hover:bg-orange-500">
-                Delete
-            </button>
-        </div>
-        <br><br><br><br><br><br><br>
-
-        <div class="">
-            <button type="back" class="w-32 h-7 justify-end bg-violet-400 text-white text-sm font-regular rounded-lg shadow-sm hover:bg-violet-300">
-                Back
-            </button>
-        </div>
-
-
-    </form>
+    </div>
 </x-layout>

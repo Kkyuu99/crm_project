@@ -23,8 +23,13 @@
             @foreach ($projects as $project)
                 <tr class="hover:bg-gray-100">
                     <td class="border border-gray-300 px-8 py-3 text-xl">{{ $project->id }}</td>
-                    <td class="border border-gray-300 px-8 py-3 text-xl">{{ $project->project_name }}</td>
                     <td class="border border-gray-300 px-8 py-3 text-xl">{{ $project->project_type }}</td>
+                    <td class="border border-gray-300 px-8 py-3 text-xl">
+                        <!-- Link to project details page -->
+                        <a href="{{ route('user.project-detail', $project->id) }}" class="text-blue-600 hover:text-blue-400">
+                            {{ $project->project_name }}
+                        </a>
+                    </td>
                     <td class="border border-gray-300 px-8 py-3 text-xl">{{ $project->organization_name }}</td>
                     <td class="border border-gray-300 px-8 py-3 text-xl">{{ $project->contact_name }}</td>
                     <td class="border border-gray-300 px-8 py-3 text-xl">{{ $project->contact_email }}</td>
@@ -34,12 +39,14 @@
                         {{ $project->status }}
                     </td>
                     <td class="flex justify-between items-center">
+                        
                         <!-- Delete Button -->
-                        <form action="/project/{{ $project->project_name }}/delete" method="POST">
+                        <form action="{{ route('user.project-delete', $project->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="bg-red-400 px-4 py-2 mx-2 text-black hover:bg-red-600 hover:text-white">Delete</button>
                         </form>
+
 
                         <!-- Conditional Update or Edit Button -->
                         @if($project->status == 'Active')
@@ -53,7 +60,6 @@
                                 <button class="bg-yellow-400 px-4 py-2 text-center hover:bg-yellow-600 hover:text-white">Edit</button>
                             </a>
                         @endif
-
                     </td>
                 </tr>
             @endforeach
