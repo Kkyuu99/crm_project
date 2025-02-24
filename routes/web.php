@@ -4,27 +4,24 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IssueController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\UserController;
+use Illuminate\Routing\RouteUri;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [UserController::class, 'index']);
 Route::get('/user/dashboard', [UserController::class, 'index']);
-Route::get('/user/new_project', [ProjectController::class, 'project_create']);
-Route::get('/user/project-list', [ProjectController::class, 'project_list'])->name('user.project-list');
-Route::get('/user/project_edit/{id}', [ProjectController::class, 'edit'])->name('user.project_edit');
-Route::get('/user/project-detail/{id}', [ProjectController::class, 'show'])->name('user.project-detail');
-Route::put('/user/project-update/{id}', [ProjectController::class, 'update'])->name('user.project-update');
-Route::post('/user/project-store', [ProjectController::class, 'store']);
-Route::get('/admin/project-list', [ProjectController::class, 'admin_project_list']);
+Route::get('/user/project-list', [ProjectController::class, 'project_list']);
+Route::delete('/project/{project:project_name}/delete', [ProjectController::class, 'delete']);
+
+//Issue user
 Route::get('/user/issue-list', [IssueController::class, 'issue_list']);
 Route::get('/user/issue-create', [IssueController::class, 'create']);
 Route::post('/user/issue-store', [IssueController::class, 'store']);
+Route::get('/user/issues/{id}',[IssueController::class,'show'])->name('issue-detail');
+Route::put('/user/{id}/issue-edit', [IssueController::class, 'edit'])->name('issue-edit');
+Route::post('/user/issues/{id}', [IssueController::class, 'update'])->name('issue-update');
+Route::delete('/user/{id}/issue-delete', [IssueController::class, 'delete']);
+Route::delete('user/issues/{id}/remove-attachment', [IssueController::class, 'removeAttachment'])->name('remove-attachment');
 
-Route::put('/user/{issue:id}/issue-edit', [IssueController::class, 'edit']);
-Route::put('/user/issue-update', [IssueController::class, 'store']);
-
-
-Route::delete('/project/{project:id}/delete', [ProjectController::class, 'delete'])->name('user.project-delete');
-Route::delete('/issue/{issue:subject}/delete', [IssueController::class, 'delete']);
 
 
 Route::get('/login', [AuthController::class, 'get_login']);
