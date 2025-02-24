@@ -32,6 +32,7 @@ class ProjectFactory extends Factory
         //     'updated_by'=>fake()->name(),
         //     'deleted_by'=>fake()->name()
         // ];
+<<<<<<< HEAD
         return [
             'project_name' => fake()->name(),
             'organization_name' => fake()->company(),
@@ -44,6 +45,19 @@ class ProjectFactory extends Factory
             'created_by' => fake()->name(), 
             'updated_by' => fake()->name(),
             'deleted_by' => fake()->name(),
+=======
+
+        return [
+            'project_name' => fake()->name(),
+            'organization_name' => fake()->company(),
+            'project_type' => fake()->randomElement(['Strategic', 'Operational','Operative','Analytical']),
+            'project_manager' => fake()->name(),
+            //'issue_id' => Issue::factory(),
+            'contact_name' => fake()->name(),
+            'contact_phone' => fake()->phoneNumber(),
+            'contact_email' => fake()->email(),
+            'status' => fake()->randomElement(['Active', 'Inactive']),
+>>>>>>> fe5005435fda480a6b596025c207e299b8517f26
         ];
     }
 }

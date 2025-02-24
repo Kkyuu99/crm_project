@@ -1,4 +1,5 @@
 <x-layout>
+<<<<<<< HEAD
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -45,50 +46,133 @@
           });
         });
       </script>
+=======
+  
+<style>
+        .pie-chart {
+            width: 200px;
+            height: 200px;
+            background: conic-gradient(
+                #D6F7FF 0% 50%,
+                #FFF5A6 50% 65%,
+                #F9BABA 65% 95%,
+                #9B9AE4 95% 100%
+            );
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .donut-hole {
+            width: 100px;
+            height: 100px;
+            background: #745CC9;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .legend {
+            display: flex;
+            justify-content: space-evenly;
+            width: 80%;
+            margin-top: 20px;
+        }
+
+        .legend div {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .legend span {
+            font-size: 14px;
+        }
+      </style>
+>>>>>>> fe5005435fda480a6b596025c207e299b8517f26
   <header class="w-full p-6">
     <section class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
       <!-- Total Tickets -->
       <div class="bg-violet-500 shadow-lg rounded-lg p-6 flex flex-col justify-center items-center">
         <h3 class="text-lg font-semibold text-white">Total Tickets</h3>
-        <p class="text-2xl font-bold text-white">20</p>
+        <p class="text-2xl font-bold text-white">{{ $totalIssues }}</p>
       </div>
       <!-- Due Today Tickets -->
       <div class="bg-violet-500 shadow-lg rounded-lg p-6 flex flex-col justify-center items-center">
         <h3 class="text-lg font-semibold text-white">Due Today Tickets</h3>
-        <p class="text-2xl font-bold text-white">3</p>
+        <p class="text-2xl font-bold text-white">{{ $dueTodayIssues }}</p>
       </div>
       <!-- Overdue Tickets -->
       <div class="bg-violet-500 shadow-lg rounded-lg p-6 flex flex-col justify-center items-center">
         <h3 class="text-lg font-semibold text-white">Overdue Tickets</h3>
-        <p class="text-2xl font-bold text-white">7</p>
+        <p class="text-2xl font-bold text-white">{{ $overdueIssues }}</p>
       </div>
       <!-- Closed Tickets -->
       <div class="bg-violet-500 shadow-lg rounded-lg p-6 flex flex-col justify-center items-center">
         <h3 class="text-lg font-semibold text-white">Closed Tickets</h3>
-        <p class="text-2xl font-bold text-white">10</p>
+        <p class="text-2xl font-bold text-white">{{ $closedIssues }}</p>
       </div>
     </section>
   </header>
 
-  <!-- Main Content Section -->
-  <main class="flex-1 p-6">
+   <!-- Main Content Section -->
+   <main class="flex-1 p-6">
     <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
 
       <!-- Pie Chart and Legend -->
+<<<<<<< HEAD
       <div class="bg-violet-500 shadow rounded-lg p-6 flex flex-col items-center justify-center">
         <h2 class="text-white text-xl mb-4">Tickets by Priority</h2>
 
+=======
+      <div class="bg-violet-500 shadow rounded-lg p-2 flex flex-col items-center">
+        <h2 class="text-white text-xl mb-8 text-left">Tickets by Priority</h2>
+>>>>>>> fe5005435fda480a6b596025c207e299b8517f26
         <div class="pie-chart">
             <canvas id="myPieChart" class="w-50 h-50 "></canvas>
 
           <div class="donut-hole"></div>
         </div>
 
+<<<<<<< HEAD
 
       </div>
 
       <form class="w-full bg-violet-500 text-white shadow rounded-lg p-5 mt-8 col-span-2">
         <h1 class="font-extrabold w-full justify-center text-white text-xs">Ticket Overview</h1><br>
+=======
+        <div class="legend text-white">
+          <div class="flex flex-col">
+            <div class="flex items-center space-x-1">
+              <div class="w-3 h-3 bg-purple-300 rounded-full"></div>
+              <span>Urgent - {{ ceil($urgentPercentage) }}%</span>
+            </div>
+            <div class="flex items-center space-x-1">
+              <div class="w-3 h-3 bg-blue-300 rounded-full"></div>
+              <span>Medium - {{ ceil($mediumPercentage) }}%</span>
+            </div>
+          </div>
+
+          <div class="flex flex-col">
+            <div class="flex items-center space-x-1">
+              <div class="w-3 h-3 bg-yellow-300 rounded-full"></div>
+              <span>High - {{ ceil($highPercentage) }}%</span>
+            </div>
+            <div class="flex items-center space-x-1">
+              <div class="w-3 h-3 bg-pink-300 rounded-full"></div>
+              <span>Low - {{ ceil($lowPercentage) }}%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form class="w-full bg-violet-500 text-white shadow rounded-lg p-5 mt-8 col-span-2">
+        <h1 class="text-white text-xl mb-8 text-left">Ticket Overview</h1><br>
+>>>>>>> fe5005435fda480a6b596025c207e299b8517f26
         <div class="flex">
           <!-- Y-Axis Labels -->
           <div class="flex flex-col justify-between h-64 pr-4 text-white text-sm ">

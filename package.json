@@ -1,9 +1,15 @@
 {
     "private": true,
+<<<<<<< HEAD
     "devDependencies": {
         "@popperjs/core": "^2.11.6",
         "@tailwindcss/line-clamp": "^0.4.4",
         "@vitejs/plugin-vue": "^1.7.1",
+=======
+    "type": "module",
+    "devDependencies": {
+        "@tailwindcss/line-clamp": "^0.4.4",
+>>>>>>> fe5005435fda480a6b596025c207e299b8517f26
         "autoprefixer": "^10.4.20",
         "axios": "^1.7.4",
         "bootstrap": "^5.2.3",

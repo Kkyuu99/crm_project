@@ -20,41 +20,31 @@ class AuthController extends Controller
 
     public function post_login(Request $request)
     {
-        // Validate the form data
+        // if (Auth::check()) {
+        //     return redirect()->intended(Auth::user()->role === 'admin' ? '/admin/dashboard' : '/user/dashboard');
+        // }
+
         $formData = $request->validate([
-            'email' => ['required', Rule::exists('users', 'email')],
-            'password' => ['required', 'min:5']
+            'email'=>['required', Rule::exists('users', 'email')],
+            'password'=>['required', 'min:5']
         ]);
 
-        // Attempt to log in the user
         if (Auth::attempt($formData)) {
-            // Regenerate the session
-            $request->session()->regenerate();
+            request()->session()->regenerate();
             $user = Auth::user();
-
-            // Redirect based on user role (admin or user)
-            return redirect()->intended(Auth::user()->role === 'admin' ? '/admin/dashboard' : '/user/dashboard');
+             return redirect()->intended(Auth::user()->role === 'admin' ? '/admin/dashboard' : '/user/dashboard');
         }
-
-        // If login fails, return back with error message
         return back()->withErrors(['email' => 'Invalid email or password'])->withInput();
     }
 
-    public function logout(Request $request)
-    {
-        // Log the user out
+    public function logout(Request $request){
         Auth::logout();
-
-        // Invalidate the session and regenerate the token
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-
-        // Redirect to login page with a success message
-        return redirect('/user/login')->with('message', 'You have been logged out successfully.');
+        return redirect('/login')->with('message', 'You have been logged out successfully.');
     }
 
-    public function forgot()
-    {
+    public function forgot(){
         return view('auth.forgot-password');
     }
 }
