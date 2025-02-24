@@ -1,7 +1,8 @@
 <x-layout>
     <form class="w-full bg-white p-6 rounded-lg shadow-md" action="/update-profile" method="POST">
-        <h1 class="text-xl font-bold text-center mb-4">Project Detail</h1>
-        <hr class="mb-6">
+    <h1 class="text-4xl font-bold text-black mb-8 text-center">Project Detail</h1>
+    <hr class="border-t-2 border-gray-300 my-4" />
+
     
         <div class="mb-4 flex space-x-4 px-20">
             <label class="text-sm text-black font-normal">Project ID</label>
@@ -15,30 +16,30 @@
 
         <div class="mb-4 flex justify-start space-x-4 px-5">
             <label class="text-sm text-black font-normal">Organization Name</label>
-            <input type="text" id="organization-name" name="organization-name" class="w-96 px-2 py-1 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="">
+            <input type="text" id="organization-name" name="organization-name" class="w-96 px-4 py-2 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="">
         </div>
 
         <div class="mb-4 flex justify-start space-x-4 px-16">
             <label class="text-sm text-black font-normal">Project Type</label>
-            <input type="text" id="project-type" name="project-type" class="w-96 px-2 py-1 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="">
+            <input type="text" id="project-type" name="project-type" class="w-96 px-4 py-2 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="">
         </div>
 
         <div class="mb-4 flex justify-start space-x-4 px-10">
             <label class="text-sm text-black font-normal">Project Manager</label>
-            <input type="text" id="project-manager" name="project-manager" class="w-96 px-2 py-1 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="">
+            <input type="text" id="project-manager" name="project-manager" class="w-96 px-4 py-2 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="">
         </div>
 
         <div class="mb-4 flex justify-start space-x-4 px-24">
             <label class="text-sm text-black font-normal">Status</label>
-            <input type="text" id="status" name="status" class="w-96 px-2 py-1 text-green-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="">
+            <input type="text" id="status" name="status" class="w-96 px-4 py-2 text-green-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="">
         </div>
 
         <div class="flex justify-start space-x-4 px-24">
             <label class="text-sm text-black font-normal">Action</label>
-            <button type="close" class=" px-4 py-0 bg-orange-600 text-white font-normal rounded-lg shadow-md hover:bg-orange-500">
+            <button type="close" class=" px-8 py-2 bg-orange-600 text-white font-normal rounded-lg shadow-md hover:bg-orange-500">
                 Close
             </button>
-            <button type="delete" class="px-4 py-0 bg-orange-600 text-white font-normal rounded-lg shadow-md hover:bg-orange-500">
+            <button type="delete" class="px-8 py-2 bg-orange-600 text-white font-normal rounded-lg shadow-md hover:bg-orange-500">
                 Delete
             </button>
         </div>
