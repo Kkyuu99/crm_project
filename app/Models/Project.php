@@ -11,11 +11,13 @@ class Project extends Model
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
     
+    protected $guarded = []; 
+    
     public function issues(){
         return $this->hasMany(Issue::class);
     }
 
-    public function user() {
-        return $this->belongsTo(User::class);
+    public function users() {
+        return $this->belongsToMany(User::class, 'project_user');
     }
 }
