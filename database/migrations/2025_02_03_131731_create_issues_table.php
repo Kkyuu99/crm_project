@@ -13,15 +13,17 @@ return new class extends Migration
     {
         Schema::create('issues', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('project_id');
+            $table->foreignId('project_id')->constrained('projects')->onDelete('cascade');
             $table->string('issue_status');
             $table->string('subject');
             $table->text('description');
             $table->string('priority');
             $table->string('attachment')->nullable();
-            $table->string('assignor_user');
+            $table->foreignId('assignor_user')->constrained('users')->onDelete('cascade');
             $table->text('remark')->nullable();
-            $table->integer('total_duration');
+            $table->integer('total_duration')->default(0);
+            $table->text('solution')->nullable();
+            $table->date('due_date');
             $table->timestamps();
         });
     }

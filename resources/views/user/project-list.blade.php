@@ -2,10 +2,16 @@
     <h1 class="text-xl font-bold my-4 text-left ml-4">Project Lists</h1>
     <hr class="mb-6">
 
+    <h1 class="text-xl font-bold my-4 text-left ml-4">Project Lists</h1>
+    <hr class="mb-6">
+
     <!-- Table Horizontal and Vertical Scroll -->
     <div class="overflow-x-auto overflow-y-auto max-w-full px-4 mb-8 rounded-md scrollbar-thin scrollbar-thumb-soft-purple scrollbar-track-gray-200">
         <table class="table-auto border-collapse border border-gray-300 min-w-[1500px] text-left">
             <thead>
+                <tr class="bg-white font-normal text-xs text-blue-800">
+                    <th class="border border-gray-300 px-19 py-3 text-lg truncate">Project-id</th>
+                    <th class="border border-gray-300 px-19 py-3 text-lg truncate">Project Type</th>
                 <tr class="bg-white font-normal text-xs text-blue-800">
                     <th class="border border-gray-300 px-19 py-3 text-lg truncate">Project-id</th>
                     <th class="border border-gray-300 px-19 py-3 text-lg truncate">Project Type</th>
@@ -45,6 +51,7 @@
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="bg-red-400 px-4 py-2 mx-2 text-black hover:bg-red-600 hover:text-white">Delete</button>
+                            <button type="submit" class="bg-red-400 px-4 py-2 mx-2 text-black hover:bg-red-600 hover:text-white">Delete</button>
                         </form>
 
 
@@ -62,6 +69,7 @@
                         @endif
                     </td>
                 </tr>
+            @endforeach
             @endforeach
             </tbody>
         </table>

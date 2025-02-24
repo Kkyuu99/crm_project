@@ -1,6 +1,5 @@
 <x-layout>
-
-    <style>
+<style>
         .pie-chart {
             width: 200px;
             height: 200px;
@@ -50,22 +49,22 @@
       <!-- Total Tickets -->
       <div class="bg-violet-500 shadow-lg rounded-lg p-6 flex flex-col justify-center items-center">
         <h3 class="text-lg font-semibold text-white">Total Tickets</h3>
-        <p class="text-2xl font-bold text-white">{{ $totalIssues }}</p>
+        <p class="text-2xl font-bold text-white"></p>
       </div>
       <!-- Due Today Tickets -->
       <div class="bg-violet-500 shadow-lg rounded-lg p-6 flex flex-col justify-center items-center">
         <h3 class="text-lg font-semibold text-white">Due Today Tickets</h3>
-        <p class="text-2xl font-bold text-white">{{ $dueTodayIssues }}</p>
+        <p class="text-2xl font-bold text-white"></p>
       </div>
       <!-- Overdue Tickets -->
       <div class="bg-violet-500 shadow-lg rounded-lg p-6 flex flex-col justify-center items-center">
         <h3 class="text-lg font-semibold text-white">Overdue Tickets</h3>
-        <p class="text-2xl font-bold text-white">{{ $overdueIssues }}</p>
+        <p class="text-2xl font-bold text-white"></p>
       </div>
       <!-- Closed Tickets -->
       <div class="bg-violet-500 shadow-lg rounded-lg p-6 flex flex-col justify-center items-center">
         <h3 class="text-lg font-semibold text-white">Closed Tickets</h3>
-        <p class="text-2xl font-bold text-white">{{ $closedIssues }}</p>
+        <p class="text-2xl font-bold text-white"></p>
       </div>
     </section>
   </header>
@@ -85,29 +84,29 @@
           <div class="flex flex-col">
             <div class="flex items-center space-x-1">
               <div class="w-3 h-3 bg-purple-300 rounded-full"></div>
-              <span>Urgent - {{ ceil($urgentPercentage) }}%</span>
+              <span>Urgent - %</span>
             </div>
             <div class="flex items-center space-x-1">
               <div class="w-3 h-3 bg-blue-300 rounded-full"></div>
-              <span>Medium - {{ ceil($mediumPercentage) }}%</span>
+              <span>Medium - %</span>
             </div>
           </div>
 
           <div class="flex flex-col">
             <div class="flex items-center space-x-1">
               <div class="w-3 h-3 bg-yellow-300 rounded-full"></div>
-              <span>High - {{ ceil($highPercentage) }}%</span>
+              <span>High - %</span>
             </div>
             <div class="flex items-center space-x-1">
               <div class="w-3 h-3 bg-pink-300 rounded-full"></div>
-              <span>Low - {{ ceil($lowPercentage) }}%</span>
+              <span>Low - %</span>
             </div>
           </div>
         </div>
       </div>
 
       <form class="w-full bg-violet-500 text-white shadow rounded-lg p-5 mt-8 col-span-2">
-        <h1 class="font-extrabold w-full justify-center text-white text-xs">Ticket Overview</h1><br>
+        <h1 class="text-white text-xl mb-8 text-left">Ticket Overview</h1><br>
         <div class="flex">
           <!-- Y-Axis Labels -->
           <div class="flex flex-col justify-between h-64 pr-4 text-white text-sm ">

@@ -19,8 +19,17 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function getRoleAttribute()
+    {
+        return $this->attributes['role'];
+    }
+
     public function projects(){
-        return $this->hasMany(Project::class);
+        return $this->belongsToMany(Project::class, 'project_user');
+    }
+    public function issues()
+    {
+        return $this->hasMany(Issue::class, 'assignor_user');
     }
     
     protected function casts(): array

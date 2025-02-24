@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IssueController;
@@ -31,7 +31,7 @@ Route::get('/login', [AuthController::class, 'get_login']);
 Route::post('/login', [AuthController::class, 'post_login']);
 Route::post('/user/logout', [AuthController::class, 'logout']);
 
-Route::get('/auth/forgot-password', [AuthController::class, 'forgot']);
+    Route::get('/auth/forgot-password', [AuthController::class, 'forgot']);
 
 
 Route::get('/admin/user/add', [UserController::class, 'create']);

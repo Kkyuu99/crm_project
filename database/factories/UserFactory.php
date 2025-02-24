@@ -33,12 +33,12 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-            'role' => 'user',
-            'project_id' => fake()->numberBetween(1, 20),
+            'role' => fake()->randomElement(['admin', 'user']),
             'created_by' => fake()->name(), 
             'updated_by' => fake()->name(),
             'deleted_by' => fake()->name(),
-            'password' =>Hash::make('password'),
+            'password' => bcrypt('password'),
+            'remember_token' => Str::random(10),
         ];
     }
 }

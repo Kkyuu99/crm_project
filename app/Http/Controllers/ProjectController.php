@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
+    //show the list of all project
     //show the list of all project
     public function index(){
         $projects = Project::paginate(5);
@@ -31,6 +33,7 @@ class ProjectController extends Controller
     }
 
 
+
     public function project_create(){
         return view('user.new_project');
     }
@@ -39,6 +42,7 @@ class ProjectController extends Controller
         //validate the incoming request
         $validated = $request->validate([
             'project_name' => 'required|string|max:255',
+            'organization_name' => 'required|max:255',
             'organization_name' => 'required|max:255',
             'project_type' => 'required|string|max:255',
             'project_manager' => 'required|string|max:255',

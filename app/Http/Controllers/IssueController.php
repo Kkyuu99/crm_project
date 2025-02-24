@@ -24,8 +24,17 @@ class IssueController extends Controller
         ]);
     }
 
-    public function issue_detail(){
-        return view('user.issue-detail');
+    //show the new issue create form
+    public function create(Request $request)
+    {
+        $projects = Project::all();
+        $users = User::all();
+        $projectUsers = [];
+        foreach ($projects as $project) {
+            $projectUsers[$project->id] = $project->users; // Assuming you have a relationship defined
+    
+        }
+        return view('user.new-issue', compact('projects','users','projectUsers'));
     }
 
     //show the new issue create form
@@ -43,10 +52,12 @@ class IssueController extends Controller
             'subject' => 'required|string|max:255',
             'description' => 'required',
             'issue_status' => 'required|string|max:255',
+            'issue_status' => 'required|string|max:255',
             'priority' => 'required|string|max:255',
             'attachment' => 'nullable|file|max:10000|mimes: jpg,png,pdf',
             'assignor_user' => 'required|string|max:255',
             'remark' => 'nullable',
+            'solution' => 'nullable',
             'solution' => 'nullable',
             'total_duration' => 'required|string|max:255',
         ], [
@@ -90,10 +101,13 @@ class IssueController extends Controller
             'subject' => 'required|string|max:255',
             'description' => 'required',
             'issue_status' => 'required|string|max:255',
+            'issue_status' => 'required|string|max:255',
             'priority' => 'required|string|max:255',
+            'attachment' => 'nullable|file|max:10240|mimes:jpg,png,pdf',
             'attachment' => 'nullable|file|max:10240|mimes:jpg,png,pdf',
             'assignor_user' => 'required|string|max:255',
             'remark' => 'nullable',
+            'solution' => 'nullable',
             'solution' => 'nullable',
             'total_duration' => 'required|string|max:255',
         ]);
