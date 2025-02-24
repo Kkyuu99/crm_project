@@ -1,3 +1,8 @@
+@php
+    $user = Auth::user();
+    $prefix = $user->role === 'admin' ? 'admin' : 'user';
+@endphp
+
 <x-layout>
     <h1 class="text-2xl font-bold text-black my-4 text-center">Issue Detail</h1>
     <hr class="border-t-1 border-gray-300 my-4" />
@@ -66,14 +71,15 @@
                 </div>
                 <div class="flex-1">
                     <label for="assignor_user" class="block text-black text-sm mb-2">Assignor</label>
-                    <input
-                        disabled
-                        type="text"
-                        id="assignor_user"
-                        name="assignor_user"
-                        value="{{ old('assignor_user', $issue->assignor_user) }}"
-                        class="w-full px-4 py-2 text-sm rounded-lg border border-gray-300 bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
+                    <select id="assignor_user" name="assignor_user" disabled
+                        class="w-full px-4 py-2 text-sm rounded-lg border border-gray-300 bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="">Select an assignor</option>
+                            @foreach($users as $user)
+                                <option value="{{ $user->id }}" {{ old('assignor_user', $issue->assignor_user ?? '') == $user->id ? 'selected' : '' }}>
+                                    {{ $user->id }} : {{ $user->name }}
+                                </option>
+                            @endforeach
+                    </select>
                 </div>
                 <div class="flex-1">
                     <label for="issue_status" class="block text-black text-sm mb-2">Status</label>
@@ -146,11 +152,11 @@
 
 
             <div class="flex flex-row-reverse  space-x-1 space-x-reverse">
-                <a href="/user/issue-list" 
+                <a href="{{ route($prefix . '.issue-list') }}"
                     class="bg-red-400 text-white px-6 py-2 rounded-md hover:bg-red-600 font-medium text-sm hover:text-white">
-                    Cancel
+                    Back
                 </a>
-                <form action="{{ route('issue-edit', $issue->id) }}" method="POST">
+                <form action="{{ route($prefix . '.issue-edit', $issue->id) }}" method="POST">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
                     <button

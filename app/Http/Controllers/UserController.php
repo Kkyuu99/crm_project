@@ -6,68 +6,98 @@ use App\Models\Project;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
 
     public function index(){
-        return view('user.dashboard');
+        return view('admin.user-list');
     }
     public function user_list()
     {
-        return view('user.dashboard', [
-            'users' => User::paginate(5)
+        $users = User::orderBy('created_at', 'desc')->paginate(5);
+        return view('admin.user-list',[
+            'users' => $users
         ]);
     }
 
     public function create(){
-        return view('users.add');
+        
+        $projects = Project::all();;
+        return view('admin.user-register', compact('projects'));
     }
 
     public function store(){
+        
+        $prefix = Auth::user()->role;
         $formData = request()->validate([
             'name'=>['required','min:3','max:255'],
-            'password'=>['required','min:5'],
+            'password'=>['required','min:5','confirmed'],
             'email'=>['required','email',Rule::unique('users','email')],
             'role'=>['required'],
-            'project_id'=>['required'],
+            'projects'=>['required','array'],
+            'projects.*' => ['exists:projects,id'],
         ]);
 
         $formData['password'] = bcrypt($formData['password']);
-        $formData['project_id']=Project::where('project_name', request('project_name'))->id;
 
-        $user = User::create($formData);
-        return redirect('/')->with('success', 'User created successfully');
+        $user = User::create([
+            'name' => $formData['name'],
+            'email' => $formData['email'],
+            'password' => $formData['password'],
+            'role' => $formData['role'],
+        ]);
+        $user->projects()->attach($formData['projects']);
+        return redirect()->route($prefix . '.user-list')->with('success', 'User created successfully');
      }                 
 
-    public function show($id){
-        return view('users.show',
-        [
-            'user' => User::findOrFail($id)
-        ]);
+     public function show($id){
+        $user = User::findOrFail($id);
+        $projects = Project::all();
+        return view('admin.user-detail', compact('projects','user'));
     }
 
-    public function edit(){
-        return view('user.edit');
+    public function edit($id){
+        $user = User::findOrFail($id);
+        $projects = Project::all();
+        return view('admin.user-edit',compact('projects','user'));
     }
 
-    public function update(User $user){
+    public function update(User $user,$id){
+        
+        $prefix = Auth::user()->role;
+        $user = User::findOrFail($id);
         $formData = request()->validate([
             'name'=>['required','min:3','max:255'],
-            'password'=>['required','min:5'],
-            'email'=>['required','email',Rule::unique('users','email')],
-            'role'=>['required']
+            'password'=>['sometimes','nullable','min:5'],
+            'email'=>['required','email',Rule::unique('users','email')->ignore($user->id)],
+            'role'=>['required'],
+            'projects'=>['required','array'],
+            'projects.*' => ['exists:projects,id'],
         ]);
 
-        $formData['password'] = bcrypt($formData['password']);
-
-        $user->create($formData);
-        return redirect('/')->with('success', 'User updated successfully');
+        $user->update([
+            'name' => $formData['name'],
+            'email' => $formData['email'],
+            'role' => $formData['role'],
+        ]);
+        
+        if (!empty($formData['password'])) {
+            $user->update(['password' => bcrypt($formData['password'])]);
+        }
+        
+        // Sync projects (not attach) to avoid duplicates
+        $user->projects()->sync($formData['projects']);
+        
+        return redirect()->route($prefix . '.user-list')->with('success', 'User updated successfully');
     }
 
-    public function delete(User $user){
+    public function delete($id){
+        $user = User::findOrFail($id);
+        $user->projects()->detach();
         $user->delete();
-        return redirect('/')->with('success', 'User deleted successfully');  
+        return redirect()->back()->with('success', 'User deleted successfully');
     }
     
 }

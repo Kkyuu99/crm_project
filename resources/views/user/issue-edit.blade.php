@@ -1,9 +1,25 @@
+@php
+    $user = Auth::user();
+    $prefix = $user->role === 'admin' ? 'admin' : 'user';
+@endphp
+
 <x-layout>
     <h1 class="text-2xl font-bold text-black my-4 text-center">Issue Update Form</h1>
     <hr class="border-t-1 border-gray-300 my-4" />
     <div class="w-full mb-5 max-w-4xl mx-auto p-2">
-        <form action="{{ route('issue-update', $issue->id) }}" method="POST"  enctype="multipart/form-data">
+        <form action="{{ route($prefix . '.issue-update', $issue->id) }}" method="POST"  enctype="multipart/form-data">
             @csrf
+            @method('PUT')
+            @if ($errors->any())
+                <div class="text-red-500 text-sm mt-2 mb-6">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <div class="mb-4">
                 <label for="issue_id" class="block text-black text-sm mb-2">Issue ID</label>
                 <input
@@ -21,6 +37,7 @@
                     required
                     id="project_id"
                     name="project_id"
+                    onchange="updateAssignorUserDropdown()"
                     class="w-full px-4 py-2 rounded-lg border border-gray-300 bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                 <option value="">Select a project</option>
@@ -69,7 +86,7 @@
                         <option value="Urgent" {{ old('priority', $issue->priority) == 'Urgent' ? 'selected' : '' }} class="bg-orange-500 text-black">Urgent</option>
                     </select> 
                 </div>
-                <div class="flex-1">
+                <!-- <div class="flex-1">
                     <label for="assignor_user" class="block text-black text-sm mb-2">Assignor</label>
                     <input
                         required
@@ -79,6 +96,13 @@
                         value="{{ old('assignor_user', $issue->assignor_user) }}"
                         class="w-full px-4 py-2 text-sm rounded-lg border border-gray-300 bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
+                </div> -->
+                <div class="flex-1">
+                    <label for="assignor_user" class="block text-black text-sm mb-2">Assignor</label>
+                    <select id="assignor_user" name="assignor_user"
+                        class="w-full px-4 py-2 text-sm rounded-lg border border-gray-300 bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="">Select an assignor</option>
+                    </select>
                 </div>
                 <div class="flex-1">
                     <label for="issue_status" class="block text-black text-sm mb-2">Status</label>
@@ -96,8 +120,8 @@
                 <input
                 required
                 type="date"
-                id="due"
-                name="due"
+                id="due_date"
+                name="due_date"
                 value="{{ old('subject', $issue->due_date) }}"
                 class="w-75 px-4 py-2 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
@@ -166,7 +190,7 @@
 
 
             <div class="flex flex-row-reverse  space-x-1 space-x-reverse">
-            <a href="/user/issue-list" 
+            <a href="{{  route($prefix . '.issue-list')  }}"
                     class="bg-red-400 text-white px-6 py-2 rounded-md hover:bg-red-600 font-medium text-sm hover:text-white">
                     Cancel
                 </a>
@@ -178,4 +202,34 @@
             </div>
         </form>
     </div>
+
+    <script>
+        // Example user data for each project
+        var projectUsers = <?php echo json_encode($projectUsers); ?>; // Assuming you have this data passed to your view
+
+        function updateAssignorUserDropdown() {
+            const projectId = document.getElementById('project_id').value;
+            const assignorDropdown = document.getElementById('assignor_user');
+            const selectedAssignor = '{{ old("assignor_user", $issue->assignor_user) }}';
+
+            // Clear previous options
+            assignorDropdown.innerHTML = '<option value="">Select an assignor</option>';
+
+            if (projectId && projectUsers[projectId]) {
+                // Populate users based on selected project
+                projectUsers[projectId].forEach(user => {
+                    const option = document.createElement('option');
+                    option.value = user.id;
+                    option.textContent = `${user.id} : ${user.name}`;
+                    if (user.id == selectedAssignor) {
+                    option.selected = true;
+                }
+                    assignorDropdown.appendChild(option);
+                });
+            }
+        }
+        document.addEventListener('DOMContentLoaded', (event) => {
+        updateAssignorUserDropdown();
+    });
+    </script>
 </x-layout>

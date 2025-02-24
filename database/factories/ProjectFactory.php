@@ -36,12 +36,13 @@ class ProjectFactory extends Factory
         return [
             'project_name' => fake()->name(),
             'organization_name' => fake()->company(),
-            'project_type' => fake()->word(),
+            'project_type' => fake()->randomElement(['Strategic', 'Operational','Operative','Analytical']),
             'project_manager' => fake()->name(),
             //'issue_id' => Issue::factory(),
             'contact_name' => fake()->name(),
             'contact_phone' => fake()->phoneNumber(),
             'contact_email' => fake()->email(),
+            'status' => fake()->randomElement(['Active', 'Inactive']),
         ];
     }
 }

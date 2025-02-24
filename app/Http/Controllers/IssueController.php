@@ -5,87 +5,107 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Issue;
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class IssueController extends Controller
 {
     //show the list of all issues
-    public function index(){
-        $issues = Issue::all();
-        return view('user.issue-list');
-    }
-
-    public function issue_list(){
-
-        $issues = Issue::orderBy('created_at', 'desc')->paginate(5);
+    public function index()
+    {
+        //$issues = Issue::orderBy('created_at', 'desc')->paginate(5);
+        if (Auth::check()) {
+            $userId = Auth::id();
+            $userRole = Auth::user()->role;
+            
+            // Check the role of the user
+            if ($userRole === 'admin') {
+                $issues = Issue::orderBy('created_at', 'desc')->paginate(5);
+            } else {
+                $issues = Issue::where('assignor_user', $userId)
+                               ->orderBy('created_at', 'desc')
+                               ->paginate(5);
+            }
+        } else {
+        $issues = collect();
+        }
+        $prefix = Auth::user()->role === 'admin' ? 'admin' : 'user';
         return view('user.issue-list',[
-            'issues' => $issues
+            'issues' => $issues,
+            'prefix' => $prefix
         ]);
     }
 
-    public function issue_detail(){
-        return view('user.issue-detail');
-    }
-
     //show the new issue create form
-    public function create(){
-        
-        $projects = Project::all();;
-        return view('user.new-issue', compact('projects'));
+    public function create(Request $request)
+    {
+        $projects = Project::all();
+        $users = User::all();
+        $projectUsers = [];
+        foreach ($projects as $project) {
+            $projectUsers[$project->id] = $project->users; // Assuming you have a relationship defined
+    
+        }
+        return view('user.new-issue', compact('projects','users','projectUsers'));
     }
 
-    //store new issue
     public function store(Request $request)
     {
+        $prefix = Auth::user()->role;
         $validated = $request->validate([
-            'project_id' =>'required',
+            'project_id' =>'required|exists:projects,id',
             'subject' => 'required|string|max:255',
             'description' => 'required',
             'issue_status' => 'required|string|max:255',
             'priority' => 'required|string|max:255',
             'attachment' => 'nullable|file|max:10000|mimes: jpg,png,pdf',
-            'assignor_user' => 'required|string|max:255',
+            'assignor_user' => 'required||exists:users,id',
             'remark' => 'nullable',
             'solution' => 'nullable',
             'total_duration' => 'required|string|max:255',
             'due_date' => 'required|date',
-        ], [
-            'attachment.max' => 'The file size must not exceed 10MB.',
-            'attachment.mimes' => 'Only JPG, PNG, and PDF files are allowed.',
         ]);
 
         if ($request->hasFile('attachment') && $request->file('attachment')->isValid()) {
             $validated['attachment'] = $request->file('attachment')->store('attachments','public');
         } 
-
-        //create the new issue in the database
         $issue = Issue::create($validated);
-
-        //redirect with success message
-        return redirect('/user/issue-list')->with('success', 'Issue created successfully');
+        return redirect()->route($prefix . '.issue-list')->with('success', 'Issue created successfully');
     }
 
-    public function show($id){
+    public function show($id)
+    {
         $issue = Issue::findOrFail($id);
-        
-        $projects = Project::all();;
-        return view('user.issue-detail', compact('issue','projects'));
+        $projects = Project::all();
+        $users = User::all();
+        $projectUsers = [];
+        foreach ($projects as $project) {
+            $projectUsers[$project->id] = $project->users; // Assuming you have a relationship defined
+    
+        }
+        return view('user.issue-detail', compact('issue','projects','users','projectUsers'));
     }
 
     //show the form for editing existing issue
     public function edit($id)
     {
         $issue = Issue::findOrFail($id);
-        $projects = Project::all();;
-        return view('user.issue-edit', compact('issue','projects'));
+        $projects = Project::all();
+        $users = User::all();
+        $projectUsers = [];
+        foreach ($projects as $project) {
+            $projectUsers[$project->id] = $project->users; // Assuming you have a relationship defined
+    
+        }
+        return view('user.issue-edit', compact('issue','projects','users','projectUsers'));
     }
 
-    //update existing issue
     public function update(Request $request,$id)
     {
         $issue = Issue::findOrFail($id);
-
+        $prefix = Auth::user()->role;
         $validated = $request->validate([
             'project_id' =>'required',
             'subject' => 'required|string|max:255',
@@ -99,7 +119,6 @@ class IssueController extends Controller
             'total_duration' => 'required|string|max:255',
             'due_date' => 'required|date',
         ]);
-
         if ($request->hasFile('attachment')) {
             if ($issue->attachment) {
                 Storage::disk('public')->delete($issue->attachment);
@@ -112,13 +131,10 @@ class IssueController extends Controller
             }
             $issue->update(['attachment' => null]);
         }
-
-        //update issue in the database
         $issue->update($validated);
-        return redirect('user/issue-list')->with('success', 'Issue updated successfully');
+        return redirect()->route($prefix . '.issue-list')->with('success', 'Issue updated successfully');
     }
 
-    //delete issue
     public function delete($id)
     {
         $issue = Issue::findOrFail($id);
@@ -129,7 +145,6 @@ class IssueController extends Controller
         return redirect()->back()->with('success', 'Issue deleted successfully');
     }
     
-    //delete attachment when editing
     public function removeAttachment($id)
     {
         $issue = Issue::findOrFail($id);

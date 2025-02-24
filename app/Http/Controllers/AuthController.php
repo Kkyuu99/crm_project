@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 class AuthController extends Controller
@@ -11,21 +12,36 @@ class AuthController extends Controller
     public function get_login(){
         return view('auth.login-user');
     }
+    
+    public function store(Request $request)
+    {
+        dd($request->all());
+    }
 
-    public function post_login(){
-        $formData = request()->validate([
+    public function post_login(Request $request)
+    {
+        // if (Auth::check()) {
+        //     return redirect()->intended(Auth::user()->role === 'admin' ? '/admin/dashboard' : '/user/dashboard');
+        // }
+
+        $formData = $request->validate([
             'email'=>['required', Rule::exists('users', 'email')],
             'password'=>['required', 'min:5']
         ]);
 
-        if (auth()->attempt($formData)){
-            return redirect('/user/dashboard');
+        if (Auth::attempt($formData)) {
+            request()->session()->regenerate();
+            $user = Auth::user();
+             return redirect()->intended(Auth::user()->role === 'admin' ? '/admin/dashboard' : '/user/dashboard');
         }
+        return back()->withErrors(['email' => 'Invalid email or password'])->withInput();
     }
 
-    public function logout(){
+    public function logout(Request $request){
         Auth::logout();
-        return redirect('/user/login');
+        $request->session()->invalidate();      
+        $request->session()->regenerateToken();
+        return redirect('/login')->with('message', 'You have been logged out successfully.');
     }
 
     public function forgot(){

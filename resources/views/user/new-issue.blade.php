@@ -1,38 +1,43 @@
+@php
+    $user = Auth::user();
+    $prefix = $user->role === 'admin' ? 'admin' : 'user';
+@endphp
+
 <x-layout>
     <h1 class="text-2xl font-bold text-black my-4 text-center">Issue Create Form</h1>
     <hr class="border-t-1 border-gray-300 my-4" />
     <div class="w-full mb-5 max-w-4xl mx-auto p-2">
-        <form action="/user/issue-store" method="POST" enctype="multipart/form-data">
+        <form action="{{ route($prefix . '.issue-store') }}" method="POST" enctype="multipart/form-data">
             @csrf
+            @if ($errors->any())
+                <div class="text-red-500 text-sm mt-2 mb-6">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             
-            <!-- <div class="mb-4">
-                <label for="project_id" class="block text-black text-sm mb-2">Project ID</label>
-                <input
-                required
-                type="text"
-                id="project_id"
-                name="project_id"
-                placeholder="Enter project ID"
-                class="w-full px-4 py-2 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
-            </div> -->
             <div class="mb-4">
                 <label for="project_id" class="block text-black text-sm mb-2">Project ID</label>
                 <select
                     required
                     id="project_id"
                     name="project_id"
+                    onchange="updateAssignorUserDropdown()"
                     class="w-full px-4 py-2 rounded-lg border border-gray-300 bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                     <option value="">Select a project</option>
                     @foreach($projects as $project)
-                        <option value="{{ $project->id }}">{{ $project->id }} : {{ $project->project_name }}</option>
+                        <option value="{{ $project->id }}" {{ request('project_id') == $project->id ? 'selected' : '' }}>
+                            {{ $project->id }} : {{ $project->project_name }}</option>
                     @endforeach
                 </select>
             </div>
             
             <div class="mb-4">
                 <label for="subject" class="block text-black text-sm mb-2">Subject</label>
-                <input
                 <input
                 required
                 type="text"
@@ -46,7 +51,7 @@
                 <label for="description" class="block text-black text-sm mb-2">Description</label>
                 {{-- <input type="text" id="desc" class="w-full px-4 py-2 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"> --}}
                 <textarea
-                required
+                require
                 name="description"
                 name="description"
                 id="description"
@@ -68,7 +73,7 @@
                         <option value="Urgent" class="bg-orange-500 text-black">Urgent</option>
                     </select>
                 </div>
-                <div class="flex-1">
+                <!-- <div class="flex-1">
                     <label for="assignor_user" class="block text-black text-sm mb-2">Assignor</label>
                     <input
                         required
@@ -78,6 +83,16 @@
                         placeholder="Enter Name"
                         class="w-full px-4 py-2 text-sm rounded-lg border border-gray-300 bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
+                </div> -->
+                <div class="flex-1">
+                    <label for="assignor_user" class="block text-black text-sm mb-2">Assignor</label>
+                    <select id="assignor_user" name="assignor_user"
+                        class="w-full px-4 py-2 text-sm rounded-lg border border-gray-300 bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="">Select an assignor</option>
+                        @foreach($users as $user)
+                            <option value="{{ $user->id }}">{{ $user->id }} : {{ $user->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="flex-1">
                     <label for="issue_status" class="block text-black text-sm mb-2">Status</label>
@@ -105,7 +120,6 @@
                 <input
                 type="file"
                 id="attachment"
-                <input
                 type="file"
                 id="attachment"
                 name="attachment"
@@ -154,18 +168,41 @@
             </div>
 
             <div class="flex flex-row-reverse  space-x-1 space-x-reverse">
-                <a href="/user/issue-list" 
+                <a href="{{  route($prefix . '.issue-list')  }}"
                     class="bg-red-400 text-white px-6 py-2 rounded-md hover:bg-red-600 font-medium text-sm hover:text-white">
                     Cancel
                 </a>
                 <button
                    type="submit"
-                   class="bg-purple-400 text-white px-6 py-2 rounded-md hover:bg-purple-700 font-medium text-sm hover:text-white">
+                   class="bg-violet-400 text-white px-6 py-2 rounded-md hover:bg-violet-700 font-medium text-sm hover:text-white">
                     Save
                 </button>
-                
             </div>
         </form>
     </div>
+
+    
+    <script>
+        // Example user data for each project
+        var projectUsers = <?php echo json_encode($projectUsers); ?>; // Assuming you have this data passed to your view
+
+        function updateAssignorUserDropdown() {
+            const projectId = document.getElementById('project_id').value;
+            const assignorDropdown = document.getElementById('assignor_user');
+
+            // Clear previous options
+            assignorDropdown.innerHTML = '<option value="">Select an assignor</option>';
+
+            if (projectId && projectUsers[projectId]) {
+                // Populate users based on selected project
+                projectUsers[projectId].forEach(user => {
+                    const option = document.createElement('option');
+                    option.value = user.id;
+                    option.textContent = user.name;
+                    assignorDropdown.appendChild(option);
+                });
+            }
+        }
+    </script>
 </x-layout>
 

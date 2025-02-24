@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('priority');
             $table->string('attachment')->nullable();
-            $table->string('assignor_user');
+            $table->foreignId('assignor_user')->constrained('users')->onDelete('cascade');
             $table->text('remark')->nullable();
             $table->integer('total_duration')->default(0);
             $table->text('solution')->nullable();

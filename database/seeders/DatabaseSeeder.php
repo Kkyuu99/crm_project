@@ -13,14 +13,23 @@ class DatabaseSeeder extends Seeder
 
     public function run(): void
     {
-        User::factory(50)->create();
-        Project::factory(10)->create();
+        $projects = Project::factory(10)->create();
+
+        User::factory(10)->create()->each(function ($user) use ($projects) {
+            $user->projects()->attach($projects->random(rand(1, 3))->pluck('id'));
+        });
+
         Issue::factory(100)->create();
 
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        // Create an admin user
+        $admin = User::factory()->create([
+            'name' => 'Admin User',
+            'email' => 'admin@example.com',
+            'password' => bcrypt('password'),
+            'role' => 'admin',
+        ]);
+    
+        $admin->projects()->attach($projects->random(2)->pluck('id'));
     }
 
 }

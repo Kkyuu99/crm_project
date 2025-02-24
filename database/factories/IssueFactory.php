@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -27,13 +28,13 @@ class IssueFactory extends Factory
         //     'remark'=>fake()->paragraph()
         // ];
         return [
-            'project_id' => Project::factory(),
+            'project_id' => Project::inRandomOrder()->first()->id ?? Project::factory(),
             'issue_status' => fake()->randomElement(['Open', 'Closed', 'In progress', 'Resolved']),
             'subject' => fake()->name(),
             'description' => fake()->text(),
             'priority' => fake()->randomElement(['Low', 'Medium', 'High', 'Urgent']),
             'attachment' => fake()->fileExtension(),
-            'assignor_user' => fake()->name(),
+            'assignor_user' => User::inRandomOrder()->first()->id ?? User::factory(),
             'remark' => fake()->text(),
             'solution' => fake()->text(),
             'total_duration' => fake()->numberBetween(1, 100),
