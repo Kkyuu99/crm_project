@@ -1,22 +1,5 @@
     <?php
 
-<<<<<<< HEAD
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\IssueController;
-
-// Routes for all users
-Route::get('/', function () {
-    $user = Auth::user();
-    if ($user && isset($user->role)) {
-        return redirect()->route($user->role === 'admin' ? 'admin.dashboard' : 'user.dashboard');
-    }
-    return redirect()->route('login');
-});
-=======
     use App\Http\Controllers\AuthController;
     use App\Http\Controllers\IssueController;
     use App\Http\Controllers\ProjectController;
@@ -26,8 +9,8 @@ Route::get('/', function () {
     use Illuminate\Routing\RouteUri;
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Route;
-    
-    Route::get('/', function () 
+
+    Route::get('/', function ()
     {
         $user = Auth::user();
         if ($user && isset($user->role)) {
@@ -51,7 +34,7 @@ Route::get('/', function () {
         Route::put('/projects/{id}/project-edit', [ProjectController::class, 'edit'])->name('admin.project-edit');
         Route::put('/projects/{id}/project-update', [ProjectController::class, 'update'])->name('admin.project-update');
         Route::delete('/projects/{id}/project-delete', [ProjectController::class, 'delete'])->name('admin.project-delete');
-        
+
         Route::get('/issue-list', [IssueController::class, 'index'])->name('admin.issue-list');
         Route::get('/issue-create', [IssueController::class, 'create'])->name('admin.issue-create');
         Route::post('/issue-store', [IssueController::class, 'store'])->name('admin.issue-store');
@@ -88,18 +71,11 @@ Route::get('/', function () {
     });
 
     Route::get('/auth/forgot-password', [AuthController::class, 'forgot']);
->>>>>>> fe5005435fda480a6b596025c207e299b8517f26
 
 Route::get('/login', [AuthController::class, 'get_login'])->name('login')->middleware('guest');
 Route::post('/login', [AuthController::class, 'post_login'])->name('login.post');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
-<<<<<<< HEAD
-// Routes for authenticated users (Admin and User)
-Route::middleware(['auth'])->group(function () {
-    Route::get('/user/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-=======
->>>>>>> fe5005435fda480a6b596025c207e299b8517f26
 
     // Admin routes (restricted to admins)
     Route::middleware(['role:admin'])->prefix('admin')->group(function () {
