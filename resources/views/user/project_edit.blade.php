@@ -2,7 +2,7 @@
     <form class="w-full bg-white p-6 rounded-lg shadow-md" action="{{ route('user.project-update', $project->id) }}" method="POST">
         @csrf
         @method('PUT')
-        <h1 class="text-xl font-bold text-center mb-4">Project Detail</h1>
+        <h1 class="text-xl font-bold text-center mb-4">Project Edit</h1>
         <hr class="mb-6">
 
         @if ($errors->any())
@@ -51,11 +51,18 @@
             <input type="text" id="contact-name" name="contact_name" value="{{ old('contact_name', $project->contact_name) }}" class="w-96 px-2 py-1 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" required>
         </div>
 
+        <!-- Contact Email -->
+        <div class="mb-4 flex justify-start space-x-4 px-16">
+            <label class="text-sm text-black font-normal">Contact Email</label>
+            <input type="text" id="contact-phone" name="contact_email" value="{{ old('contact_email', $project->contact_email) }}" class="w-96 px-2 py-1 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" required>
+        </div>
+
         <!-- Contact Phone -->
         <div class="mb-4 flex justify-start space-x-4 px-16">
             <label class="text-sm text-black font-normal">Contact Phone</label>
             <input type="text" id="contact-phone" name="contact_phone" value="{{ old('contact_phone', $project->contact_phone) }}" class="w-96 px-2 py-1 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" required>
         </div>
+
 
         <!-- Status -->
         <div class="mb-4 flex justify-start space-x-4 px-24">
