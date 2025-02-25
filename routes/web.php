@@ -5,6 +5,7 @@
     use App\Http\Controllers\ProjectController;
     use App\Http\Controllers\UserController;
     use App\Http\Controllers\DashboardController;
+    use App\Http\Controllers\UserProfileController;
     use App\Http\Controllers\PostController;
     use Illuminate\Routing\RouteUri;
     use Illuminate\Support\Facades\Auth;
@@ -17,7 +18,7 @@
             return redirect()->route($user->role === 'admin' ? 'admin.dashboard' : 'user.dashboard');
         }
         return redirect()->route('login');
-    });
+    })->middleware('auth');
 
     Route::get('/login', [AuthController::class, 'get_login'])->name('login')->middleware('guest');
     Route::post('/login', [AuthController::class, 'post_login'])->name('login.post');
@@ -25,6 +26,10 @@
 
     Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'adminDashboard'])->name('admin.dashboard');
+
+        Route::get('/profile/{id}', [UserProfileController::class, 'show'])->name('admin.user-profile');
+        Route::get('/profile/{id}/profile-edit', [UserProfileController::class, 'edit'])->name('admin.profile-edit');
+        Route::put('/profile/{id}/profile-edit', [UserProfileController::class, 'edit'])->name('admin.profile-edit');
 
         Route::get('/project-list', [ProjectController::class, 'index'])->name('admin.project-list');
         Route::get('/project-create', [ProjectController::class, 'create'])->name('admin.project-create');
@@ -57,7 +62,19 @@
 
     Route::middleware(['auth', 'role:user'])->prefix('user')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'userDashboard'])->name('user.dashboard');
-        Route::get('/project-list', [ProjectController::class, 'project_list'])->name('user.project-list');
+
+        Route::get('/profile/{id}', [UserProfileController::class, 'show'])->name('user.user-profile');
+        Route::get('/profile/{id}/profile-edit', [UserProfileController::class, 'edit'])->name('user.profile-edit');
+        Route::put('/profile/{id}/profile-edit', [UserProfileController::class, 'edit'])->name('user.profile-edit');
+
+        Route::get('/project-list', [ProjectController::class, 'index'])->name('user.project-list');
+        Route::get('/project-create', [ProjectController::class, 'create'])->name('user.project-create');
+        Route::post('/project-store', [ProjectController::class, 'store'])->name('user.project-store');
+        Route::get('/projects/{id}',[ProjectController::class,'show'])->name('user.project-detail');
+        Route::get('/projects/{id}/project-edit', [ProjectController::class, 'edit'])->name('user.project-edit');
+        Route::put('/projects/{id}/project-edit', [ProjectController::class, 'edit'])->name('user.project-edit');
+        Route::put('/projects/{id}/project-update', [ProjectController::class, 'update'])->name('user.project-update');
+        Route::delete('/projects/{id}/project-delete', [ProjectController::class, 'delete'])->name('user.project-delete');
 
         Route::get('/issue-list', [IssueController::class, 'index'])->name('user.issue-list');
         Route::get('/issue-create', [IssueController::class, 'create'])->name('user.issue-create');

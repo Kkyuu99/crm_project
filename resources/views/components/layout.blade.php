@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRM System - @yield('title')</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     @vite('resources/css/app.css')
 </head>
 <body>
@@ -16,7 +17,8 @@
             @if(!request()->is('login')) <!-- Check if the current route is not the login page -->
                 <x-sidebar class="flex-1" />
             @endif
-            <main class="flex-1 bg-white mx-auto mr-3 ml-80 mt-1 rounded-lg ">
+            <main class="flex-1 bg-white mx-auto mr-3 rounded-lg 
+            {{ request()->is('login') ? 'ml-0' : 'ml-64' }}">
                 {{ $slot}}
             </main>
         </div>

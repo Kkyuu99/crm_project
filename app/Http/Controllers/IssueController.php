@@ -15,12 +15,10 @@ class IssueController extends Controller
     //show the list of all issues
     public function index()
     {
-        //$issues = Issue::orderBy('created_at', 'desc')->paginate(5);
         if (Auth::check()) {
             $userId = Auth::id();
             $userRole = Auth::user()->role;
             
-            // Check the role of the user
             if ($userRole === 'admin') {
                 $issues = Issue::orderBy('created_at', 'desc')->paginate(5);
             } else {
@@ -41,7 +39,12 @@ class IssueController extends Controller
     //show the new issue create form
     public function create(Request $request)
     {
-        $projects = Project::all();
+        $user = Auth::user();
+        if ($user->role === 'admin') {
+            $projects = Project::all();
+        } else {
+            $projects = $user->projects;
+        }
         $users = User::all();
         $projectUsers = [];
         foreach ($projects as $project) {
@@ -78,7 +81,12 @@ class IssueController extends Controller
     public function show($id)
     {
         $issue = Issue::findOrFail($id);
-        $projects = Project::all();
+        $user = Auth::user();
+        if ($user->role === 'admin') {
+            $projects = Project::all();
+        } else {
+            $projects = $user->projects;
+        }
         $users = User::all();
         $projectUsers = [];
         foreach ($projects as $project) {
@@ -92,7 +100,12 @@ class IssueController extends Controller
     public function edit($id)
     {
         $issue = Issue::findOrFail($id);
-        $projects = Project::all();
+        $user = Auth::user();
+        if ($user->role === 'admin') {
+            $projects = Project::all();
+        } else {
+            $projects = $user->projects;
+        }
         $users = User::all();
         $projectUsers = [];
         foreach ($projects as $project) {
@@ -157,6 +170,7 @@ class IssueController extends Controller
         return redirect()->back()->with('error', 'No attachment found to remove.');
     }
 
+    
     
 
 }
