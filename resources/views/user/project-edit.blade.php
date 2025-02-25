@@ -82,8 +82,4 @@
             </button>
         </div>
     </form>
-<<<<<<< HEAD
 </x-layout>
-=======
-</x-layout>
->>>>>>> fe5005435fda480a6b596025c207e299b8517f26

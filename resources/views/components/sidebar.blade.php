@@ -1,14 +1,11 @@
-<<<<<<< HEAD
-=======
 @php
     $user = Auth::user();
     $prefix = $user && $user->role === 'admin' ? 'admin' : 'user';
 @endphp
 
-@if (Auth::check())  
+@if (Auth::check())
 
 @section('content')
->>>>>>> fe5005435fda480a6b596025c207e299b8517f26
 <span class="absolute text-white text-4xl top-5 left-4 cursor-pointer" onclick="Open()">
     <i class="bi bi-filter-left px-4 bg-gray-900 rounded-md"></i>
 </span>
@@ -25,11 +22,7 @@
     </div>
 
     <!-- Sidebar Items -->
-<<<<<<< HEAD
-    <a href="/user/dashboard"
-=======
     <a href="{{ route($prefix . '.dashboard') }}"
->>>>>>> fe5005435fda480a6b596025c207e299b8517f26
             class="{{ request()->is('user/dashboard') ? 'bg-blue-50 text-blue-600' : 'text-gray-800' }} group flex items-center px-3 py-2 rounded-md hover:bg-blue-50 hover:text-blue-600 transition-colors">
             <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -39,11 +32,7 @@
          </a>
 
     <!-- Dropdown for Project -->
-<<<<<<< HEAD
-    <a href="/user/project-list"
-=======
     <a href="{{ route($prefix . '.project-list') }}"
->>>>>>> fe5005435fda480a6b596025c207e299b8517f26
             class="{{ request()->is('user/project-list') ? 'bg-blue-50 text-blue-600' : 'text-gray-800' }} group flex items-center px-3 py-2 rounded-md hover:bg-blue-50 hover:text-blue-600 transition-colors">
             <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -52,11 +41,7 @@
             Projects
     </a>
     <div class="text-left text-sm font-thin mt-2 w-4/5 mx-auto text-gray-200 hidden" id="submenu-projects">
-<<<<<<< HEAD
-        <a href="/user/project-list"">
-=======
         <a href="/user/project-list">
->>>>>>> fe5005435fda480a6b596025c207e299b8517f26
             <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Project List</h1>
         </a>
         <a href="#" onclick="loadContent('projectdetail.html')">
@@ -65,11 +50,7 @@
     </div>
 
     <!-- Dropdown for Issues -->
-<<<<<<< HEAD
-    <a href="/user/issue-list"
-=======
     <a href="{{ route($prefix . '.issue-list') }}"
->>>>>>> fe5005435fda480a6b596025c207e299b8517f26
             class="{{ request()->is('user/issue-list') ? 'bg-blue-50 text-blue-600' : 'text-gray-800' }} group flex items-center px-3 py-2 rounded-md hover:bg-blue-50 hover:text-blue-600 transition-colors">
             <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -78,17 +59,10 @@
             Issues
     </a>
     <div class="text-left text-sm font-thin mt-2 w-4/5 mx-auto text-gray-200 hidden" id="submenu-issues">
-<<<<<<< HEAD
-        <a href="user/issue_list"">
-            <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Issue List</h1>
-        </a>
-        <a href="/user/issue-detail"">
-=======
         <a href="user/issue_list">
             <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Issue List</h1>
         </a>
         <a href="/user/issue-detail">
->>>>>>> fe5005435fda480a6b596025c207e299b8517f26
             <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Issue Detail</h1>
         </a>
         <a href="#" onclick="loadContent('new_issue.html')">
@@ -97,12 +71,8 @@
     </div>
 
     <!-- Dropdown for Users -->
-<<<<<<< HEAD
-    <a href="/user/user-list"
-=======
     @if ($user->role === 'admin')
     <a href="{{ route('admin.user-list') }}"
->>>>>>> fe5005435fda480a6b596025c207e299b8517f26
          class="{{ request()->is('user/user-list') ? 'bg-blue-50 text-blue-600' : 'text-gray-800' }} group flex items-center px-3 py-2 rounded-md
           hover:bg-blue-50 hover:text-blue-8 transition-colors">
             <svg class="h-5 w-5 mr-3 text-inherit" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -111,13 +81,9 @@
             </svg>
             Users
          </a>
-<<<<<<< HEAD
-    <div class="text-left text-sm font-thin mt-2 w-4/5 mx-auto text-gray-200 hidden" id="submenu-users">
-=======
     @endif
 
     <!-- <div class="text-left text-sm font-thin mt-2 w-4/5 mx-auto text-gray-200 hidden" id="submenu-users">
->>>>>>> fe5005435fda480a6b596025c207e299b8517f26
         <a href="#" onclick="loadContent('user-list.html')">
             <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">User List</h1>
         </a>
@@ -127,27 +93,6 @@
         <a href="#" onclick="loadContent('new-user.html')">
             <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">New User</h1>
         </a>
-<<<<<<< HEAD
-    </div>
-
-    <hr class="my-2 text-gray-600">
-
-    <a href="/login">
-        <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-700">
-            <i class="bi bi-box-arrow-left"></i>
-            <span class="text-[15px] ml-4 text-purple-300">Login</span>
-        </div>
-    </a>
-
-    <!-- Logout Button -->
-    <a href="/logout">
-        <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-700">
-            <i class="bi bi-box-arrow-left"></i>
-            <span class="text-[15px] ml-4 text-purple-300">Logout</span>
-        </div>
-    </a>
-</div>
-=======
     </div> -->
 
     <hr class="my-2 text-gray-600">
@@ -159,7 +104,6 @@
             <button type="submit" class="text-[15px] ml-4 text-purple-300">Logout</button>
         </form>
     </div>
-    
+
 </div>
 @endif
->>>>>>> fe5005435fda480a6b596025c207e299b8517f26

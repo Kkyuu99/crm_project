@@ -1,36 +1,18 @@
 <x-layout>
-<<<<<<< HEAD
-    <section class="bg-gray-100 min-h-screen flex items-center justify-center">
 
-=======
-    
->>>>>>> fe5005435fda480a6b596025c207e299b8517f26
 <section class="bg-gray-100 min-h-screen flex items-center justify-center">
         <!-- Login container -->
         <div class="bg-custom-purple flex rounded-lg shadow-lg w-3/4 max-w-4xl overflow-hidden">
             <!-- Left: Form -->
             <div class="w-1/2 p-8">
                 <h2 class="text-3xl font-bold text-white mb-6 text-center">Login Form</h2>
-<<<<<<< HEAD
-                <form method="POST">
-=======
->>>>>>> fe5005435fda480a6b596025c207e299b8517f26
                 <form action="{{ route('login.post') }}" method="POST">
                     @csrf
                     <div class="mb-4">
                         <label
                         for="email"
-<<<<<<< HEAD
-                        <label
-                        for="email"
-=======
->>>>>>> fe5005435fda480a6b596025c207e299b8517f26
                         class="block text-white text-sm font-bold mb-2">
                            Email</label>
-                        <input
-                        type="email"
-                        id="email"
-<<<<<<< HEAD
                         <input
                         type="email"
                         id="email"
@@ -38,12 +20,6 @@
                         placeholder="Enter your email"
                         class="w-full px-4 py-2 rounded-lg focus:outline-none">
 
-=======
-                        name="email"
-                        placeholder="Enter your email"
-                        class="w-full px-4 py-2 rounded-lg focus:outline-none">
-                        
->>>>>>> fe5005435fda480a6b596025c207e299b8517f26
                         @error('email')
                             <p class="text-red-300">{{ $message }}</p>
                         @enderror
@@ -51,17 +27,8 @@
                     <div class="mb-4">
                         <label
                         for="password"
-<<<<<<< HEAD
-                        <label
-                        for="password"
-=======
->>>>>>> fe5005435fda480a6b596025c207e299b8517f26
                         class="block text-white text-sm font-bold mb-2">
                         Password</label>
-                        <input
-                        type="password"
-                        id="password"
-<<<<<<< HEAD
                         <input
                         type="password"
                         id="password"
@@ -69,35 +36,21 @@
                         placeholder="Enter your password"
                         class="w-full px-4 py-2 rounded-lg focus:outline-none">
 
-=======
-                        name="password"
-                        placeholder="Enter your password"
-                        class="w-full px-4 py-2 rounded-lg focus:outline-none">
-                        
->>>>>>> fe5005435fda480a6b596025c207e299b8517f26
                         @error('password')
                             <p class="text-red-300">{{ $message }}</p>
                         @enderror
                     </div>
 
                     <!-- Remember Me and Forgot Password -->
-<<<<<<< HEAD
-@@ -41,21 +50,21 @@
-=======
                     <div class="flex items-center justify-between mb-4 ">
                         <label class="flex items-center text-white text-sm">
                             <input type="checkbox" class="mr-2 rounded focus:outline-none">
                             Remember Me
                         </label>
->>>>>>> fe5005435fda480a6b596025c207e299b8517f26
                         <a href="/auth/forgot-password" class="text-purple-200 hover:underline text-sm">Forgot Password?</a>
                     </div>
                     <div class="w-32 mx-auto">
 
-<<<<<<< HEAD
-
-=======
->>>>>>> fe5005435fda480a6b596025c207e299b8517f26
                         <button
                             type="submit"
                             class="bg-violet-400 text-white px-6 py-1 rounded-md hover:bg-purple-500 font-medium text-sm">
@@ -115,3 +68,5 @@
             </div>
 
     </section>
+</x-layout>
+

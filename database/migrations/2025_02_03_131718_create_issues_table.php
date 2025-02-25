@@ -13,11 +13,7 @@ return new class extends Migration
     {
         Schema::create('issues', function (Blueprint $table) {
             $table->id();
-<<<<<<<< HEAD:database/migrations/2025_02_03_131718_create_issues_table.php
-            $table->foreignId('project_id');
-========
             $table->foreignId('project_id')->constrained('projects')->onDelete('cascade');
->>>>>>>> fe5005435fda480a6b596025c207e299b8517f26:database/migrations/2025_02_03_131731_create_issues_table.php
             $table->string('issue_status');
             $table->string('subject');
             $table->text('description');
@@ -25,13 +21,9 @@ return new class extends Migration
             $table->string('attachment')->nullable();
             $table->foreignId('assignor_user')->constrained('users')->onDelete('cascade');
             $table->text('remark')->nullable();
-<<<<<<<< HEAD:database/migrations/2025_02_03_131718_create_issues_table.php
-            $table->integer('total_duration');
-========
             $table->integer('total_duration')->default(0);
             $table->text('solution')->nullable();
             $table->date('due_date');
->>>>>>>> fe5005435fda480a6b596025c207e299b8517f26:database/migrations/2025_02_03_131731_create_issues_table.php
             $table->timestamps();
         });
     }

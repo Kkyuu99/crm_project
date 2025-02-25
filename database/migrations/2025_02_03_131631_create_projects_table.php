@@ -12,20 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('projects', function (Blueprint $table) {
-            $table->id(); 
+            $table->id();
             $table->string('project_name');
             $table->string('organization_name');
             $table->string('project_type');
             $table->string('project_manager');
-<<<<<<< HEAD
-            $table->foreignId('issue_id');
-            $table->string('contact_name');
-            $table->string('contact_phone');
-            $table->string('contact_email');
-            $table->string('created_by')->nullable();
-            $table->string('updated_by')->nullable();
-            $table->string('deleted_by')->nullable();
-=======
             $table->string('contact_name');
             $table->string('contact_phone');
             $table->string('contact_email');
@@ -33,7 +24,6 @@ return new class extends Migration
             // $table->unsignedBigInteger('created_by');
             // $table->unsignedBigInteger('updated_by')->nullable();
             // $table->unsignedBigInteger('deleted_by')->nullable();
->>>>>>> fe5005435fda480a6b596025c207e299b8517f26
             $table->timestamps();
 
             // Foreign key constraints

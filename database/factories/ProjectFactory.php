@@ -23,29 +23,15 @@ class ProjectFactory extends Factory
         //     'organization_name'=> fake()->company(),
         //     'project_type'=> fake()->name(),
         //     'project_manager'=> fake()->name(),
-        //     'issue_id'=>Issue::factory(),  
-        //     'user_id' => User::inRandomOrder()->limit(1)->value('id') ?? null,          
-        //     'contact_name'=>fake()->name(),            
-        //     'contact_phone'=>fake()->phoneNumber(),            
-        //     'contact_email'=>fake()->email(),            
+        //     'issue_id'=>Issue::factory(),
+        //     'user_id' => User::inRandomOrder()->limit(1)->value('id') ?? null,
+        //     'contact_name'=>fake()->name(),
+        //     'contact_phone'=>fake()->phoneNumber(),
+        //     'contact_email'=>fake()->email(),
         //     'created_by'=>fake()->name(),
         //     'updated_by'=>fake()->name(),
         //     'deleted_by'=>fake()->name()
         // ];
-<<<<<<< HEAD
-        return [
-            'project_name' => fake()->name(),
-            'organization_name' => fake()->company(),
-            'project_type' => fake()->word(),
-            'project_manager' => fake()->name(),
-            'issue_id' => fake()->numberBetween(1, 10),
-            'contact_name' => fake()->name(),
-            'contact_phone' => fake()->phoneNumber(),
-            'contact_email' => fake()->email(),
-            'created_by' => fake()->name(), 
-            'updated_by' => fake()->name(),
-            'deleted_by' => fake()->name(),
-=======
 
         return [
             'project_name' => fake()->name(),
@@ -57,7 +43,6 @@ class ProjectFactory extends Factory
             'contact_phone' => fake()->phoneNumber(),
             'contact_email' => fake()->email(),
             'status' => fake()->randomElement(['Active', 'Inactive']),
->>>>>>> fe5005435fda480a6b596025c207e299b8517f26
         ];
     }
 }

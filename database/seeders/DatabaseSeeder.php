@@ -13,13 +13,7 @@ class DatabaseSeeder extends Seeder
 
     public function run(): void
     {
-<<<<<<< HEAD
-        User::factory(50)->create();
-        Project::factory(50)->create();
-        Issue::factory(100)->create();
-=======
         $projects = Project::factory(10)->create();
->>>>>>> fe5005435fda480a6b596025c207e299b8517f26
 
         User::factory(10)->create()->each(function ($user) use ($projects) {
             $user->projects()->attach($projects->random(rand(1, 3))->pluck('id'));
@@ -34,7 +28,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('password'),
             'role' => 'admin',
         ]);
-    
+
         $admin->projects()->attach($projects->random(2)->pluck('id'));
     }
 

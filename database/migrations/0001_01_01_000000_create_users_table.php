@@ -14,17 +14,10 @@ return new class extends Migration
             $table->string('password');
             $table->string('email')->unique();
             $table->string('role')->default('user');
-<<<<<<< HEAD
-            $table->foreignId('project_id');
-            $table->string('created_by')->nullable();
-            $table->string('updated_by')->nullable();
-            $table->string('deleted_by')->nullable();
-=======
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->string('deleted_by')->nullable();
             $table->string('remember_token')->nullable();
->>>>>>> fe5005435fda480a6b596025c207e299b8517f26
             $table->timestamps();
         });
 

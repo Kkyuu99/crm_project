@@ -6,11 +6,7 @@
 <x-layout>
     <form class="w-full bg-white p-6 rounded-lg" action="{{ route($prefix . '.project-store') }}" method="post">
         @csrf
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> fe5005435fda480a6b596025c207e299b8517f26
         <h1 class="text-xl font-bold text-left mb-4">New Project</h1>
         <hr class="mb-6">
 
@@ -61,11 +57,7 @@
         <div class="mb-4 px-0">
             <label class="block font-normal text-black text-sm justify-start mb-1">Created Date</label>
             <div>
-<<<<<<< HEAD
               <input
-=======
-              <input 
->>>>>>> fe5005435fda480a6b596025c207e299b8517f26
                 type="date" name="created_at" value="{{now()->toDateString()}}"
                 class="w-full px-3 py-1 p-1 bg-neutral-100 border border-gray-300 rounded-lg">
             </div>
@@ -74,11 +66,7 @@
             <!-- <label for="created_by">created by:</label>
             <input type="text" id="created_by" name="created_by" value="{{ Auth::id() }}" required> -->
         </div>
-<<<<<<< HEAD
         </div>
-=======
-        </div>    
->>>>>>> fe5005435fda480a6b596025c207e299b8517f26
 
         <div class="flex gap-8">
         <div class="mb-4">
@@ -111,12 +99,6 @@
             </button>
             </a>
         </div>
-<<<<<<< HEAD
         </div>
     </form>
 </x-layout>
-=======
-        </div>   
-    </form>
-</x-layout>
->>>>>>> fe5005435fda480a6b596025c207e299b8517f26

@@ -49,7 +49,7 @@ class IssueController extends Controller
         }
         return view('user.new-issue', compact('projects', 'users', 'projectUsers'));
     //show the new issue create form
- public function create(Request $request)
+    public function create(Request $request)
     {
         $projects = Project::all();
         $users = User::all();

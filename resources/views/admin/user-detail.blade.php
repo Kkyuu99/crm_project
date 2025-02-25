@@ -47,11 +47,7 @@
             <div class="flex gap-4 mb-4">
                 <label for="project_id" class="block text-black text-sm text-right mt-2 mb-2 w-16">Project</label>
                 <div class="flex-1 px-4 py-2 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
-<<<<<<< HEAD
 
-=======
-                    
->>>>>>> fe5005435fda480a6b596025c207e299b8517f26
                     @foreach($user->projects as $project)
                         <label class="block">
                             <input type="checkbox" name="projects[]" value="{{ $project->id }}" checked disabled>
@@ -64,21 +60,17 @@
             </div>
 
 =======
-                    
+
                 </div>
             </div>
-            
+
 >>>>>>> fe5005435fda480a6b596025c207e299b8517f26
             <div class="flex gap-4 items-center mb-4">
                 <label for="role" class="block text-black text-sm text-right mb-2 w-16">Role</label>
                     <select id="role" disabled name="role" class="flex-1 px-4 py-2 rounded-lg border border-gray-300 bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
                         <option value="admin" {{ old('role', $user->role) == 'admin' ? 'selected' : '' }}>Admin</option>
                         <option value="user" {{ old('role', $user->role) == 'user' ? 'selected' : '' }}>User</option>
-<<<<<<< HEAD
                     </select>
-=======
-                    </select>    
->>>>>>> fe5005435fda480a6b596025c207e299b8517f26
             </div>
 
             <div class="flex flex-row-reverse  space-x-1 space-x-reverse">
@@ -97,7 +89,3 @@
             </div>
     </div>
 </x-layout>
-<<<<<<< HEAD
-=======
-
->>>>>>> fe5005435fda480a6b596025c207e299b8517f26
