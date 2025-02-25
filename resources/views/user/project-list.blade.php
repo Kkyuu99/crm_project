@@ -1,22 +1,23 @@
 <x-layout>
-    <h1 class="text-xl font-bold my-4 text-left ml-4">Project Lists</h1>
-    <hr class="mb-6">
+    <h1 class="text-2xl font-bold my-4 text-center ml-4">Project Lists</h1>
+    <hr class="border-t-1 border-gray-300 my-4" />
 
     <!-- Table Horizontal and Vertical Scroll -->
-    <div class="overflow-x-auto overflow-y-auto max-w-full px-4 mb-8 rounded-md scrollbar-thin scrollbar-thumb-soft-purple scrollbar-track-gray-200">
-        <table class="table-auto border-collapse border border-gray-300 min-w-[1500px] text-left">
+    <div class="overflow-x-auto overflow-y-auto max-w-full px-4 mb-2 rounded-md scrollbar-thin scrollbar-thumb-soft-purple scrollbar-track-gray-200">
+        <table class="table-auto border-collapse border border-gray-300 min-w-[2500px] text-center">
             <thead>
-                <tr class="bg-white font-normal text-xs text-blue-800">
-                    <th class="border border-gray-300 px-19 py-3 text-lg truncate">Project-id</th>
-                    <th class="border border-gray-300 px-19 py-3 text-lg truncate">Project Type</th>
-                    <th class="border border-gray-300 px-19 py-3 text-lg truncate">Project Name</th>
-                    <th class="border border-gray-300 px-19 py-3 text-lg truncate">Organization Name</th>
-                    <th class="border border-gray-300 px-19 py-3 text-lg truncate">Contact Name</th>
-                    <th class="border border-gray-300 px-19 py-3 text-lg truncate">Contact Email</th>
-                    <th class="border border-gray-300 px-19 py-3 text-lg truncate">Contact Phone</th>
-                    <th class="border border-gray-300 px-19 py-3 text-lg truncate">Created Date</th>
-                    <th class="border border-gray-300 px-19 py-3 text-lg truncate">Status</th>
-                    <th class="border border-gray-300 px-19 py-3 text-lg truncate">Action</th>
+                <tr class="bg-white text-blue-b">
+                    <th class="border border-gray-300 px-6 py-2 text-md text-center bg-gray-100 text-gray-500">No.</th>
+                    <th class="border border-gray-300 px-6 py-2 text-md text-center bg-gray-100 text-gray-500">Project-id</th>
+                    <th class="border border-gray-300 px-6 py-2 text-md text-center bg-gray-100 text-gray-500">Project Type</th>
+                    <th class="border border-gray-300 px-6 py-2 text-md text-center bg-gray-100 text-gray-500">Project Name</th>
+                    <th class="border border-gray-300 px-6 py-2 text-md text-center bg-gray-100 text-gray-500">Status</th>
+                    <th class="border border-gray-300 px-6 py-2 text-md text-center bg-gray-100 text-gray-500">Organization Name</th>
+                    <th class="border border-gray-300 px-6 py-2 text-md text-center bg-gray-100 text-gray-500">Contact Name</th>
+                    <th class="border border-gray-300 px-6 py-2 text-md text-center bg-gray-100 text-gray-500">Contact Email</th>
+                    <th class="border border-gray-300 px-6 py-2 text-md text-center bg-gray-100 text-gray-500">Contact Phone</th>
+                    <th class="border border-gray-300 px-6 py-2 text-md text-center bg-gray-100 text-gray-500">Created Date</th>
+                    <th class="border border-gray-300 px-6 py-2 text-md text-center bg-gray-100 text-gray-500">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,19 +27,20 @@
                 $prefix = $user->role === 'admin' ? 'admin' : 'user';
                 $projectDetailRoute = route($prefix . '.project-detail', $project->id);
               @endphp
-                <tr class="hover:bg-gray-100" onclick="location.href='{{ $projectDetailRoute }}'">
-                    <td class="border border-gray-300 px-8 py-3 text-xl">{{ $project->id }}</td>
-                    <td class="border border-gray-300 px-8 py-3 text-xl">{{ $project->project_type }}</td>
-                    <td class="border border-gray-300 px-8 py-3 text-xl">{{ $project->project_name }}</td>
-                    <td class="border border-gray-300 px-8 py-3 text-xl">{{ $project->organization_name }}</td>
-                    <td class="border border-gray-300 px-8 py-3 text-xl">{{ $project->contact_name }}</td>
-                    <td class="border border-gray-300 px-8 py-3 text-xl">{{ $project->contact_email }}</td>
-                    <td class="border border-gray-300 px-8 py-3 text-xl">{{ $project->contact_phone }}</td>
-                    <td class="border border-gray-300 px-8 py-3 text-xl">{{ $project->created_at }}</td>
-                    <td class="border border-gray-300 px-8 py-3 text-xl {{ $project->status == 'Active' ? 'text-green-500' : 'text-red-500' }}">
+                <tr class="hover:bg-gray-100 cursor-pointer" onclick="location.href='{{ $projectDetailRoute }}'">
+                    <td class="border border-gray-300 px-8 py-2 text-md">{{ $loop->iteration + (($projects->currentPage() - 1) * $projects->perPage()) }}</td>
+                    <td class="border border-gray-300 px-8 py-2 text-md">{{ $project->id }}</td>
+                    <td class="border border-gray-300 px-8 py-2 text-md">{{ $project->project_type }}</td>
+                    <td class="border border-gray-300 px-8 py-2 text-md">{{ $project->project_name }}</td>
+                    <td class="border border-gray-300 px-8 py-2 text-md {{ $project->status == 'Active' ? 'text-green-500' : 'text-red-500' }}">
                         {{ $project->status }}
                     </td>
-                    <td class="flex justify-between items-center">
+                    <td class="border border-gray-300 px-8 py-2 text-md">{{ $project->organization_name }}</td>
+                    <td class="border border-gray-300 px-8 py-2 text-md">{{ $project->contact_name }}</td>
+                    <td class="border border-gray-300 px-8 py-2 text-md">{{ $project->contact_email }}</td>
+                    <td class="border border-gray-300 px-8 py-2 text-md">{{ $project->contact_phone }}</td>
+                    <td class="border border-gray-300 px-8 py-2 text-md">{{ $project->created_at }}</td>
+                    <td class="flex justify-center px-4 py-7">
 
                         <!-- Conditional Update or Edit Button -->
                         @if($project->status == 'Active')
@@ -67,13 +69,13 @@
     </div>
 
     <a href="{{ route($prefix . '.project-create') }}">
-        <button class="flex items-center justify-start bg-purple-500 px-6 py-3 rounded-md hover:bg-purple-500 font-medium text-sm mx-2">
+        <button class="flex items-center justify-start text-white bg-violet-400 px-6 py-2 rounded-lg hover:bg-violet-500 font-medium text-sm mx-5">
             Add New
         </button>
     </a>
 
     <div class="my-4 flex justify-center">
-        <div class="bg-white shadow-md rounded-lg px-6 py-4">
+        <div class="bg-white rounded-lg px-6 py-4">
             <ul class="space-x-2">
                 {{ $projects->links() }}
             </ul>
