@@ -1,6 +1,6 @@
 <x-layout>
-
-    <style>
+  
+<style>
         .pie-chart {
             width: 200px;
             height: 200px;
@@ -107,7 +107,7 @@
       </div>
 
       <form class="w-full bg-violet-500 text-white shadow rounded-lg p-5 mt-8 col-span-2">
-        <h1 class="font-extrabold w-full justify-center text-white text-xs">Ticket Overview</h1><br>
+        <h1 class="text-white text-xl mb-8 text-left">Ticket Overview</h1><br>
         <div class="flex">
           <!-- Y-Axis Labels -->
           <div class="flex flex-col justify-between h-64 pr-4 text-white text-sm ">

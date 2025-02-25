@@ -1,5 +1,10 @@
+@php
+    $user = Auth::user();
+    $prefix = $user->role === 'admin' ? 'admin' : 'user';
+@endphp
+
 <x-layout>
-    <form class="w-full bg-white p-6 rounded-lg" action="/user/project-store" method="post">
+    <form class="w-full bg-white p-6 rounded-lg" action="{{ route($prefix . '.project-store') }}" method="post">
         @csrf
         
         <h1 class="text-xl font-bold text-left mb-4">New Project</h1>
@@ -58,8 +63,8 @@
             </div>
 
             <!--  Input for Created By (Current User) -->
-             <label for="created_by">created by:</label>
-            <input type="text" id="created_by" name="created_by" value="{{ Auth::id() }}" required>
+            <!-- <label for="created_by">created by:</label>
+            <input type="text" id="created_by" name="created_by" value="{{ Auth::id() }}" required> -->
         </div>
         </div>    
 
@@ -85,10 +90,14 @@
             <input type="text" id="contact_email" name="contact_email" class="w-96 px-4 py-2 p-1 text-slate-600 text-sm bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="Sample@gmail.com">
         </div>
 
-        <div class="py-6">
+        <div class="py-6 flex gap-2">
             <button type="submit" class="w-full px-8 py-2 bg-violet-500 text-white text-sm font-regular rounded-lg shadow-sm hover:bg-violet-400">
                 Create
             </button>
+            <a href="{{ route($prefix . '.project-list') }}" class="w-full px-8 py-2 bg-red-400 text-white text-sm font-regular rounded-lg shadow-sm hover:bg-red-600">
+                Cancel
+            </button>
+            </a>
         </div>
         </div>   
     </form>
