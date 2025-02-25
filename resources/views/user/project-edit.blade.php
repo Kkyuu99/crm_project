@@ -85,12 +85,12 @@
         <!-- Action Buttons -->
         <div class="flex justify-start space-x-8 px-24">
             <!-- Close Button -->
-            <a href="{{  route($prefix . '.project-list')  }}" class="px-4 py-1 bg-orange-600 text-white font-normal rounded-lg shadow-md hover:bg-orange-500">
+            <a href="{{  route($prefix . '.project-list')  }}" class="px-4 py-1 bg-orange-400 text-white font-normal rounded-lg shadow-md hover:bg-orange-600">
                 Close
             </a>
 
             <!-- Update Button -->
-            <button type="submit" class="px-4 py-1 bg-violet-500 text-white font-normal rounded-lg shadow-md hover:bg-violet-400">
+            <button type="submit" class="px-4 py-1 bg-violet-400 text-white font-normal rounded-lg shadow-md hover:bg-violet-600">
                 Update Project
             </button>
         </div>

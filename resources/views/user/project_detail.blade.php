@@ -1,56 +1,97 @@
+@php
+    $user = Auth::user();
+    $prefix = $user->role === 'admin' ? 'admin' : 'user';
+@endphp
+
 <x-layout>
-    <form class="w-full bg-white p-6 rounded-lg shadow-md" action="/update-profile" method="POST">
-    <h1 class="text-4xl font-bold text-black mb-8 text-center">Project Detail</h1>
-    <hr class="border-t-2 border-gray-300 my-4" />
+    <form class="w-full bg-white p-6 rounded-lg shadow-md" action="{{ route($prefix . '.project-update', $project->id) }}" method="POST">
+        @csrf
+        @method('PUT')
+        <h1 class="text-xl font-bold text-center mb-4">Edit Project Details</h1>
+        <hr class="mb-6">
 
-    
-        <div class="mb-4 flex space-x-4 px-20">
+        @if ($errors->any())
+            <div class="bg-red-500 text-white p-4 rounded-md mb-4">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <!-- Project ID (Readonly for Editing) -->
+        <div class="mb-4">
             <label class="text-sm text-black font-normal">Project ID</label>
-            <input type="text" id="Project-id" name="Project-id" class="w-96 px-4 py-2 justify-end text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="">
+            <input type="text" id="project-id" name="project_id" value="{{ old('project_id', $project->id) }}" class="w-full px-4 py-2 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" readonly>
         </div>
 
-        <div class="mb-4 flex justify-start space-x-4 px-14">
+        <!-- Project Name -->
+        <div class="mb-4">
             <label class="text-sm text-black font-normal">Project Name</label>
-            <input type="text" id="project-name" name="project-name" class="w-96 px-4 py-2 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="">
+            <input type="text" id="project-name" name="project_name" value="{{ old('project_name', $project->project_name) }}" class="w-full px-4 py-2 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" required>
         </div>
 
-        <div class="mb-4 flex justify-start space-x-4 px-5">
+        <!-- Organization Name -->
+        <div class="mb-4">
             <label class="text-sm text-black font-normal">Organization Name</label>
-            <input type="text" id="organization-name" name="organization-name" class="w-96 px-4 py-2 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="">
+            <input type="text" id="organization-name" name="organization_name" value="{{ old('organization_name', $project->organization_name) }}" class="w-full px-4 py-2 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" required>
         </div>
 
-        <div class="mb-4 flex justify-start space-x-4 px-16">
-            <label class="text-sm text-black font-normal">Project Type</label>
-            <input type="text" id="project-type" name="project-type" class="w-96 px-4 py-2 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="">
+        <!-- Project Type (Select Dropdown) -->
+        <div class="mb-4">
+            <label class="font-normal text-black text-sm mb-2">Project Type</label><br>
+            <select name="project_type" required class="w-full px-4 py-2 text-slate-600 text-sm bg-neutral-100 border border-gray-300 rounded-lg shadow-sm">
+                <option value="Strategic" {{ old('project_type', $project->project_type) == 'Strategic' ? 'selected' : '' }}>Strategic</option>
+                <option value="Operational" {{ old('project_type', $project->project_type) == 'Operational' ? 'selected' : '' }}>Operational</option>
+                <option value="Collaborative" {{ old('project_type', $project->project_type) == 'Collaborative' ? 'selected' : '' }}>Collaborative</option>
+                <option value="Analytical" {{ old('project_type', $project->project_type) == 'Analytical' ? 'selected' : '' }}>Analytical</option>
+            </select>
         </div>
 
-        <div class="mb-4 flex justify-start space-x-4 px-10">
+        <!-- Project Manager -->
+        <div class="mb-4">
             <label class="text-sm text-black font-normal">Project Manager</label>
-            <input type="text" id="project-manager" name="project-manager" class="w-96 px-4 py-2 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="">
+            <input type="text" id="project-manager" name="project_manager" value="{{ old('project_manager', $project->project_manager) }}" class="w-full px-4 py-2 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" required>
         </div>
 
-        <div class="mb-4 flex justify-start space-x-4 px-24">
-            <label class="text-sm text-black font-normal">Status</label>
-            <input type="text" id="status" name="status" class="w-96 px-4 py-2 text-green-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="">
+        <!-- Contact Name -->
+        <div class="mb-4">
+            <label class="text-sm text-black font-normal">Contact Name</label>
+            <input type="text" id="contact-name" name="contact_name" value="{{ old('contact_name', $project->contact_name) }}" class="w-full px-4 py-2 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" required>
         </div>
 
+        <!-- Contact Email -->
+        <div class="mb-4">
+            <label class="text-sm text-black font-normal">Contact Email</label>
+            <input type="email" id="contact-email" name="contact_email" value="{{ old('contact_email', $project->contact_email) }}" class="w-full px-4 py-2 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" required>
+        </div>
+<!-- Contact Phone -->
+<div class="mb-4">
+            <label class="text-sm text-black font-normal">Contact Phone</label>
+            <input type="text" id="contact-phone" name="contact_phone" value="{{ old('contact_phone', $project->contact_phone) }}" class="w-full px-4 py-2 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" required>
+        </div>
+
+        <!-- Status (Select Dropdown) -->
+        <div class="mb-4">
+            <label class="font-normal text-black text-sm mb-2">Status</label>
+            <select name="status" class="w-full px-4 py-2 text-black text-sm bg-sky-300 border border-gray-300 rounded-lg shadow-sm" required>
+                <option value="Active" {{ old('status', $project->status) == 'Active' ? 'selected' : '' }}>Active</option>
+                <option value="Inactive" {{ old('status', $project->status) == 'Inactive' ? 'selected' : '' }}>Inactive</option>
+            </select>
+        </div>
+
+        <!-- Action Buttons -->
         <div class="flex justify-start space-x-4 px-24">
-            <label class="text-sm text-black font-normal">Action</label>
-            <button type="close" class=" px-8 py-2 bg-orange-600 text-white font-normal rounded-lg shadow-md hover:bg-orange-500">
+            <!-- Close Button -->
+            <a href="{{  route($prefix . '.project-list')  }}" class="px-4 py-2 bg-orange-600 text-white font-normal rounded-lg shadow-md hover:bg-orange-500">
                 Close
-            </button>
-            <button type="delete" class="px-8 py-2 bg-orange-600 text-white font-normal rounded-lg shadow-md hover:bg-orange-500">
-                Delete
-            </button>
-        </div>
-        <br><br><br><br><br><br><br>
+            </a>
 
-        <div class="">
-            <button type="back" class="w-32 h-7 justify-end bg-violet-400 text-white text-sm font-regular rounded-lg shadow-sm hover:bg-violet-300">
-                Back
+            <!-- Update Button -->
+            <button type="submit" class="px-4 py-2 bg-blue-500 text-white font-normal rounded-lg shadow-md hover:bg-blue-400">
+                Update Project
             </button>
         </div>
-
-
     </form>
 </x-layout>
