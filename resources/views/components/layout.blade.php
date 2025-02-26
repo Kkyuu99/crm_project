@@ -6,7 +6,6 @@
     <title>CRM System - @yield('title')</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     @vite('resources/css/app.css')
 </head>
 <body>
@@ -19,7 +18,7 @@
                 <x-sidebar class="flex-1" />
             @endif
             <main class="flex-1 bg-white mx-auto mr-3 rounded-lg
-            {{ request()->is('login') ? 'ml-0' : 'ml-80' }}">
+            {{ request()->is('login') ? 'ml-0' : 'ml-64' }}">
                 {{ $slot}}
             </main>
         </div>
