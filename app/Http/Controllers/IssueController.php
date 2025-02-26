@@ -38,17 +38,7 @@ class IssueController extends Controller
         ]);
     }
 
-    // Show the new issue create form
-    public function create()
-    {
-        $projects = Project::all();
-        $users = User::all();
-        $projectUsers = [];
-        foreach ($projects as $project) {
-            $projectUsers[$project->id] = $project->users;
-        }
-        return view('user.new-issue', compact('projects', 'users', 'projectUsers'));
-    //show the new issue create form
+
     public function create(Request $request)
     {
         $projects = Project::all();

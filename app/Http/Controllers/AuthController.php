@@ -20,9 +20,7 @@ class AuthController extends Controller
 
     public function post_login(Request $request)
     {
-        // if (Auth::check()) {
-        //     return redirect()->intended(Auth::user()->role === 'admin' ? '/admin/dashboard' : '/user/dashboard');
-        // }
+       
 
         $formData = $request->validate([
             'email'=>['required', Rule::exists('users', 'email')],
