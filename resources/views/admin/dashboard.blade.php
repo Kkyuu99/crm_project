@@ -132,7 +132,6 @@
             <h1 class="text-white text-xl mb-8 text-left font-bold py-2">Ticket by status</h1>
             <canvas id="myBarChart" width="400" height="200"></canvas>
         </div>
-      </form>
     </section>
           <!-- Table Section (Footer) -->
       <section class="bg-violet-500 text-white shadow rounded-3xl p-6 mt-6 text-center">

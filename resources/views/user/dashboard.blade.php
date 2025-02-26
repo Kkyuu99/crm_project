@@ -117,48 +117,46 @@
       <div class="bg-violet-500 shadow rounded-3xl p-2 flex flex-col items-center">
         <h2 class="text-white text-xl mb-8 font-bold text-left">Tickets by Priority</h2>
         <div class="pie-chart">
-            <canvas id="myPieChart" width="270" height="270"></canvas>
+          <canvas id="myPieChart" width="270" height="270"></canvas>
           <div class="donut-hole"></div>
         </div>
       </div>
-
-      <!-- Bar Chart -->
-          <div class="bg-violet-500 shadow rounded-3xl py-2 px-6 flex flex-col items-center col-span-2">
-            <!-- Bar Chart -->
-            <h1 class="text-white text-xl mb-8 font-bold text-left">Ticket Overview</h1>
-            <canvas id="myBarChart" width="400" height="200"></canvas>
+      <div class="bg-violet-500 shadow rounded-3xl py-2 flex flex-col px-6 col-span-2">
+        <div class="flex items-center mb-4">
+          <h3 class="text-lg font-semibold text-white">Total Projects : </h3>
+          <p class="text-3xl font-bold text-white px-2">{{ $projectCount }}</p>
         </div>
-      </form>
-    </section>
-<!-- Table Section (Footer) -->
-<section class="bg-violet-500 text-white shadow rounded-3xl p-6 mt-6 text-center">
-      <div class="overflow-x-auto">
-        <table class="w-full text-left border-collapse">
+        
+        <table class="w-full text-left border-collapse text-white">
           <thead>
             <tr>
+              <th class="border-b p-4">No.</th>
               <th class="border-b p-4">ID</th>
-              <th class="border-b p-4">Subject</th>
-              <th class="border-b p-4">Assignor</th>
-              <th class="border-b p-4">Priority</th>
+              <th class="border-b p-4">Project name</th>
+              <th class="border-b p-4">Project type</th>
               <th class="border-b p-4">Status</th>
-              <th class="border-b p-4">Due Date</th>
             </tr>
           </thead>
           <tbody>
-            @foreach ($issues as $issue)
+            @foreach ($projects as $project)
               <tr class=>
-                <td class="border-b p-4">{{ $issue->id }}</td>
-                <td class="border-b p-4">{{ $issue->subject }}</td>
-                <td class="border-b p-4">{{ $issue->assignor_user }}</td>
-                <td class="border-b p-4">{{ $issue->priority }}</td>
-                <td class="border-b p-4">{{ $issue->issue_status }}</td>
-                <td class="border-b p-4">{{ $issue->due_date }}</td>
+                <td class="border-b p-4">{{ $loop->iteration }}</td>
+                <td class="border-b p-4">{{ $project->id }}</td>
+                <td class="border-b p-4">{{ $project->project_name }}</td>
+                <td class="border-b p-4">{{ $project->project_type }}</td>
+                <td class="border-b p-4">{{ $project->status }}</td>
               </tr>
             @endforeach
           </tbody>
-      </div>
-
       </table>
+  </div>
+      
+    </section>
+<!-- Table Section (Footer) -->
+<section class="bg-violet-500 text-white shadow rounded-3xl p-6 mt-6 text-center">
+            <!-- Bar Chart -->
+            <h1 class="text-white text-xl font-bold text-left">Ticket Overview</h1>
+            <canvas id="myBarChart" width="400" height="200"></canvas>
     </section>
   </main>
 </x-layout>

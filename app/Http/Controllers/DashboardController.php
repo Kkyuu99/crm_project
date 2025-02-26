@@ -18,6 +18,11 @@ class DashboardController extends Controller
     public function userDashboard()
     {   
         $userId = Auth::id();
+        $projects = Project::whereHas('users', function ($query) use ($userId) {
+            $query->where('user_id', $userId);
+        })->get();
+        $projectCount = $projects->count();
+        
         $issues = Issue::where('assignor_user', $userId)->latest()->take(5)->get();
 
         $issuesPerMonth = Issue::selectRaw('MONTH(created_at) as month, COUNT(*) as count')
@@ -39,16 +44,19 @@ class DashboardController extends Controller
         $highIssues = Issue::where('assignor_user', $userId)->where('priority', 'High')->count();
         $lowIssues = Issue::where('assignor_user', $userId)->where('priority', 'Low')->count();  
 
-        $totalIssues = Issue::count();
+        $totalIssues = Issue::where('assignor_user', $userId)->count();
         
 
         $dueTodayIssues = Issue::whereDate('due_date', Carbon::today())->count();
 
         $overdueIssues = Issue::where('due_date', '<', Carbon::today())
+                                ->where('assignor_user', $userId)
                                  ->where('issue_status', '!=', 'Closed')
                                  ->count();
 
-        $closedIssues = Issue::where('issue_status', 'Closed')->count();
+        $closedIssues = Issue::where('issue_status', 'Closed')
+                                ->where('assignor_user', $userId)
+                                ->count();
 
         $urgentPercentage = ceil($totalIssues > 0 ? ($urgentIssues / $totalIssues) * 100 : 0);
         $mediumPercentage = ceil($totalIssues > 0 ? ($mediumIssues / $totalIssues) * 100 : 0);
@@ -57,7 +65,7 @@ class DashboardController extends Controller
         
         return view('user.dashboard', compact('totalIssues','dueTodayIssues','overdueIssues','closedIssues',
                                             'urgentPercentage','mediumPercentage','highPercentage','lowPercentage',
-                                        'issuesCount','issues'));
+                                        'issuesCount','issues','projects','projectCount'));
     }
 
     public function adminDashboard()

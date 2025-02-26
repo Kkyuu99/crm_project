@@ -11,10 +11,10 @@
 </span>
 
 <!-- Sidebar -->
-<div class="sidebar fixed flex flex-col justify-between top-0 bottom-0 lg:left-0 left-[100px] p-2 w-64 overflow-auto text-center bg-violet-500 ">
+<div class="sidebar fixed flex flex-col justify-between top-0 bottom-0 lg:left-0 p-2 w-64 overflow-auto text-center bg-violet-500 ">
     <div class="text-gray-100 text-xl mb-3">
         <div class="p-2 mt-1 flex items-center">
-        <img src="" alt="Profile Picture" class="h-10 w-10 rounded-full border-2 border-white">
+        <!-- <img src="" alt="Profile Picture" class="h-10 w-10 rounded-full border-2 border-white"> -->
         <i class="font-bold text-white-200 text-base ml-3">
             {{ Auth::user()->name }}
         </i>
