@@ -10,19 +10,28 @@ class ProjectController extends Controller
 {
     //show the list of all project
     public function index(){
-        $projects = Project::orderBy('created_at', 'desc')->paginate(5);
+
+        $user = Auth::user();
+
+        if($user->role === 'admin'){
+            $projects = Project::orderBy('created_at', 'desc')->paginate(5);
+        }else{
+            $projects = Project::whereHas('users', function ($query) use ($user) {
+                $query->where('users.id', $user->id);
+            })->orderBy('created_at', 'desc')->paginate(5);
+        }
+        
         return view('user.project-list',compact('projects'));
     }
 
     public function edit($id){
-    $project = Project::findOrFail($id);
+        $project = Project::findOrFail($id);
 
-    // If the project is not found, you can handle it (optional)
-    if (!$project) {
-        return redirect()->route('user.project-list')->with('error', 'Project not found');
-    }
-
-    return view('user.project-edit', compact('project'));
+        // If the project is not found, you can handle it (optional)
+        if (!$project) {
+            return redirect()->route('user.project-list')->with('error', 'Project not found');
+        }
+        return view('user.project-edit', compact('project'));
     }
 
 
@@ -56,11 +65,9 @@ class ProjectController extends Controller
 
      public function show($id)
      {
-         // Find the project by ID
-         $project = Project::findOrFail($id);
+        $project = Project::findOrFail($id);
      
-         // Return the view with the project data
-         return view('user.project-detail', compact('project'));
+        return view('user.project-detail', compact('project'));
      }
      
 
@@ -91,8 +98,9 @@ class ProjectController extends Controller
     return redirect()->route($prefix . '.project-list')->with('success', 'Project updated successfully!');
     }
 
-    public function delete(Project $project){
+    public function delete($id){
+        $project = Project::findOrFail($id);
         $project->delete();
-        return redirect('/user/project-list');
+        return redirect()->back()->with('success', 'Project deleted successfully');
     }
 }

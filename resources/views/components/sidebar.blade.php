@@ -15,7 +15,9 @@
     <div class="text-gray-100 text-xl mb-3">
         <div class="p-2 mt-1 flex items-center">
         <img src="{{ Auth::user()->profile_picture_url ?? 'path/to/default/profile.png' }}" alt="Profile Picture" class="h-10 w-10 rounded-full border-2 border-white">
-        <h1 class="font-bold text-white-200 text-base ml-3">{{ Auth::user()->name }}</h1>
+        <a href="{{ route($prefix . '.user-profile', ['id' => $user->id]) }}" class="font-bold text-white-200 text-base ml-3">
+            {{ Auth::user()->name }}
+        </a>
             <i class="bi bi-x ml-20 cursor-pointer" onclick="Open()"></i>
         </div>
         <hr class="my-2 text-gray-600">

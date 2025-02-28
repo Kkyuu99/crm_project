@@ -20,17 +20,29 @@
                           '#F9BABA',
                           '#9B9AE4'
                       ],
-                      hoverOffset: 10
+                  
+                      
                   }]
               },
               options: {
                   responsive: true,
+                  layout: {
+                     padding: {
+                         top: 20 // Adds space above the pie chart
+                     }
+                  },
                   plugins: {
                       legend: {
                           position: 'bottom',
                           labels: {
                               color: '#FFFFFF',
-                          }
+                              boxWidth: 12,
+                              padding : 20,
+                              usePointStyle: true,
+                              font: {
+                                  size: 14
+                              }
+                        },
                       },
                       tooltip: {
                           enabled: true,
@@ -44,7 +56,8 @@
                           }
                       }
                   },
-                  cutout: '50%'
+                  borderWidth: 0,
+                  cutout: '50%',
               }
           });
 
@@ -61,7 +74,7 @@
                           '#F9BABA',
                           '#9B9AE4'
                     ],
-                    borderWidth: 1
+                    borderWidth: 1,
                 }]
             },
             
@@ -69,14 +82,25 @@
                 indexAxis: 'y',
                 responsive: true,
                 scales: {
-                    y: {
-                        beginAtZero: true
+              x: {
+            ticks: {
+                color: '#FFFFFF' // X-axis labels color
+            }
+        },
+        y: {
+            beginAtZero: true,
+            ticks: {
+                color: '#FFFFFF' // Y-axis labels color
+            }
+        }
+    },
+            plugins: {
+                legend: {
+                    display: true, 
+                    labels: {
+                        color: '#FFFFFF' // Labels color
                     }
                 },
-                plugins: {
-                    legend: {
-                        display : false
-                    },
                     tooltip: {
                         enabled: true
                     }
@@ -87,37 +111,37 @@
   </script>
 
 <header class="w-full p-6">
-    <section class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+    <section class="grid grid-cols-1 md:grid-cols-4 gap-6">
       <!-- Total Tickets -->
-      <div class="bg-violet-500 shadow-lg rounded-lg p-6 flex flex-col justify-center items-center">
-        <h3 class="text-lg font-semibold text-white">Total Projects</h3>
-        <p class="text-2xl font-bold text-white">{{ $totalProjects }}</p>
+      <div class="bg-violet-500 shadow-lg rounded-3xl py-4 flex justify-center items-center">
+        <h3 class="text-lg font-semibold text-white">Total Projects  :</h3>
+        <p class="text-3xl font-bold text-white px-2">{{ $totalProjects }}</p>
       </div>
       <!-- Due Today Tickets -->
-      <div class="bg-violet-500 shadow-lg rounded-lg p-6 flex flex-col justify-center items-center">
-        <h3 class="text-lg font-semibold text-white">Total Tickets</h3>
-        <p class="text-2xl font-bold text-white">{{ $totalIssues }}</p>
+      <div class="bg-violet-500 shadow-lg rounded-3xl py-4 flex justify-center items-center">
+        <h3 class="text-lg font-semibold text-white">Total Tickets : </h3>
+        <p class="text-3xl font-bold text-white px-2">{{ $totalIssues }}</p>
       </div>
       <!-- Overdue Tickets -->
-      <div class="bg-violet-500 shadow-lg rounded-lg p-6 flex flex-col justify-center items-center">
-        <h3 class="text-lg font-semibold text-white">Total Users</h3>
-        <p class="text-2xl font-bold text-white">{{ $totalUsers }}</p>
+      <div class="bg-violet-500 shadow-lg rounded-3xl py-4 flex justify-center items-center">
+        <h3 class="text-lg font-semibold text-white">Total Users : </h3>
+        <p class="text-3xl font-bold text-white px-2">{{ $totalUsers }}</p>
       </div>
       <!-- Closed Tickets -->
-      <div class="bg-violet-500 shadow-lg rounded-lg p-6 flex flex-col justify-center items-center">
-        <h3 class="text-lg font-semibold text-white">Closed Tickets</h3>
-        <p class="text-2xl font-bold text-white">{{ $closedIssues }}</p>
+      <div class="bg-violet-500 shadow-lg rounded-3xl py-4 flex justify-center items-center">
+        <h3 class="text-lg font-semibold text-white">Closed Tickets : </h3>
+        <p class="text-3xl font-bold text-white px-2">{{ $closedIssues }}</p>
       </div>
     </section>
   </header>
 
    <!-- Main Content Section -->
-   <main class="flex-1 p-6">
+   <main class="flex-1 px-6">
     <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
 
       <!-- Pie Chart and Legend -->
-      <div class="bg-violet-500 shadow rounded-lg p-2 flex flex-col items-center">
-        <h2 class="text-white text-xl mb-8 text-left">Tickets by Priority</h2>
+      <div class="bg-violet-500 shadow rounded-3xl p-2 flex flex-col items-center">
+        <h2 class="text-white text-xl mb-3 text-left font-bold py-2">Tickets by Priority</h2>
         <div class="pie-chart">
             <canvas id="myPieChart" width="300" height="300"></canvas>
           <div class="donut-hole"></div>
@@ -125,14 +149,13 @@
       </div>
 
           <!-- Ticket status -->
-          <div class="bg-violet-500 shadow rounded-lg p-2 flex flex-col items-center col-span-2">
-            <h1 class="text-white text-xl mb-8 text-left">Ticket by status</h1>
+          <div class="bg-violet-500 shadow rounded-3xl py-2 flex flex-col px-6 col-span-2">
+            <h1 class="text-white text-xl mb-8 text-left font-bold py-2">Ticket by status</h1>
             <canvas id="myBarChart" width="400" height="200"></canvas>
         </div>
-      </form>
     </section>
           <!-- Table Section (Footer) -->
-      <section class="bg-violet-500 text-white shadow rounded-lg p-6 mt-6 text-center">
+      <section class="bg-violet-500 text-white shadow rounded-3xl p-6 mt-6 text-center">
       <div class="overflow-x-auto">
         <table class="w-full text-left border-collapse">
           <thead>
@@ -147,7 +170,7 @@
           </thead>
           <tbody>
             @foreach ($issues as $issue)
-              <tr class=>
+              <tr class>
                 <td class="border-b p-4">{{ $issue->id }}</td>
                 <td class="border-b p-4">{{ $issue->subject }}</td>
                 <td class="border-b p-4">{{ $issue->assignor_user }}</td>
