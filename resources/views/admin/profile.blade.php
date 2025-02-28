@@ -1,35 +1,54 @@
+@php
+    $user = Auth::user();
+    $prefix = $user && $user->role === 'admin' ? 'admin' : 'user';
+@endphp
+
 <x-layout>
-    <form class="w-full max-w-lg bg-white p-6 rounded-lg shadow-md" action="/update-profile" method="POST">
-        <h1 class="text-xl font-bold text-left mb-4">Profile Edit</h1>
+    
+        <h1 class="text-xl font-bold mb-4 px-5 py-5 text-center">User Profile</h1>
         <hr class="mb-6">
     
-        <div>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-20 flex items-left text-xl">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-              </svg>
+         
+
+        <!-- Action Buttons -->
+         <div class="justify-center p-2 text-center">
+         <div class="mb-6 px-10 w-full flex justify-center items-center">
+            <!-- <img src="{{ Auth::user()->profile_picture_url ?? 'path/to/default/profile.png' }}" alt="Profile picture" class="h-40 w-40 rounded-full justify-center"/> -->
+            <img src="{{ Auth::user()->profile_picture_url ?? asset('images/default-profile.png') }}" alt="Profile picture" class=" h-40 w-40 rounded-full border-2 border-black shadow-sm "/>
         </div>
-        <div class="flex justify-center space-x-4 mb-2">
-        <h2 class="text-sm justify-center font-medium mb-1">User name</h2>
-        </div>
-        <div class="flex justify-center space-x-4 mb-2">
-        <h3 class="text-sm justify-center font-medium mb-1">email@gmail.com</h3>
-        </div>
-        <div class="flex justify-center space-x-4 mb-2">
-        <button type="submit" class="text-xs px-1 py-1 bg-violet-500 text-white font-medium rounded-lg shadow-md hover:bg-violet-400">
-                Edit profile
-        </button>
-        </div>
-        <div class="mb-3">
-            <input type="text" id="firstName" name="firstName" class="w-full p-1 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="First Name">
+        <!-- Edit Button -->
+                <div class="mt-3 px-5">
+                <a href="{{ route($prefix. '.profile-edit', $user->id) }}">
+                    <button type="submit" class="justify-center text-white bg-violet-400 px-4 py-1 rounded-lg hover:bg-violet-600 font-medium text-sm">
+                            Edit profile
+                    </button>
+                </a>
+                </div>
+        <!-- Change Password Button -->
+                <div class="mt-4 mb-4">
+                <a href="{{ route($prefix. '.profile-edit', $user->id)}}">
+                    <button type="submit" class="justify-center text-white bg-violet-400 px-4 py-1 rounded-lg hover:bg-violet-600 font-medium text-sm">
+                            Change password
+                    </button>
+                </a>
+                </div>
         </div>
 
-        <div class="mb-3">
-            <input type="text" id="lastName" name="lastName" class="w-full p-1 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="Last Name">
+        <div class="flex mb-4 space-x-9 w-3/4 mx-auto text-center">
+            <label class="text-gray-700 w-36 text-right">ID</label>
+            <input type="text" id="user-name" name="user_id"  class="flex-1 w-64 px-4 py-2 text-slate-600 bg-gray-300  border border-gray-300 rounded-lg shadow-sm" value="{{ Auth::user()->id }}" disabled>
+        </div> 
+
+        <div class="flex mb-4 space-x-9 w-3/4 mx-auto text-center">
+            <label class="text-gray-700 w-36 text-right">Name</label>
+            <input type="text" id="user-name" name="user_name"  class="flex-1 w-64 px-4 py-2 text-slate-600 bg-gray-300  border border-gray-300 rounded-lg shadow-sm" value="{{ Auth::user()->name }}" disabled>
         </div>
 
-        <div class="mb-3">
-            <input type="text" id="phone" name="phone" class="w-full p-1 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="Phone">
+        <div class="flex mb-4 space-x-9 w-3/4 mx-auto text-center">
+            <label class="text-gray-700 w-36 text-right">Email</label>
+            <input type="text" id="user-email" name="user_email"  class="flex-1 w-64 px-4 py-2 text-slate-600 bg-gray-300  border border-gray-300 rounded-lg shadow-sm" value="{{ Auth::user()->email }}" disabled>
         </div>
 
-    </form>
+        
+
 </x-layout>
