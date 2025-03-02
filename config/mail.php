@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'default' => env('MAIL_MAILER', 'log'),
+    'default' => env('smtp', 'log'),
 
     /*
     |--------------------------------------------------------------------------
@@ -38,11 +38,11 @@ return [
     'mailers' => [
     'smtp' => [
         'transport' => 'smtp',
-        'host' => env('MAIL_HOST', 'smtp.mailtrap.io'),
-        'port' => env('MAIL_PORT', 2525),
+        'host' => env('smtp.gmail.com', 'smtp.mailtrap.io'),
+        'port' => env('MAIL_PORT',587),
         'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-        'username' => env('MAIL_USERNAME'),
-        'password' => env('MAIL_PASSWORD'),
+        'username' => env('mashoonlaewinpa@gmail.com'),
+        'password' => env('cqpfjurcbgdfbnvy'),
     ],
 ],
 'queue' => false, // Change to false
@@ -94,7 +94,7 @@ return [
             ],
         ],
 
-    
+
 
     /*
     |--------------------------------------------------------------------------
@@ -108,8 +108,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'mashoonlaewinpa@gmail.com'),
-        'name' => env('MAIL_FROM_NAME', 'CRM Website'),
+        'address' => env('mashoonlaewinpa@gmail.com', 'mashoonlaewinpa@gmail.com'),
+        'name' => env('mashoonlaewinpa@gmail.com', 'CRM Website'),
     ],
 
 ];
