@@ -1,7 +1,17 @@
+@php
+    $user = Auth::user();
+    $prefix = $user && $user->role === 'admin' ? 'admin' : 'user';
+@endphp
+
 <x-layout>
-    <form class="w-full max-w-lg bg-white p-6 rounded-lg shadow-md" action="" method="POST" enctype="multipart/form-data">
+
+    <h1 class="text-2xl font-bold text-black my-4 text-center">User Profile Edit</h1>
+    <hr class="border-t-1 border-gray-300 my-4 w-full" />
+
+    <form class="w-full mx-auto max-w-lg p-2" action="{{ route($prefix . '.profile-update', $user->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
+
         @if ($errors->any())
                 <div class="text-red-500 text-sm mt-2 mb-6">
                     <ul>
@@ -10,54 +20,76 @@
                         @endforeach
                     </ul>
                 </div>
-            @endif
-        <h1 class="text-xl font-bold text-left mb-4">Profile Edit</h1>
-        <hr class="mb-6">
-    
-        <div>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-12 flex items-left text-xl">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-              </svg>
-        </div>
+        @endif
 
-        <div class="text-center mb-3">
-            <button type="button" class=" px-1 py-1 bg-neutral-100 decoration-black font-medium rounded-lg shadow-md hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2">
-                Change Avatar
-            </button><br>
-        </div>
-        <div class="text-center mb-3">
-            <button type="button" class=" px-1 py-1  bg-neutral-100 decoration-black font-semibold rounded-lg shadow-md hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2">
-                Change Password
-            </button>
-        </div>
+        <div class="justify-center p-2 text-center">
 
-        <div class="mb-3">
-            <input type="text" id="firstName" name="firstName" class="w-full p-1 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="First Name">
-        </div>
+            <div class="flex gap-6 mb-6 items-center">
+                <img id="profile_pic_preview" 
+                src="{{ $user->profile_pic ? asset('storage/' . $user->profile_pic) : asset('storage/images/default-profile.png') }}"
+                alt="Profile picture" class="h-40 w-40 rounded-full border-2 border-black shadow-sm"/>
 
-        <div class="mb-3">
-            <input type="text" id="lastName" name="lastName" class="w-full p-1 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="Last Name">
-        </div>
+                <div class="flex flex-col">
+                <label for="profile_pic" class="change-avatar-btn bg-violet-400 text-white px-6 py-2 rounded-md hover:bg-violet-600 font-medium text-sm hover:text-white">Change Avatar</label>
+                <input type="file" class="hidden" id="profile_pic" name="profile_pic" onchange="previewImage(event)">
 
-        <div class="mb-3">
-            <input type="text" id="username" name="username" class="w-full p-1 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="User Name">
-        </div>
+                <div class="mt-2">
+                    <input type="checkbox" id="remove_profile_pic" name="remove_profile_pic" value="1">
+                    <label for="remove_profile_pic" class="text-sm text-red-500 font-semibold">Remove Profile </label>
+                </div>
+                </div>
+                
+            </div>
 
-        <div class="mb-3">
-            <input type="email" id="email" name="email" class="w-full p-1 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="Email">
-        </div>
+            <div class="mb-3">
+                <input type="text" id="name" name="name" class="w-full p-1 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" 
+                placeholder="Name"
+                value="{{ old('name', $user->name) }}">
+            </div>
 
-        <div class="mb-3">
-            <input type="text" id="phone" name="phone" class="w-full p-1 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" placeholder="Phone">
-        </div>
+            <div class="mb-3">
+                <input type="email" id="email" name="email" class="w-full p-1 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" 
+                placeholder="Email"
+                value="{{ old('email', $user->email) }}">
+            </div>
 
-        <div class="flex justify-end space-x-4">
-            <button type="submit" class=" px-4 py-2 bg-violet-500 text-white font-semibold rounded-lg shadow-md hover:bg-violet-400">
-                Save
-            </button>
-            <button type="reset" class="px-4 py-2 bg-orange-600 text-white font-semibold rounded-lg shadow-md hover:bg-orange-500">
-                Cancel
-            </button>
+            <div class="text-left">
+                <div class="flex justify-between items-center">
+                    <a href="{{ route($prefix. '.profile-edit', $user->id)}}">
+                        <button type="submit" class="bg-violet-400 text-white px-6 py-2 rounded-md hover:bg-violet-600 font-medium text-sm hover:text-white">
+                                Change password
+                        </button>
+                    </a>
+
+                    <div class="flex justify-end space-x-1">
+                        <button type="submit" class="bg-violet-400 text-white px-6 py-2 rounded-md hover:bg-violet-600 font-medium text-sm hover:text-white">
+                            Save
+                        </button>
+                        <a href="{{ route($prefix . '.user-profile', $user->id) }}"
+                            class="bg-red-400 text-white px-6 py-2 rounded-md hover:bg-red-600 font-medium text-sm hover:text-white">
+                            Cancel
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
     </form>
 </x-layout>
+
+<script>
+    function previewImage(event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            const imagePreview = document.getElementById('profile_pic_preview');
+            imagePreview.src = e.target.result;
+        }
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+</script>

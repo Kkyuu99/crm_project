@@ -22,14 +22,14 @@ class UserController extends Controller
         ]);
     }
 
-    public function create(){
-        
+    public function create()
+    {
         $projects = Project::all();;
         return view('admin.user-register', compact('projects'));
     }
 
-    public function store(){
-        
+    public function store()
+    {
         $prefix = Auth::user()->role;
         $formData = request()->validate([
             'name'=>['required','min:3','max:255'],
@@ -64,8 +64,8 @@ class UserController extends Controller
         return view('admin.user-edit',compact('projects','user'));
     }
 
-    public function update(User $user,$id){
-        
+    public function update(User $user,$id)
+    {
         $prefix = Auth::user()->role;
         $user = User::findOrFail($id);
         $formData = request()->validate([
@@ -87,7 +87,6 @@ class UserController extends Controller
             $user->update(['password' => bcrypt($formData['password'])]);
         }
         
-        // Sync projects (not attach) to avoid duplicates
         $user->projects()->sync($formData['projects']);
         
         return redirect()->route($prefix . '.user-list')->with('success', 'User updated successfully');

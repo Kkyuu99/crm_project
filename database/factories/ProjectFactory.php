@@ -43,6 +43,10 @@ class ProjectFactory extends Factory
             'contact_phone' => fake()->phoneNumber(),
             'contact_email' => fake()->email(),
             'status' => fake()->randomElement(['Active', 'Inactive']),
+
+            'created_by' => User::inRandomOrder()->first()->id ?? User::factory(), 
+            'updated_by' => User::inRandomOrder()->first()->id ?? User::factory(),
+            'deleted_by' => User::inRandomOrder()->first()->id ?? User::factory(),
         ];
     }
 }

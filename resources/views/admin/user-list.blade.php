@@ -1,7 +1,18 @@
 <x-layout>
+
+  @if(session('success'))
+        <div id="success-message" class="popup-message bg-green-100 text-green-700 px-4 py-2 rounded-md mb-4">
+            {{ session('success') }}
+        </div>
+    @elseif(session('error'))
+        <div id="error-message" class="popup-message bg-red-100 text-red-700 px-4 py-2 rounded-md mb-4">
+            {{ session('error') }}
+        </div>
+    @endif
+    
   <h1 class="text-2xl font-bold text-black my-4 text-center">User List</h1>
   <hr class="border-t-1 border-gray-300 my-4" />
-  <!-- Table Wrapper with Horizontal and Vertical Scroll -->
+
   <div class="overflow-x-auto overflow-y-auto max-w-full px-4 mb-2 rounded-md scrollbar-thin scrollbar-thumb-soft-purple scrollbar-track-gray-200">
     <table class="table-auto border-collapse border border-gray-300 custom-table users-table text-center">
         <thead>
@@ -69,3 +80,61 @@
   </div>
   </div>
 </x-layout>
+
+<script>
+        window.onload = function() {
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+
+            if (successMessage) {
+                
+                setTimeout(function() {
+                    successMessage.classList.add('show');
+                }, 100);
+
+                setTimeout(function() {
+                    successMessage.classList.add('hidden');
+                }, 3000);
+            }
+
+            if (errorMessage) {
+
+                setTimeout(function() {
+                    errorMessage.classList.add('show');
+                }, 100);
+                
+                setTimeout(function() {
+                    successMessage.classList.add('hidden');
+                }, 3000);
+            }
+        };
+</script>
+
+<script>
+        window.onload = function() {
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+
+            if (successMessage) {
+                
+                setTimeout(function() {
+                    successMessage.classList.add('show');
+                }, 100);
+
+                setTimeout(function() {
+                    successMessage.classList.add('hidden');
+                }, 3000);
+            }
+
+            if (errorMessage) {
+
+                setTimeout(function() {
+                    errorMessage.classList.add('show');
+                }, 100);
+                
+                setTimeout(function() {
+                    successMessage.classList.add('hidden');
+                }, 3000);
+            }
+        };
+</script>

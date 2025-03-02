@@ -36,7 +36,25 @@
 }
 .custom-table-cell div {
     display: flex;
-    justify-content: center; /* Center the buttons within the cell */
-    align-items: center; /* Vertically center the buttons */
-    gap: 8px; /* Add space between buttons */
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.popup-message {
+    position: fixed;
+    top: 20px;
+    right: -10px;
+    z-index: 9999;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 1s ease, transform 1s ease;
+}
+.popup-message.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+.popup-message.hidden {
+    opacity: 0;
+    transform: translateX(100%);
 }

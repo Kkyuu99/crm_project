@@ -204,19 +204,16 @@
     </div>
 
     <script>
-        // Example user data for each project
-        var projectUsers = <?php echo json_encode($projectUsers); ?>; // Assuming you have this data passed to your view
+        var projectUsers = <?php echo json_encode($projectUsers); ?>;
 
         function updateAssignorUserDropdown() {
             const projectId = document.getElementById('project_id').value;
             const assignorDropdown = document.getElementById('assignor_user');
             const selectedAssignor = '{{ old("assignor_user", $issue->assignor_user) }}';
 
-            // Clear previous options
             assignorDropdown.innerHTML = '<option value="">Select an assignor</option>';
 
             if (projectId && projectUsers[projectId]) {
-                // Populate users based on selected project
                 projectUsers[projectId].forEach(user => {
                     const option = document.createElement('option');
                     option.value = user.id;

@@ -39,6 +39,10 @@ class IssueFactory extends Factory
             'solution' => fake()->text(),
             'total_duration' => fake()->numberBetween(1, 100),
             'due_date' => $this->faker->dateTimeBetween('now', '+30 days')->format('Y-m-d'),
+
+            'created_by' => User::inRandomOrder()->first()->id ?? User::factory(), 
+            'updated_by' => User::inRandomOrder()->first()->id ?? User::factory(),
+            'deleted_by' => User::inRandomOrder()->first()->id ?? User::factory(),
         ];
     }
 }

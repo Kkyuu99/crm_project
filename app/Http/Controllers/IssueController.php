@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class IssueController extends Controller
 {
-    //show the list of all issues
+
     public function index()
     {
         if (Auth::check()) {
@@ -36,7 +36,6 @@ class IssueController extends Controller
         ]);
     }
 
-    //show the new issue create form
     public function create(Request $request)
     {
         $user = Auth::user();
@@ -48,7 +47,7 @@ class IssueController extends Controller
         $users = User::all();
         $projectUsers = [];
         foreach ($projects as $project) {
-            $projectUsers[$project->id] = $project->users; // Assuming you have a relationship defined
+            $projectUsers[$project->id] = $project->users;
     
         }
         return view('user.new-issue', compact('projects','users','projectUsers'));
@@ -90,13 +89,12 @@ class IssueController extends Controller
         $users = User::all();
         $projectUsers = [];
         foreach ($projects as $project) {
-            $projectUsers[$project->id] = $project->users; // Assuming you have a relationship defined
+            $projectUsers[$project->id] = $project->users;
     
         }
         return view('user.issue-detail', compact('issue','projects','users','projectUsers'));
     }
 
-    //show the form for editing existing issue
     public function edit($id)
     {
         $issue = Issue::findOrFail($id);
@@ -109,7 +107,7 @@ class IssueController extends Controller
         $users = User::all();
         $projectUsers = [];
         foreach ($projects as $project) {
-            $projectUsers[$project->id] = $project->users; // Assuming you have a relationship defined
+            $projectUsers[$project->id] = $project->users;
     
         }
         return view('user.issue-edit', compact('issue','projects','users','projectUsers'));
@@ -169,9 +167,6 @@ class IssueController extends Controller
         }
         return redirect()->back()->with('error', 'No attachment found to remove.');
     }
-
-    
-    
 
 }
 ?>

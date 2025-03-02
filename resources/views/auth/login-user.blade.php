@@ -1,8 +1,19 @@
 <x-layout>
+
+    @if(session('success'))
+        <div id="success-message" class="popup-message bg-green-100 text-green-700 px-4 py-2 rounded-md mb-4">
+            {{ session('success') }}
+        </div>
+    @elseif(session('error'))
+        <div id="error-message" class="popup-message bg-red-100 text-red-700 px-4 py-2 rounded-md mb-4">
+            {{ session('error') }}
+        </div>
+    @endif
     
 <section class="bg-gray-100 min-h-screen flex items-center justify-center">
         <!-- Login container -->
         <div class="bg-custom-purple flex rounded-lg shadow-lg w-3/4 max-w-4xl overflow-hidden">
+
             <!-- Left: Form -->
             <div class="w-1/2 p-8">
                 <h2 class="text-3xl font-bold text-white mb-6 text-center">Login Form</h2>
@@ -49,6 +60,7 @@
                         </label>
                         <a href="/auth/forgot-password" class="text-purple-200 hover:underline text-sm">Forgot Password?</a>
                     </div>
+
                     <div class="w-32 mx-auto">
 
                         <button
@@ -59,6 +71,7 @@
                     </div>
                 </form>
             </div>
+
             <!-- Right: Form-->
             <div class="bg-violet-400 w-1/2 flex flex-col items-center justify-center text-center p-8">
                 <h2 class="text-3xl font-bold text-white mb-4">Welcome Back!</h2>
@@ -69,3 +82,32 @@
 
     </section>
 </x-layout>
+
+<script>
+        window.onload = function() {
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+
+            if (successMessage) {
+                
+                setTimeout(function() {
+                    successMessage.classList.add('show');
+                }, 100);
+
+                setTimeout(function() {
+                    successMessage.classList.add('hidden');
+                }, 3000);
+            }
+
+            if (errorMessage) {
+
+                setTimeout(function() {
+                    errorMessage.classList.add('show');
+                }, 100);
+                
+                setTimeout(function() {
+                    successMessage.classList.add('hidden');
+                }, 3000);
+            }
+        };
+</script>

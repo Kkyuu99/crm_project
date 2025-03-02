@@ -1,4 +1,5 @@
 <x-layout>
+
   <script>
       window.onload = function() {
         const ctx = document.getElementById('myPieChart').getContext('2d');
@@ -25,13 +26,22 @@
               },
               options: {
                   responsive: true,
+                  layout: {
+                     padding: {
+                         top: 20 // Adds space above the pie chart
+                     }
+                  },
                   plugins: {
                       legend: {
                           position: 'bottom',
                           labels: {
                               color: '#FFFFFF',
                               boxWidth: 12,
-                              padding: 10,
+                              padding : 20,
+                              usePointStyle: true,
+                              font: {
+                                  size: 14,
+                              }
                         },
                       },
                       tooltip: {
@@ -63,25 +73,36 @@
                     borderWidth: 1,
                 }]
             },
-            
+
             options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true
+            responsive: true,
+            scales: {
+              x: {
+            ticks: {
+                color: '#FFFFFF' // X-axis labels color
+            }
+        },
+        y: {
+            beginAtZero: true,
+            ticks: {
+                color: '#FFFFFF' // Y-axis labels color
+            }
+        }
+    },
+            plugins: {
+                legend: {
+                    display: true, 
+                    labels: {
+                        color: '#FFFFFF' // Labels color
                     }
                 },
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        enabled: true
-                    }
+                tooltip: {
+                    enabled: true
                 }
             }
-        });
-    };
+        }
+    });
+};
   </script>
 
   <header class="w-full p-6">
@@ -115,12 +136,13 @@
 
       <!-- Pie Chart and Legend -->
       <div class="bg-violet-500 shadow rounded-3xl p-2 flex flex-col items-center">
-        <h2 class="text-white text-xl mb-8 font-bold text-left">Tickets by Priority</h2>
+        <h2 class="text-lg font-semibold text-white">Tickets by Priority</h2>
         <div class="pie-chart">
           <canvas id="myPieChart" width="270" height="270"></canvas>
           <div class="donut-hole"></div>
         </div>
       </div>
+
       <div class="bg-violet-500 shadow rounded-3xl py-2 flex flex-col px-6 col-span-2">
         <div class="flex items-center mb-4">
           <h3 class="text-lg font-semibold text-white">Total Projects : </h3>
@@ -148,15 +170,15 @@
               </tr>
             @endforeach
           </tbody>
-      </table>
-  </div>
+        </table>
+      </div>
       
     </section>
-<!-- Table Section (Footer) -->
-<section class="bg-violet-500 text-white shadow rounded-3xl p-6 mt-6 text-center">
-            <!-- Bar Chart -->
-            <h1 class="text-white text-xl font-bold text-left">Ticket Overview</h1>
-            <canvas id="myBarChart" width="400" height="200"></canvas>
+    <!-- Table Section (Footer) -->
+    <section class="bg-violet-500 text-white shadow rounded-3xl p-6 mt-6 text-center">
+      <!-- Bar Chart -->
+      <h1 class="text-white text-xl font-bold text-left">Ticket Overview</h1>
+      <canvas id="myBarChart" width="400" height="200"></canvas>
     </section>
   </main>
 </x-layout>
