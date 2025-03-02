@@ -1,93 +1,133 @@
 <?php
 
-    use App\Http\Controllers\AuthController;
-    use App\Http\Controllers\IssueController;
-    use App\Http\Controllers\ProjectController;
-    use App\Http\Controllers\UserController;
-    use App\Http\Controllers\DashboardController;
-    use App\Http\Controllers\UserProfileController;
-    use App\Http\Controllers\PostController;
-    use Illuminate\Routing\RouteUri;
-    use Illuminate\Support\Facades\Auth;
-    use Illuminate\Support\Facades\Route;
-
-    Route::get('/', function ()
-    {
-        $user = Auth::user();
-        if ($user && isset($user->role)) {
-            return redirect()->route($user->role === 'admin' ? 'admin.dashboard' : 'user.dashboard');
-        }
-        return redirect()->route('login');
-    })->middleware('auth');
-
-    Route::get('/login', [AuthController::class, 'get_login'])->name('login')->middleware('guest');
-    Route::post('/login', [AuthController::class, 'post_login'])->name('login.post');
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
-
-    Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
-        Route::get('/dashboard', [DashboardController::class, 'adminDashboard'])->name('admin.dashboard');
-
-        Route::get('/profile/{id}', [UserProfileController::class, 'show'])->name('admin.user-profile');
-        Route::get('/profile/{id}/profile-edit', [UserProfileController::class, 'edit'])->name('admin.profile-edit');
-        Route::put('/profile/{id}/profile-edit', [UserProfileController::class, 'edit'])->name('admin.profile-edit');
-
-        Route::get('/project-list', [ProjectController::class, 'index'])->name('admin.project-list');
-        Route::get('/project-create', [ProjectController::class, 'create'])->name('admin.project-create');
-        Route::post('/project-store', [ProjectController::class, 'store'])->name('admin.project-store');
-        Route::get('/projects/{id}',[ProjectController::class,'show'])->name('admin.project-detail');
-        Route::get('/projects/{id}/project-edit', [ProjectController::class, 'edit'])->name('admin.project-edit');
-        Route::put('/projects/{id}/project-edit', [ProjectController::class, 'edit'])->name('admin.project-edit');
-        Route::put('/projects/{id}/project-update', [ProjectController::class, 'update'])->name('admin.project-update');
-        Route::delete('/projects/{id}/project-delete', [ProjectController::class, 'delete'])->name('admin.project-delete');
-
-        Route::get('/issue-list', [IssueController::class, 'index'])->name('admin.issue-list');
-        Route::get('/issue-create', [IssueController::class, 'create'])->name('admin.issue-create');
-        Route::post('/issue-store', [IssueController::class, 'store'])->name('admin.issue-store');
-        Route::get('/issues/{id}',[IssueController::class,'show'])->name('admin.issue-detail');
-        Route::get('/issues/{id}/issue-edit', [IssueController::class, 'edit'])->name('admin.issue-edit');
-        Route::put('/issues/{id}/issue-edit', [IssueController::class, 'edit'])->name('admin.issue-edit');
-        Route::put('/issues/{id}/issue-update', [IssueController::class, 'update'])->name('admin.issue-update');
-        Route::delete('/issues/{id}/issue-delete', [IssueController::class, 'delete'])->name('admin.issue-delete');
-        Route::delete('/issues/{id}/remove-attachment', [IssueController::class, 'removeAttachment'])->name('remove-attachment');
-
-        Route::get('/user-list', [UserController::class, 'user_list'])->name('admin.user-list');
-        Route::get('/user-register', [UserController::class, 'create'])->name('admin.user-register');
-        Route::post('/user-store', [UserController::class, 'store'])->name('admin.user-store');
-        Route::get('/users/{id}', [UserController::class, 'show'])->name('admin.user-detail');
-        Route::get('/users/{id}/user-edit', [UserController::class, 'edit'])->name('admin.user-edit');
-        Route::put('/users/{id}/user-edit', [UserController::class, 'edit'])->name('admin.user-edit');
-        Route::put('/users/{id}/user-update', [UserController::class, 'update'])->name('admin.user-update');
-        Route::delete('/users/{id}/user-delete', [UserController::class, 'delete'])->name('admin.user-delete');
-    });
-
-    Route::middleware(['auth', 'role:user'])->prefix('user')->group(function () {
-        Route::get('/dashboard', [DashboardController::class, 'userDashboard'])->name('user.dashboard');
-
-        Route::get('/profile/{id}', [UserProfileController::class, 'show'])->name('user.user-profile');
-        Route::get('/profile/{id}/profile-edit', [UserProfileController::class, 'edit'])->name('user.profile-edit');
-        Route::put('/profile/{id}/profile-edit', [UserProfileController::class, 'edit'])->name('user.profile-edit');
-
-        Route::get('/project-list', [ProjectController::class, 'index'])->name('user.project-list');
-        Route::get('/project-create', [ProjectController::class, 'create'])->name('user.project-create');
-        Route::post('/project-store', [ProjectController::class, 'store'])->name('user.project-store');
-        Route::get('/projects/{id}',[ProjectController::class,'show'])->name('user.project-detail');
-        Route::get('/projects/{id}/project-edit', [ProjectController::class, 'edit'])->name('user.project-edit');
-        Route::put('/projects/{id}/project-edit', [ProjectController::class, 'edit'])->name('user.project-edit');
-        Route::put('/projects/{id}/project-update', [ProjectController::class, 'update'])->name('user.project-update');
-        Route::delete('/projects/{id}/project-delete', [ProjectController::class, 'delete'])->name('user.project-delete');
-
-        Route::get('/issue-list', [IssueController::class, 'index'])->name('user.issue-list');
-        Route::get('/issue-create', [IssueController::class, 'create'])->name('user.issue-create');
-        Route::post('/issue-store', [IssueController::class, 'store'])->name('user.issue-store');
-        Route::get('/issues/{id}',[IssueController::class,'show'])->name('user.issue-detail');
-        Route::put('/issues/{id}/issue-edit', [IssueController::class, 'edit'])->name('user.issue-edit');
-        Route::put('/issues/{id}/issue-update', [IssueController::class, 'update'])->name('user.issue-update');
-        Route::delete('/issues/{id}/issue-delete', [IssueController::class, 'delete'])->name('user.issue-delete');
-        Route::delete('/issues/{id}/remove-attachment', [IssueController::class, 'removeAttachment'])->name('remove-attachment');
-
-    });
-
-    Route::get('/auth/forgot-password', [AuthController::class, 'forgot']);
+use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\IssueController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserProfileController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Http\Request;
+use App\Http\Controllers\ResetPasswordController;
 
 
+// Public Routes
+Route::get('/', function () {
+    $user = Auth::user();
+    return $user && isset($user->role)
+        ? redirect()->route($user->role === 'admin' ? 'admin.dashboard' : 'user.dashboard')
+        : redirect()->route('login');
+})->middleware('auth');
 
+Route::get('/login', [AuthController::class, 'get_login'])->name('login')->middleware('guest');
+Route::get('/login', [ForgotPasswordController::class, 'get_login']);
+Route::get('/login', [ForgotPasswordController::class, 'get_login']);
+
+
+Route::post('/login', [AuthController::class, 'post_login'])->name('login.post');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+Route::get('/forgot-password', [ForgotPasswordController::class, 'get_login'])->name('forgot-password');
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('forgot-password');
+Route::get('/forgot-password', [ForgotPasswordController::class, 'get_login'])->name('forgot-password');
+Route::post('/forgot-password', [ForgotPasswordController::class, 'post_forgotpassword'])->name('forgot-password.post');
+
+Route::get('password/reset', [ResetPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('password/email', [ResetPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+
+Route::post('/forgot-password', function (Request $request) {
+    $request->validate(['email' => 'required|email']);
+
+    $status = Password::sendResetLink($request->only('email'));
+
+    return $status === Password::RESET_LINK_SENT
+        ? response()->json(['message' => 'Reset link sent!'], 200)
+        : response()->json(['error' => 'Email not found.'], 400);
+});
+
+// Admin Routes
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'adminDashboard'])->name('dashboard');
+
+    Route::resource('projects', ProjectController::class, [
+        'names' => [
+            'index' => 'project-list',
+            'create' => 'project-create',
+            'store' => 'project-store',
+            'show' => 'project-detail',
+            'edit' => 'project-edit',
+            'update' => 'project-update',
+            'destroy' => 'project-delete',
+        ]
+    ]);
+
+
+Mail::raw('Test email', function ($message) {
+    $message->to('your-email@gmail.com')
+            ->subject('Testing Mail');
+});
+
+    Route::resource('issues', IssueController::class, [
+        'names' => [
+            'index' => 'issue-list',
+            'create' => 'issue-create',
+            'store' => 'issue-store',
+            'show' => 'issue-detail',
+            'edit' => 'issue-edit',
+            'update' => 'issue-update',
+            'destroy' => 'issue-delete',
+        ]
+    ]);
+
+    Route::resource('users', UserController::class, [
+        'names' => [
+            'index' => 'user-list',
+            'create' => 'user-register',
+            'store' => 'user-store',
+            'show' => 'user-detail',
+            'edit' => 'user-edit',
+            'update' => 'user-update',
+            'destroy' => 'user-delete',
+        ]
+    ]);
+
+    Route::get('/profile/{id}', [UserProfileController::class, 'show'])->name('user-profile');
+    Route::get('/profile/{id}/edit', [UserProfileController::class, 'edit'])->name('profile-edit');
+    Route::put('/profile/{id}', [UserProfileController::class, 'update'])->name('profile-update');
+});
+
+// User Routes
+Route::middleware(['auth', 'role:user'])->prefix('user')->as('user.')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'userDashboard'])->name('dashboard');
+
+    Route::resource('projects', ProjectController::class, [
+        'names' => [
+            'index' => 'project-list',
+            'create' => 'project-create',
+            'store' => 'project-store',
+            'show' => 'project-detail',
+            'edit' => 'project-edit',
+            'update' => 'project-update',
+            'destroy' => 'project-delete',
+        ]
+    ]);
+
+    Route::resource('issues', IssueController::class, [
+        'names' => [
+            'index' => 'issue-list',
+            'create' => 'issue-create',
+            'store' => 'issue-store',
+            'show' => 'issue-detail',
+            'edit' => 'issue-edit',
+            'update' => 'issue-update',
+            'destroy' => 'issue-delete',
+        ]
+    ]);
+
+    Route::get('/profile/{id}', [UserProfileController::class, 'show'])->name('user-profile');
+    Route::get('/profile/{id}/edit', [UserProfileController::class, 'edit'])->name('profile-edit');
+    Route::put('/profile/{id}', [UserProfileController::class, 'update'])->name('profile-update');
+});

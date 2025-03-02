@@ -74,11 +74,7 @@
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
 
-=======
-
->>>>>>> fe5005435fda480a6b596025c207e299b8517f26
             <div class="flex gap-4 items-center mb-4">
                 <label for="role" class="block text-black text-sm text-right mb-2 w-16">Role</label>
                     <select id="role" name="role" class="flex-1 px-4 py-2 rounded-lg border border-gray-300 bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">

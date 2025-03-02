@@ -1,55 +1,55 @@
 <x-layout>
   <script>
-      window.onload = function() {
-        const ctx = document.getElementById('myPieChart').getContext('2d');
-          new Chart(ctx, {
-              type: 'doughnut',
-              data: {
-                  labels: ['Urgent', 'Medium', 'High', 'Low'],
-                  datasets: [{
-                      label: 'Ticket Priority Distribution',
-                      data: [
-                        <?php echo json_encode($urgentPercentage); ?>,
-                        <?php echo json_encode($mediumPercentage); ?>,
-                        <?php echo json_encode($highPercentage); ?>,
-                        <?php echo json_encode($lowPercentage); ?>
-                      ],
-                      backgroundColor: [
-                          '#D6F7FF',
-                          '#FFF5A6',
-                          '#F9BABA',
-                          '#9B9AE4'
-                      ],
-
-                  }]
-              },
-              options: {
-                  responsive: true,
-                  plugins: {
-                      legend: {
-                          position: 'bottom',
-                          labels: {
-                              color: '#FFFFFF',
-                              boxWidth: 12,
-                              padding: 10,
+        window.onload = function() {
+            const ctx = document.getElementById('myPieChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Urgent', 'Medium', 'High', 'Low'],
+                    datasets: [{
+                        label: 'Ticket Priority Distribution',
+                        data: [
+                          <?php echo json_encode($urgentPercentage); ?>,
+                          <?php echo json_encode($mediumPercentage); ?>,
+                          <?php echo json_encode($highPercentage); ?>,
+                          <?php echo json_encode($lowPercentage); ?>
+                        ],
+                        backgroundColor: [
+                            '#D6F7FF',
+                            '#FFF5A6',
+                            '#F9BABA',
+                            '#9B9AE4'
+                        ],
+  
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#FFFFFF',
+                                boxWidth: 12,
+                                padding: 10,
+                          },
                         },
-                      },
-                      tooltip: {
-                          enabled: true,
-                          callbacks: {
-                              label: function(tooltipItem) {
-                                  return `${tooltipItem.label}: ${tooltipItem.raw}%`;
-                              },
-                              title: function() {
-                                  return 'Priority';
-                              }
-                          }
-                      }
-                  },
-                  borderWidth: 0,
-                  cutout: '50%',
-              }
-          });
+                        tooltip: {
+                            enabled: true,
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    return `${tooltipItem.label}: ${tooltipItem.raw}%`;
+                                },
+                                title: function() {
+                                    return 'Priority';
+                                }
+                            }
+                        }
+                    },
+                    borderWidth: 0,
+                    cutout: '50%',
+                }
+            });
 
         const ctxBar = document.getElementById('myBarChart').getContext('2d');
         new Chart(ctxBar, {
@@ -146,7 +146,7 @@
           </thead>
           <tbody>
             @foreach ($issues as $issue)
-              <tr class=>
+              <tr class >
                 <td class="border-b p-4">{{ $issue->id }}</td>
                 <td class="border-b p-4">{{ $issue->subject }}</td>
                 <td class="border-b p-4">{{ $issue->assignor_user }}</td>

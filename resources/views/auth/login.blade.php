@@ -27,7 +27,7 @@
                         required>
                 </div>
                 <div class="flex items-center justify-end mb-4">
-                    <a href="#" class="text-black hover:underline text-xs">Forgot Password?</a>
+                    <a href="{{ route('forgot-password') }}" class="text-black hover:underline text-xs">Forgot Password?</a>
                 </div>
                 <div class="text-center">
                     <button

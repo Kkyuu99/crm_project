@@ -7,22 +7,27 @@
 
                 <!-- Form below the heading -->
                 <form>
-                    <div class="mb-4">
-                        <label for="email" class="block text-sm font-bold mb-2">Email</label>
-                        <input
-                            type="email"
-                            placeholder="Enter your email"
-                            class="w-full px-4 py-2 border rounded-lg focus:outline-none"
-                        >
-                    </div>
-                    <p class="inline text-shade-gray">Go Back to </p>
+                    <form method="POST" action="{{ route('forgot-password.post') }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="mb-4">
+                            <label for="email" class="block text-sm font-bold mb-2">Email</label>
+                            <input type="email" placeholder="Enter your email"
+                                class="w-full px-4 py-2 border rounded-lg focus:outline-none" required>
+                        </div>
+                        <p class="inline text-shade-gray">Go Back to </p>
                     <a href="./crmloginUser.html" class="inline text-blue-400 hover:underline text-sm mt-4">Login</a>
-
-                <button
-                type="submit"
-                class="bg-soft-purple px-4 py-2 text-white rounded-lg hover:bg-purple-500 transition  w-24 ml-24">
-                Next</button>
+                        <button type="submit"
+                        class="bg-soft-purple px-4 py-2 text-white rounded-lg hover:bg-purple-500 transition  w-24 ml-24">
+                        Send</button>
                 </form>
+                @if (session('status'))
+                    <p>{{ session('status') }}</p>
+                @endif
+                @if ($errors->any())
+                    @foreach ($errors->all() as $error)
+                        <p>{{ $error }}</p>
+                    @endforeach
+                @endif
             </div>
         </div>
     </section>

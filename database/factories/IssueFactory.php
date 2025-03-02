@@ -18,23 +18,14 @@ class IssueFactory extends Factory
      */
     public function definition(): array
     {
-        // return [
-        //     'project_id'=>Project::factory(),
-        //     'subject'=>fake()->word(),
-        //     'description'=>fake()->sentence(),
-        //     'priority'=>fake()->word(),
-        //     'assignor_user'=>fake()->word(),
-        //     'attachment'=>fake()->word(),
-        //     'remark'=>fake()->paragraph()
-        // ];
         return [
-            'project_id' => Project::inRandomOrder()->first()->id ?? Project::factory(),
+            'project_id' => Project::factory()->create()->id, // Ensure a project is created
             'issue_status' => fake()->randomElement(['Open', 'Closed', 'In progress', 'Resolved']),
             'subject' => fake()->name(),
             'description' => fake()->text(),
             'priority' => fake()->randomElement(['Low', 'Medium', 'High', 'Urgent']),
             'attachment' => fake()->fileExtension(),
-            'assignor_user' => User::inRandomOrder()->first()->id ?? User::factory(),
+            'assignor_user' => User::factory()->create()->id, // Ensure a user is created
             'remark' => fake()->text(),
             'solution' => fake()->text(),
             'total_duration' => fake()->numberBetween(1, 100),
