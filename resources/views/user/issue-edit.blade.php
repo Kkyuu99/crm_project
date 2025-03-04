@@ -86,17 +86,7 @@
                         <option value="Urgent" {{ old('priority', $issue->priority) == 'Urgent' ? 'selected' : '' }} class="bg-orange-500 text-black">Urgent</option>
                     </select> 
                 </div>
-                <!-- <div class="flex-1">
-                    <label for="assignor_user" class="block text-black text-sm mb-2">Assignor</label>
-                    <input
-                        required
-                        type="text"
-                        id="assignor_user"
-                        name="assignor_user"
-                        value="{{ old('assignor_user', $issue->assignor_user) }}"
-                        class="w-full px-4 py-2 text-sm rounded-lg border border-gray-300 bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
-                </div> -->
+
                 <div class="flex-1">
                     <label for="assignor_user" class="block text-black text-sm mb-2">Assignor</label>
                     <select id="assignor_user" name="assignor_user"
@@ -210,19 +200,29 @@
             const projectId = document.getElementById('project_id').value;
             const assignorDropdown = document.getElementById('assignor_user');
             const selectedAssignor = '{{ old("assignor_user", $issue->assignor_user) }}';
+            const userId = <?php echo json_encode($user->id); ?>;
 
             assignorDropdown.innerHTML = '<option value="">Select an assignor</option>';
-
+        
             if (projectId && projectUsers[projectId]) {
-                projectUsers[projectId].forEach(user => {
-                    const option = document.createElement('option');
-                    option.value = user.id;
-                    option.textContent = `${user.id} : ${user.name}`;
-                    if (user.id == selectedAssignor) {
-                    option.selected = true;
+                if (userId) {
+                    if (projectUsers[projectId].some(user => user.id === userId)) {
+                        const option = document.createElement('option');
+                        option.value = userId;
+                        option.textContent = `${userId} : {{ $user->name }}`;
+                        assignorDropdown.appendChild(option);
+                    }
+                } else {
+                    projectUsers[projectId].forEach(user => {
+                        const option = document.createElement('option');
+                        option.value = user.id;
+                        option.textContent = `${userId} : {{ $user->name }}`;
+                        assignorDropdown.appendChild(option);
+                    });
                 }
-                    assignorDropdown.appendChild(option);
-                });
+                if (selectedAssignor) {
+                assignorDropdown.value = selectedAssignor;
+                }
             }
         }
         document.addEventListener('DOMContentLoaded', (event) => {

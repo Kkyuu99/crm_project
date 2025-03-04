@@ -55,7 +55,7 @@
                     <!-- Remember Me and Forgot Password -->
                     <div class="flex items-center justify-between mb-4 ">
                         <label class="flex items-center text-white text-sm">
-                            <input type="checkbox" class="mr-2 rounded focus:outline-none">
+                            <input type="checkbox" name="remember" class="mr-2 rounded focus:outline-none">
                             Remember Me
                         </label>
                         <a href="/auth/forgot-password" class="text-purple-200 hover:underline text-sm">Forgot Password?</a>

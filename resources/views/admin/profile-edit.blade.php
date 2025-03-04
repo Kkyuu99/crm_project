@@ -55,17 +55,16 @@
 
             <div class="text-left">
                 <div class="flex justify-between items-center">
-                    <a href="{{ route($prefix. '.profile-edit', $user->id)}}">
-                        <button type="submit" class="bg-violet-400 text-white px-6 py-2 rounded-md hover:bg-violet-600 font-medium text-sm hover:text-white">
-                                Change password
-                        </button>
+                    <a href="{{ route($prefix. '.change-password', $user->id) }}"
+                        class="bg-violet-400 text-white px-6 py-2 rounded-md hover:bg-violet-600 font-medium text-sm hover:text-white">
+                            Change password
                     </a>
 
                     <div class="flex justify-end space-x-1">
                         <button type="submit" class="bg-violet-400 text-white px-6 py-2 rounded-md hover:bg-violet-600 font-medium text-sm hover:text-white">
                             Save
                         </button>
-                        <a href="{{ route($prefix . '.user-profile', $user->id) }}"
+                        <a href="{{ route($prefix . '.change-password', $user->id) }}"
                             class="bg-red-400 text-white px-6 py-2 rounded-md hover:bg-red-600 font-medium text-sm hover:text-white">
                             Cancel
                         </a>

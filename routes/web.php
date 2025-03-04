@@ -6,7 +6,7 @@
     use App\Http\Controllers\UserController;
     use App\Http\Controllers\DashboardController;
     use App\Http\Controllers\UserProfileController;
-    use App\Http\Controllers\PostController;
+    use App\Http\Controllers\ChangePasswordController;
     use Illuminate\Routing\RouteUri;
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Route;
@@ -33,6 +33,9 @@
         Route::put('/profile/{id}/profile-update', [UserProfileController::class, 'update'])->name('admin.profile-update');
         Route::put('/profile/{id}/profile-delete', [UserProfileController::class, 'delete'])->name('admin.profile-delete');
         Route::delete('/issues/{id}/remove-profile-pic', [UserProfileController::class, 'removeProfilePic'])->name('remove-profile-pic');
+
+        Route::get('/profile/{id}/change-password', [ChangePasswordController::class, 'showChangePasswordForm'])->name('admin.change-password-form');
+        Route::post('/profile/{id}/change-password', [ChangePasswordController::class, 'changePassword'])->name('admin.change-password');
 
         Route::get('/project-list', [ProjectController::class, 'index'])->name('admin.project-list');
         Route::get('/project-create', [ProjectController::class, 'create'])->name('admin.project-create');
@@ -72,6 +75,9 @@
         Route::put('/profile/{id}/profile-update', [UserProfileController::class, 'update'])->name('user.profile-update');
         Route::put('/profile/{id}/profile-delete', [UserProfileController::class, 'delete'])->name('user.profile-delete');
         Route::delete('/issues/{id}/remove-profile-pic', [UserProfileController::class, 'removeProfilePic'])->name('remove-profile-pic');
+
+        Route::get('/profile/{id}/change-password', [ChangePasswordController::class, 'showChangePasswordForm'])->name('user.change-password-form');
+        Route::post('/profile/{id}/change-password', [ChangePasswordController::class, 'changePassword'])->name('user.change-password');
 
         Route::get('/project-list', [ProjectController::class, 'index'])->name('user.project-list');
         Route::get('/project-create', [ProjectController::class, 'create'])->name('user.project-create');

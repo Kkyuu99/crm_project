@@ -9,9 +9,20 @@ use Illuminate\Support\Facades\Auth;
 class ProjectController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user();
+
+        $projectTypes = Project::distinct()->pluck('project_type');
+        
+        $projects = Project::query();
+
+        $selectedProjectTypes = $request->input('project_types');
+
+        if ($selectedProjectTypes) {
+            $projects = $projects->whereIn('project_type', $selectedProjectTypes);
+        }
+
         if($user->role === 'admin'){
             $projects = Project::orderBy('created_at', 'desc')->paginate(5);
         }else{
@@ -19,7 +30,7 @@ class ProjectController extends Controller
                 $query->where('users.id', $user->id);
             })->orderBy('created_at', 'desc')->paginate(5);
         }
-        return view('user.project-list',compact('projects'));
+        return view('user.project-list',compact('projects','projectTypes'));
     }
 
     public function edit($id){

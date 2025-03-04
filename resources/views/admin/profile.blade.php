@@ -35,7 +35,7 @@
             </div>
 
             <div class="flex flex-col">
-                <a href="">
+                <a href="{{ route($prefix. '.change-password', $user->id) }}">
                     <button type="submit" class="justify-center text-white bg-violet-400 px-4 py-1 rounded-lg hover:bg-violet-600 font-medium text-sm w-32">
                             Change password
                     </button>

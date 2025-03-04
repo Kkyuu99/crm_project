@@ -151,12 +151,12 @@
         
         <table class="w-full text-left border-collapse text-white">
           <thead>
-            <tr>
-              <th class="border-b p-4">No.</th>
+            <tr class="bg-white text-violet-500">
+              <th class="border-b rounded-tl-lg p-4">No.</th>
               <th class="border-b p-4">ID</th>
               <th class="border-b p-4">Project name</th>
               <th class="border-b p-4">Project type</th>
-              <th class="border-b p-4">Status</th>
+              <th class="border-b rounded-tr-lg p-4">Status</th>
             </tr>
           </thead>
           <tbody>

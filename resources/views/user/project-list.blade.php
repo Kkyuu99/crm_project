@@ -1,3 +1,8 @@
+@php
+    $user = Auth::user();
+    $prefix = $user->role === 'admin' ? 'admin' : 'user';
+@endphp
+
 <x-layout>
 
     @if(session('success'))
@@ -10,8 +15,34 @@
         </div>
     @endif
 
-    <h1 class="text-2xl font-bold my-4 text-center ml-4">Project Lists</h1>
-    <hr class="border-t-1 border-gray-300 my-4" />
+    <div class="flex justify-between items-center">
+        <h1 class="text-2xl font-bold my-4 text-center flex-grow">Project Lists</h1>
+
+        <!-- <button id="filter-button" class="bg-violet-400 text-white px-6 py-2 mr-4 rounded-md hover:bg-violet-500 font-medium text-sm">
+            Filter
+        </button> -->
+    </div>
+
+    <!-- <div id="filter-form" class="bg-white shadow-lg p-4 rounded-md mb-4 hidden">
+        <form action="{{ route($prefix . '.project-list') }}" method="GET">
+            <div class="flex flex-wrap">
+                @foreach ($projectTypes as $type)
+                    <div class="mr-4">
+                        <label>
+                            <input type="checkbox" name="project_types[]" value="{{ $type }}" class="mr-2"
+                                @if (request()->has('project_types') && in_array($type, request()->input('project_types'))) checked @endif>
+                            {{ $type }}
+                        </label>
+                    </div>
+                @endforeach
+            </div>
+            <div class="flex justify-end">
+                <button type="submit" class="bg-violet-400 text-white px-6 py-2 rounded-md hover:bg-violet-500 font-medium text-sm">Apply Filter</button>
+            </div>
+        </form>
+    </div> -->
+    
+    <hr class="border-t-1 border-gray-300 mb-4" />
 
     <div class="overflow-x-auto overflow-y-auto max-w-full px-4 mb-2 rounded-md scrollbar-thin scrollbar-thumb-soft-purple scrollbar-track-gray-200">
         <table class="table-auto border-collapse border border-gray-300 custom-table projects-table text-center">
@@ -93,30 +124,43 @@
 </x-layout>
 
 <script>
-        window.onload = function() {
-            const successMessage = document.getElementById('success-message');
-            const errorMessage = document.getElementById('error-message');
+    window.onload = function() {
+        const successMessage = document.getElementById('success-message');
+        const errorMessage = document.getElementById('error-message');
 
-            if (successMessage) {
+        if (successMessage) {
                 
-                setTimeout(function() {
-                    successMessage.classList.add('show');
-                }, 100);
+            setTimeout(function() {
+                successMessage.classList.add('show');
+            }, 100);
 
-                setTimeout(function() {
-                    successMessage.classList.add('hidden');
-                }, 3000);
-            }
+            setTimeout(function() {
+                successMessage.classList.add('hidden');
+            }, 3000);
+        }
 
-            if (errorMessage) {
+        if (errorMessage) {
 
-                setTimeout(function() {
-                    errorMessage.classList.add('show');
-                }, 100);
-                
-                setTimeout(function() {
-                    successMessage.classList.add('hidden');
-                }, 3000);
-            }
-        };
+            setTimeout(function() {
+                errorMessage.classList.add('show');
+            }, 100);
+            
+            setTimeout(function() {
+                successMessage.classList.add('hidden');
+            }, 3000);
+        }
+    };
+
+//     document.getElementById('filter-button').addEventListener('click', function() {
+//         const filterForm = document.getElementById('filter-form');
+//         filterForm.classList.toggle('hidden');
+//     });
+
+//     document.querySelector('form').addEventListener('submit', function(e) {
+//     e.preventDefault();
+//     console.log("Form is being submitted");
+//     this.submit();
+// });
+
+
 </script>

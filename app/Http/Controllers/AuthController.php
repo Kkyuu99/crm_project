@@ -25,7 +25,9 @@ class AuthController extends Controller
             'password'=>['required', 'min:5']
         ]);
 
-        if (Auth::attempt($formData)) {
+        $remember = $request->has('remember');
+
+        if (Auth::attempt($formData, $remember)) {
             request()->session()->regenerate();
             $user = Auth::user();
              return redirect()->intended(Auth::user()->role === 'admin' ? '/admin/dashboard' : '/user/dashboard');
