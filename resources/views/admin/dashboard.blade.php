@@ -167,12 +167,12 @@
           <table class="w-full text-left border-collapse">
             <thead>
               <tr class="bg-white text-violet-600">
-                <th class="border-b p-4 rounded-tl-lg p-4">ID</th>
-                <th class="border-b p-4">Subject</th>
-                <th class="border-b p-4">Assignor</th>
-                <th class="border-b p-4">Priority</th>
-                <th class="border-b p-4">Status</th>
-                <th class="border-b p-4 rounded-tr-lg p-4">Due Date</th>
+                <th class="p-4 rounded-tl-lg p-4">ID</th>
+                <th class="p-4">Subject</th>
+                <th class="p-4">Assignor</th>
+                <th class="p-4">Priority</th>
+                <th class="p-4">Status</th>
+                <th class="p-4 rounded-tr-lg p-4">Due Date</th>
               </tr>
             </thead>
             <tbody>
@@ -191,7 +191,8 @@
       </div>
 
       <div class="mt-4">
-          <a href="{{ route($prefix . '.issue-list') }}" class="text-violet-300 hover:text-violet-600 font-medium text-md">See More</a>
+          <a href="{{ route($prefix . '.issue-list') }}" class="text-violet-100 hover:text-violet-600 font-medium text-md">
+            See More</a>
       </div>
     </section>
   </main>
