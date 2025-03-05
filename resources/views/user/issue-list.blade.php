@@ -1,7 +1,18 @@
 <x-layout>
+
+  @if(session('success'))
+      <div id="success-message" class="popup-message bg-green-100 text-green-700 px-4 py-2 rounded-md mb-4">
+          {{ session('success') }}
+      </div>
+  @elseif(session('error'))
+      <div id="error-message" class="popup-message bg-red-100 text-red-700 px-4 py-2 rounded-md mb-4">
+          {{ session('error') }}
+      </div>
+  @endif
+
   <h1 class="text-2xl font-bold text-black my-4 text-center">Issue List</h1>
   <hr class="border-t-1 border-gray-300 my-4" />
-  <!-- Table Wrapper with Horizontal and Vertical Scroll -->
+  
   <div class="overflow-x-auto overflow-y-auto max-w-full px-4 mb-2 rounded-md scrollbar-thin scrollbar-thumb-soft-purple scrollbar-track-gray-200">
     <table class="table-auto border-collapse border border-gray-300 custom-table issues-table text-center">
         <thead>
@@ -50,11 +61,12 @@
             @else
               <span class="text-gray-500">No Attachment</span>
             @endif
-          
         </td>
         <td class="custom-table-cell text-md">{{$issue->issue_status}}</td>
         <td class="custom-table-cell text-md">{{$issue->due_date}}</td>
-        <td class="custom-table-cell text-md">{{$issue->assignor_user}}</td>
+        <td class="custom-table-cell text-md">
+          {{$issue->user->name}}
+        </td>
         <td class="custom-table-cell text-md">{{$issue->total_duration}}</td>
         <td class="custom-table-cell text-md text-md bg-[linear-gradient(to_bottom,_black_30%,_white_90%)] bg-clip-text text-transparent">
             <div class="solution" data-full-text="{{ $issue->solution }}">
@@ -70,38 +82,34 @@
         </td>
         <td class="custom-table-cell">
           <div class="flex">
-          <form action="{{ route($prefix . '.issue-edit', $issue->id) }}" method="POST">
-            @csrf
-            <input type="hidden" name="_method" value="PUT">
-            <button
-            type="submit"
-            class="bg-yellow-400 px-4 py-2 text-center hover:bg-yellow-600 hover:text-white">
-            Edit</button>
-          </form>
-
-          <form action="{{ route($prefix . '.issue-delete', $issue->id) }}" method="POST">
+            <form action="{{ route($prefix . '.issue-edit', $issue->id) }}" method="POST">
               @csrf
-              @method('DELETE')
+              <input type="hidden" name="_method" value="PUT">
               <button
               type="submit"
-              class="bg-red-400 px-4 py-2 mx-2 text-black hover:bg-red-600 hover:text-white">Delete</button>
-          </form>
+              class="bg-yellow-400 px-4 py-2 text-center hover:bg-yellow-600 hover:text-white">
+              Edit</button>
+            </form>
+
+            <form action="{{ route($prefix . '.issue-delete', $issue->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button
+                type="submit"
+                class="bg-red-400 px-4 py-2 mx-2 text-black hover:bg-red-600 hover:text-white">Delete</button>
+            </form>
           </div> 
-          
-          
-      </td>
+        </td>
       </tr>
-      @endforeach
+        @endforeach
       </tbody>
     </table>
   </div>
   
   <a href="{{ route($prefix . '.issue-create') }}">
-  <button
-    class="flex items-center justify-start text-white bg-violet-400 px-6 py-2 rounded-lg hover:bg-violet-500 font-medium text-sm mx-5"
-    >
-    Add New Issue
-  </button>
+    <button class="flex items-center justify-start text-white bg-violet-400 px-6 py-2 rounded-lg hover:bg-violet-500 font-medium text-sm mx-5">
+      Add New Issue
+    </button>
   </a>
 
   <div class="my-4 flex justify-center">
@@ -111,5 +119,34 @@
       </ul>
     </div>
   </div>
-  </div>
+</div>
 </x-layout>
+
+<script>
+        window.onload = function() {
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+
+            if (successMessage) {
+                
+                setTimeout(function() {
+                    successMessage.classList.add('show');
+                }, 100);
+
+                setTimeout(function() {
+                    successMessage.classList.add('hidden');
+                }, 3000);
+            }
+
+            if (errorMessage) {
+
+                setTimeout(function() {
+                    errorMessage.classList.add('show');
+                }, 100);
+                
+                setTimeout(function() {
+                    successMessage.classList.add('hidden');
+                }, 3000);
+            }
+        };
+</script>

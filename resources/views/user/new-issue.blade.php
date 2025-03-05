@@ -26,8 +26,7 @@
                     id="project_id"
                     name="project_id"
                     onchange="updateAssignorUserDropdown()"
-                    class="w-full px-4 py-2 rounded-lg border border-gray-300 bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
+                    class="w-full px-4 py-2 rounded-lg border border-gray-300 bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <option value="">Select a project</option>
                     @foreach($projects as $project)
                         <option value="{{ $project->id }}" {{ request('project_id') == $project->id ? 'selected' : '' }}>
@@ -73,17 +72,7 @@
                         <option value="Urgent" class="bg-orange-500 text-black">Urgent</option>
                     </select>
                 </div>
-                <!-- <div class="flex-1">
-                    <label for="assignor_user" class="block text-black text-sm mb-2">Assignor</label>
-                    <input
-                        required
-                        type="text"
-                        id="assignor_user"
-                        name="assignor_user"
-                        placeholder="Enter Name"
-                        class="w-full px-4 py-2 text-sm rounded-lg border border-gray-300 bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
-                </div> -->
+                
                 <div class="flex-1">
                     <label for="assignor_user" class="block text-black text-sm mb-2">Assignor</label>
                     <select id="assignor_user" name="assignor_user"
@@ -94,6 +83,7 @@
                         @endforeach
                     </select>
                 </div>
+
                 <div class="flex-1">
                     <label for="issue_status" class="block text-black text-sm mb-2">Status</label>
                     <select id="issue_status" name="issue_status" class="w-full bg-white border rounded-lg border-gray-300 px-4 py-2 text-sm leading-tight focus:outline-none">
@@ -126,19 +116,17 @@
                 style="width: 100%; padding: 12px; height: auto;" 
                 placeholder="JPG, PNG, PDF only"
                 class="w-full px-4 py-2 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                
             </div>
 
             <div class="mb-4">
             <label for="duration" class="block text-black text-sm mb-2">Total duration</label>
                 <input
                 required
-                type="text"
+                type="number"
                 name="total_duration"
                 id="total_duration"
                 placeholder="Enter total duration in hour"
-                class="w-full px-4 py-2 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
+                class="w-full px-4 py-2 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
 
             <div class="mb-4">
@@ -180,21 +168,18 @@
             </div>
         </form>
     </div>
-
     
     <script>
-        // Example user data for each project
-        var projectUsers = <?php echo json_encode($projectUsers); ?>; // Assuming you have this data passed to your view
+        
+        var projectUsers = <?php echo json_encode($projectUsers); ?>;
 
         function updateAssignorUserDropdown() {
             const projectId = document.getElementById('project_id').value;
             const assignorDropdown = document.getElementById('assignor_user');
 
-            // Clear previous options
             assignorDropdown.innerHTML = '<option value="">Select an assignor</option>';
 
             if (projectId && projectUsers[projectId]) {
-                // Populate users based on selected project
                 projectUsers[projectId].forEach(user => {
                     const option = document.createElement('option');
                     option.value = user.id;

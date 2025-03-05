@@ -4,12 +4,12 @@
 @endphp
 
 <x-layout>
+
     <h1 class="text-2xl font-bold text-black my-4 text-center">User Register Form</h1>
     <hr class="border-t-1 border-gray-300 my-4" />
     <div class="w-full mb-5 max-w-3xl mx-auto p-2">
         <form action="{{ route($prefix . '.user-store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <!-- Display Validation Errors -->
             @if ($errors->any())
                 <div class="text-red-500 text-sm mt-2 mb-6">
                     @foreach ($errors->all() as $error)
@@ -17,6 +17,7 @@
                     @endforeach
                 </div>
             @endif
+            
             <div class="flex gap-4 items-center mb-4">
                 <label for="name" class="block text-black text-sm text-right mb-2 w-16">Name</label>
                 <input

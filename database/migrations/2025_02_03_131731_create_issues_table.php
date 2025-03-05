@@ -25,6 +25,12 @@ return new class extends Migration
             $table->text('solution')->nullable();
             $table->date('due_date');
             $table->timestamps();
+
+            $table->softDeletes();
+
+            $table->foreignId('created_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('updated_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('deleted_by')->nullable()->constrained('users')->onDelete('set null');
         });
     }
 

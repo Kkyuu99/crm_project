@@ -14,11 +14,15 @@ return new class extends Migration
             $table->string('password');
             $table->string('email')->unique();
             $table->string('role')->default('user');
+            $table->string('profile_pic')->nullable();
+            $table->string('remember_token')->nullable();
+            $table->timestamps();
+
+            $table->softDeletes();
+
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->string('deleted_by')->nullable();
-            $table->string('remember_token')->nullable();
-            $table->timestamps();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

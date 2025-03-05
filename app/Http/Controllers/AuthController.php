@@ -20,16 +20,14 @@ class AuthController extends Controller
 
     public function post_login(Request $request)
     {
-        // if (Auth::check()) {
-        //     return redirect()->intended(Auth::user()->role === 'admin' ? '/admin/dashboard' : '/user/dashboard');
-        // }
-
         $formData = $request->validate([
             'email'=>['required', Rule::exists('users', 'email')],
             'password'=>['required', 'min:5']
         ]);
 
-        if (Auth::attempt($formData)) {
+        $remember = $request->has('remember');
+
+        if (Auth::attempt($formData, $remember)) {
             request()->session()->regenerate();
             $user = Auth::user();
              return redirect()->intended(Auth::user()->role === 'admin' ? '/admin/dashboard' : '/user/dashboard');
@@ -41,7 +39,7 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();      
         $request->session()->regenerateToken();
-        return redirect('/login')->with('message', 'You have been logged out successfully.');
+        return redirect('login')->with('success', 'You have been logged out successfully.');
     }
 
     public function forgot(){

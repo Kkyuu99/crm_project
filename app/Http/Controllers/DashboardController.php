@@ -18,9 +18,11 @@ class DashboardController extends Controller
     public function userDashboard()
     {   
         $userId = Auth::id();
+
         $projects = Project::whereHas('users', function ($query) use ($userId) {
             $query->where('user_id', $userId);
         })->get();
+
         $projectCount = $projects->count();
         
         $issues = Issue::where('assignor_user', $userId)->latest()->take(5)->get();
@@ -47,7 +49,9 @@ class DashboardController extends Controller
         $totalIssues = Issue::where('assignor_user', $userId)->count();
         
 
-        $dueTodayIssues = Issue::whereDate('due_date', Carbon::today())->count();
+        $dueTodayIssues = Issue::whereDate('due_date', Carbon::today())
+                            ->where('assignor_user', $userId)
+                            ->count();
 
         $overdueIssues = Issue::where('due_date', '<', Carbon::today())
                                 ->where('assignor_user', $userId)
@@ -77,7 +81,6 @@ class DashboardController extends Controller
         ->pluck('count', 'issue_status')
         ->toArray();
 
-
         $urgentIssues = Issue::where('priority', 'Urgent')->count();
         $mediumIssues = Issue::where('priority', 'Medium')->count();
         $highIssues = Issue::where('priority', 'High')->count();
@@ -89,7 +92,6 @@ class DashboardController extends Controller
 
         $closedIssues = Issue::where('issue_status', 'Closed')->count();
 
-
         $urgentPercentage = ceil($totalIssues > 0 ? ($urgentIssues / $totalIssues) * 100 : 0);
         $mediumPercentage = ceil($totalIssues > 0 ? ($mediumIssues / $totalIssues) * 100 : 0);
         $highPercentage = ceil($totalIssues > 0 ? ($highIssues / $totalIssues) * 100 : 0);
@@ -99,7 +101,5 @@ class DashboardController extends Controller
                                             'urgentPercentage','mediumPercentage','highPercentage','lowPercentage',
                                         'statusCounts','issues'));
     }
-
-    
         
 }

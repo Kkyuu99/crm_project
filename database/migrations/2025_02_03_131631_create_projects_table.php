@@ -21,15 +21,13 @@ return new class extends Migration
             $table->string('contact_phone');
             $table->string('contact_email');
             $table->string('status')->default('Active');
-            // $table->unsignedBigInteger('created_by');
-            // $table->unsignedBigInteger('updated_by')->nullable();
-            // $table->unsignedBigInteger('deleted_by')->nullable();
             $table->timestamps();
 
-            // Foreign key constraints
-            // $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
-            // $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');
-            // $table->foreign('deleted_by')->references('id')->on('users')->onDelete('set null');
+            $table->softDeletes();
+
+            $table->foreignId('created_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('updated_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('deleted_by')->nullable()->constrained('users')->onDelete('set null');
         });
     }
 

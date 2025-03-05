@@ -1,5 +1,17 @@
+@php
+    $user = Auth::user();
+    $prefix = $user && $user->role === 'admin' ? 'admin' : 'user';
+@endphp
+
+<x-layout>
+
+    <h1 class="text-2xl font-bold text-black my-4 text-center">User Profile Edit</h1>
+    <hr class="border-t-1 border-gray-300 my-4 w-full" />
+
+    <form class="w-full mx-auto max-w-lg p-2" action="{{ route($prefix . '.profile-update', $user->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
+
         @if ($errors->any())
                 <div class="text-red-500 text-sm mt-2 mb-6">
                     <ul>
@@ -8,62 +20,75 @@
                         @endforeach
                     </ul>
                 </div>
-            @endif
+        @endif
 
-<x-layout>            
-        <h1 class="text-xl font-bold mb-4 px-5 py-5 text-center">Profile Edit</h1>
-        <hr class="mb-6">
-  
-        <!-- Action Buttons -->
         <div class="justify-center p-2 text-center">
-         <div class="mb-6 px-10 w-full flex justify-center items-center">
-            <!-- <img src="{{ Auth::user()->profile_picture_url ?? 'path/to/default/profile.png' }}" alt="Profile picture" class="h-40 w-40 rounded-full justify-center"/> -->
-            <img src="{{ Auth::user()->profile_picture_url ?? asset('images/default-profile.png') }}" alt="Profile picture" class="h-40 w-40 rounded-full border-2 border-black shadow-sm"/>
-        </div>
 
-        <!-- Change Avator Button-->
-        <div class="mt-3 px-5 mb-4">
-                
-                    <button type="button" class="justify-center text-white bg-violet-400 px-4 py-1 rounded-lg hover:bg-violet-600 font-medium text-sm">
-                            Change avatar
-                    </button>
-                </a>
+            <div class="flex gap-6 mb-6 items-center">
+                <img id="profile_pic_preview" 
+                src="{{ $user->profile_pic ? asset('storage/' . $user->profile_pic) : asset('storage/images/default-profile.png') }}"
+                alt="Profile picture" class="h-40 w-40 rounded-full border-2 border-black shadow-sm"/>
+
+                <div class="flex flex-col">
+                <label for="profile_pic" class="change-avatar-btn bg-violet-400 text-white px-6 py-2 rounded-md hover:bg-violet-600 font-medium text-sm hover:text-white">Change Avatar</label>
+                <input type="file" class="hidden" id="profile_pic" name="profile_pic" onchange="previewImage(event)">
+
+                <div class="mt-2">
+                    <input type="checkbox" id="remove_profile_pic" name="remove_profile_pic" value="1">
+                    <label for="remove_profile_pic" class="text-sm text-red-500 font-semibold">Remove Profile </label>
                 </div>
-        </div>
+                </div>
+                
+            </div>
 
-        <div class="flex mb-4 space-x-9 w-3/4 mx-auto text-center">
-            <label class="text-gray-700 w-36 text-right">ID</label>
-            <input type="text" id="user-name" name="user_id"  class="flex-1 w-64 px-4 py-2 text-slate-600 bg-gray-300  border border-gray-300 rounded-lg shadow-sm" value="{{ Auth::user()->id }}">
-        </div>
+            <div class="mb-3">
+                <input type="text" id="name" name="name" class="w-full p-1 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" 
+                placeholder="Name"
+                value="{{ old('name', $user->name) }}">
+            </div>
 
-        <div class="flex mb-4 space-x-9 w-3/4 mx-auto text-center">
-            <label class="text-gray-700 w-36 text-right">Name</label>
-            <input type="text" id="user-name" name="user_name"  class="flex-1 w-64 px-4 py-2 text-slate-600 bg-gray-300  border border-gray-300 rounded-lg shadow-sm" value="{{ Auth::user()->name }}">
-        </div>
+            <div class="mb-3">
+                <input type="email" id="email" name="email" class="w-full p-1 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" 
+                placeholder="Email"
+                value="{{ old('email', $user->email) }}">
+            </div>
 
-        <div class="flex mb-4 space-x-9 w-3/4 mx-auto text-center">
-            <label class="text-gray-700 w-36 text-right">Email</label>
-            <input type="text" id="user-email" name="user_email"  class="flex-1 w-64 px-4 py-2 text-slate-600 bg-gray-300  border border-gray-300 rounded-lg shadow-sm" value="{{ Auth::user()->email }}">
-        </div>
+            <div class="text-left">
+                <div class="flex justify-between items-center">
+                    <a href="{{ route($prefix. '.change-password', $user->id) }}"
+                        class="bg-violet-400 text-white px-6 py-2 rounded-md hover:bg-violet-600 font-medium text-sm hover:text-white">
+                            Change password
+                    </a>
 
-        <!-- Action Buttons -->
-        <div class="flex justify-end gap-3">
-        
-        <!-- Save Button -->
-        <div class="mt-4 px-5">
-               
-                    <button type="submit" class="justify-center text-white bg-violet-400 px-4 py-1 rounded-lg hover:bg-violet-600 font-medium text-sm">
+                    <div class="flex justify-end space-x-1">
+                        <button type="submit" class="bg-violet-400 text-white px-6 py-2 rounded-md hover:bg-violet-600 font-medium text-sm hover:text-white">
                             Save
-                    </button>
-                </a>
-                </div>
-        <!-- Cancel Button -->
-                <div class="mt-4 mb-4">
-                
-                    <button type="submit" class="justify-center text-white bg-orange-400 px-4 py-1 rounded-lg hover:bg-orange-600 font-medium text-sm">
+                        </button>
+                        <a href="{{ route($prefix . '.change-password', $user->id) }}"
+                            class="bg-red-400 text-white px-6 py-2 rounded-md hover:bg-red-600 font-medium text-sm hover:text-white">
                             Cancel
-                    </button>
-                </a>
+                        </a>
+                    </div>
+
                 </div>
+            </div>
+
         </div>
+    </form>
 </x-layout>
+
+<script>
+    function previewImage(event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            const imagePreview = document.getElementById('profile_pic_preview');
+            imagePreview.src = e.target.result;
+        }
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+</script>

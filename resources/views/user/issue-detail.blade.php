@@ -92,13 +92,6 @@
                 </div>
             </div>
             <div class="mb-4">
-            <!-- <label for="attachment" class="block text-black text-sm mb-2">Attachment</label>
-                <input 
-                disabled
-                type="file" 
-                id="attachment" 
-                name="attachment"
-                class="w-full px-4 py-2 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"> -->
                 
                 @if($issue->attachment)
                    <div class="mt-4">

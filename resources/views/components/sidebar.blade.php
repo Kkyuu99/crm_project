@@ -11,11 +11,12 @@
 </span>
 
 <!-- Sidebar -->
-<div class="sidebar fixed flex flex-col justify-between top-0 bottom-0 lg:left-0 left-[100px] p-2 w-64 overflow-auto text-center bg-violet-500 ">
+<div class="sidebar fixed flex flex-col justify-between top-0 bottom-0 lg:left-0 p-2 w-64 overflow-auto text-center bg-violet-500 ">
     <div class="text-gray-100 text-xl mb-3">
         <div class="p-2 mt-1 flex items-center">
-        <img src="{{ Auth::user()->profile_picture_url ?? 'path/to/default/profile.png' }}" alt="Profile Picture" class="h-10 w-10 rounded-full border-2 border-white">
-        <a href="{{ route($prefix . '.user-profile', ['id' => $user->id]) }}" class="font-bold text-white-200 text-base ml-3">
+        <img src="{{ $user->profile_pic ? asset('storage/' . $user->profile_pic) : asset('storage/images/default-profile.png') }}"
+        alt="Profile Picture" class="h-10 w-10 rounded-full border-2 border-white">
+        <a href="{{ route($prefix . '.user-profile', $user->id) }}" class="font-bold text-white-200 text-base ml-3">
             {{ Auth::user()->name }}
         </a>
             <i class="bi bi-x ml-20 cursor-pointer" onclick="Open()"></i>
@@ -57,6 +58,7 @@
             <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Project Detail</h1>
         </a>
     </div> -->
+
     <!-- Dropdown for Issues -->
     <a href="{{ route($prefix . '.issue-list') }}"
         class="{{ request()->routeIs($prefix . '.issue-list') ? 'bg-violet-50 text-violet-600' : 'text-white' }} group flex items-center px-3 py-2 rounded-md hover:bg-violet-50 hover:text-violet-600 transition-colors mb-3">

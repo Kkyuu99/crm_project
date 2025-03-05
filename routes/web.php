@@ -6,7 +6,7 @@
     use App\Http\Controllers\UserController;
     use App\Http\Controllers\DashboardController;
     use App\Http\Controllers\UserProfileController;
-    use App\Http\Controllers\PostController;
+    use App\Http\Controllers\ChangePasswordController;
     use Illuminate\Routing\RouteUri;
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Route;
@@ -30,6 +30,12 @@
         Route::get('/profile/{id}', [UserProfileController::class, 'show'])->name('admin.user-profile');
         Route::get('/profile/{id}/profile-edit', [UserProfileController::class, 'edit'])->name('admin.profile-edit');
         Route::put('/profile/{id}/profile-edit', [UserProfileController::class, 'edit'])->name('admin.profile-edit');
+        Route::put('/profile/{id}/profile-update', [UserProfileController::class, 'update'])->name('admin.profile-update');
+        Route::put('/profile/{id}/profile-delete', [UserProfileController::class, 'delete'])->name('admin.profile-delete');
+        Route::delete('/issues/{id}/remove-profile-pic', [UserProfileController::class, 'removeProfilePic'])->name('remove-profile-pic');
+
+        Route::get('/profile/{id}/change-password', [ChangePasswordController::class, 'showChangePasswordForm'])->name('admin.change-password-form');
+        Route::post('/profile/{id}/change-password', [ChangePasswordController::class, 'changePassword'])->name('admin.change-password');
 
         Route::get('/project-list', [ProjectController::class, 'index'])->name('admin.project-list');
         Route::get('/project-create', [ProjectController::class, 'create'])->name('admin.project-create');
@@ -48,7 +54,8 @@
         Route::put('/issues/{id}/issue-edit', [IssueController::class, 'edit'])->name('admin.issue-edit');
         Route::put('/issues/{id}/issue-update', [IssueController::class, 'update'])->name('admin.issue-update');
         Route::delete('/issues/{id}/issue-delete', [IssueController::class, 'delete'])->name('admin.issue-delete');
-        Route::delete('/issues/{id}/remove-attachment', [IssueController::class, 'removeAttachment'])->name('remove-attachment');
+        Route::delete('/issues/{id}/remove-attachment', [IssueController::class, 'removeAttachment'])->name('admin.remove-attachment');
+
         Route::get('/user-list', [UserController::class, 'user_list'])->name('admin.user-list');
         Route::get('/user-register', [UserController::class, 'create'])->name('admin.user-register');
         Route::post('/user-store', [UserController::class, 'store'])->name('admin.user-store');
@@ -65,6 +72,12 @@
         Route::get('/profile/{id}', [UserProfileController::class, 'show'])->name('user.user-profile');
         Route::get('/profile/{id}/profile-edit', [UserProfileController::class, 'edit'])->name('user.profile-edit');
         Route::put('/profile/{id}/profile-edit', [UserProfileController::class, 'edit'])->name('user.profile-edit');
+        Route::put('/profile/{id}/profile-update', [UserProfileController::class, 'update'])->name('user.profile-update');
+        Route::put('/profile/{id}/profile-delete', [UserProfileController::class, 'delete'])->name('user.profile-delete');
+        Route::delete('/issues/{id}/remove-profile-pic', [UserProfileController::class, 'removeProfilePic'])->name('remove-profile-pic');
+
+        Route::get('/profile/{id}/change-password', [ChangePasswordController::class, 'showChangePasswordForm'])->name('user.change-password-form');
+        Route::post('/profile/{id}/change-password', [ChangePasswordController::class, 'changePassword'])->name('user.change-password');
 
         Route::get('/project-list', [ProjectController::class, 'index'])->name('user.project-list');
         Route::get('/project-create', [ProjectController::class, 'create'])->name('user.project-create');
@@ -82,7 +95,7 @@
         Route::put('/issues/{id}/issue-edit', [IssueController::class, 'edit'])->name('user.issue-edit');
         Route::put('/issues/{id}/issue-update', [IssueController::class, 'update'])->name('user.issue-update');
         Route::delete('/issues/{id}/issue-delete', [IssueController::class, 'delete'])->name('user.issue-delete');
-        Route::delete('/issues/{id}/remove-attachment', [IssueController::class, 'removeAttachment'])->name('remove-attachment');
+        Route::delete('/issues/{id}/remove-attachment', [IssueController::class, 'removeAttachment'])->name('user.remove-attachment');
 
     });
 
