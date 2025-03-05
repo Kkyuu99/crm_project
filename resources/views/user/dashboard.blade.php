@@ -1,3 +1,7 @@
+@php
+    $user = Auth::user();
+    $prefix = $user->role === 'admin' ? 'admin' : 'user';
+@endphp
 <x-layout>
 
   <script>
@@ -107,25 +111,25 @@
 
   <header class="w-full p-6">
     <section class="grid grid-cols-1 md:grid-cols-4 gap-6">
-      <!-- Total Tickets -->
-      <div class="bg-violet-500 shadow-lg rounded-3xl py-4 flex justify-center items-center">
-        <h3 class="text-lg font-semibold text-white">Total Tickets : </h3>
-        <p class="text-3xl font-bold text-white px-2">{{ $totalIssues }}</p>
+      
+      <div class="dashboard-card">
+        <h3>Total Tickets : </h3>
+        <p>{{ $totalIssues }}</p>
       </div>
-      <!-- Due Today Tickets -->
-      <div class="bg-violet-500 shadow-lg rounded-3xl py-4 flex justify-center items-center">
-        <h3 class="text-lg font-semibold text-white">Due Today Tickets : </h3>
-        <p class="text-3xl font-bold text-white px-2">{{ $dueTodayIssues }}</p>
+
+      <div class="dashboard-card">
+        <h3>Today’s Due : </h3>
+        <p>{{ $dueTodayIssues }}</p>
       </div>
-      <!-- Overdue Tickets -->
-      <div class="bg-violet-500 shadow-lg rounded-3xl py-4 flex justify-center items-center">
-        <h3 class="text-lg font-semibold text-white">Overdue Tickets : </h3>
-        <p class="text-3xl font-bold text-white px-2">{{ $overdueIssues }}</p>
+
+      <div class="dashboard-card">
+        <h3>Overdue Tickets : </h3>
+        <p>{{ $overdueIssues }}</p>
       </div>
-      <!-- Closed Tickets -->
-      <div class="bg-violet-500 shadow-lg rounded-3xl py-4 flex justify-center items-center">
-        <h3 class="text-lg font-semibold text-white">Closed Tickets : </h3>
-        <p class="text-3xl font-bold text-white px-2">{{ $closedIssues }}</p>
+
+      <div class="dashboard-card">
+        <h3>Closed Tickets : </h3>
+        <p>{{ $closedIssues }}</p>
       </div>
     </section>
   </header>
@@ -135,16 +139,16 @@
     <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
 
       <!-- Pie Chart and Legend -->
-      <div class="bg-violet-500 shadow rounded-3xl p-2 flex flex-col items-center">
-        <h2 class="text-lg font-semibold text-white">Tickets by Priority</h2>
+      <div class="bg-violet-500 shadow rounded-3xl p-4 flex flex-col items-center">
+        <h2 class="text-white text-xl font-bold text-left">Tickets by Priority</h2>
         <div class="pie-chart">
-          <canvas id="myPieChart" width="270" height="270"></canvas>
+          <canvas id="myPieChart"></canvas>
           <div class="donut-hole"></div>
         </div>
       </div>
 
-      <div class="bg-violet-500 shadow rounded-3xl py-2 flex flex-col px-6 col-span-2">
-        <div class="flex items-center mb-4">
+      <div class="bg-violet-500 shadow rounded-3xl p-4 flex flex-col px-6 col-span-2 items-center">
+        <div class="flex justify-start items-center w-full mb-4">
           <h3 class="text-lg font-semibold text-white">Total Projects : </h3>
           <p class="text-3xl font-bold text-white px-2">{{ $projectCount }}</p>
         </div>
@@ -171,14 +175,23 @@
             @endforeach
           </tbody>
         </table>
+
+        <div class="mt-4">
+          <a href="{{ route($prefix . '.project-list') }}" class="text-violet-300 hover:text-violet-600 font-medium text-md">See More</a>
+        </div>
+
       </div>
+
+      
       
     </section>
     <!-- Table Section (Footer) -->
     <section class="bg-violet-500 text-white shadow rounded-3xl p-6 mt-6 text-center">
       <!-- Bar Chart -->
       <h1 class="text-white text-xl font-bold text-left">Ticket Overview</h1>
-      <canvas id="myBarChart" width="400" height="200"></canvas>
+      <div class="bar-chart mr-4">
+        <canvas id="myBarChart"></canvas>
+      </div>
     </section>
   </main>
 </x-layout>

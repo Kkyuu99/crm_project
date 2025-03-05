@@ -109,7 +109,7 @@
     @if(Auth::user()->role === 'admin')
     <a href="{{ route('admin.project-create') }}">
         <button class="flex items-center justify-start text-white bg-violet-400 px-6 py-2 rounded-lg hover:bg-violet-500 font-medium text-sm mx-5">
-            Add New
+            Add New Project
         </button>
     </a>
     @endif

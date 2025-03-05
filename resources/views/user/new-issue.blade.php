@@ -78,6 +78,9 @@
                     <select id="assignor_user" name="assignor_user"
                         class="w-full px-4 py-2 text-sm rounded-lg border border-gray-300 bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
                         <option value="">Select an assignor</option>
+                        @foreach($users as $user)
+                            <option value="{{ $user->id }}">{{ $user->id }} : {{ $user->name }}</option>
+                        @endforeach
                     </select>
                 </div>
 
@@ -166,31 +169,23 @@
         </form>
     </div>
     
-    <script>var projectUsers = <?php echo json_encode($projectUsers); ?>;
+    <script>
+        
+        var projectUsers = <?php echo json_encode($projectUsers); ?>;
 
         function updateAssignorUserDropdown() {
             const projectId = document.getElementById('project_id').value;
             const assignorDropdown = document.getElementById('assignor_user');
-            const userId = <?php echo json_encode($user->id); ?>;
 
             assignorDropdown.innerHTML = '<option value="">Select an assignor</option>';
 
             if (projectId && projectUsers[projectId]) {
-
-                if (userId && userId !== null) {
-                    
+                projectUsers[projectId].forEach(user => {
                     const option = document.createElement('option');
-                    option.value = userId;
-                    option.textContent = `${userId} : {{ $user->name }}`;
+                    option.value = user.id;
+                    option.textContent = user.name;
                     assignorDropdown.appendChild(option);
-                } else {
-                    projectUsers[projectId].forEach(user => {
-                        const option = document.createElement('option');
-                        option.value = user.id;
-                        option.textContent = `${userId} : {{ $user->name }}`;
-                        assignorDropdown.appendChild(option);
-                    });
-                }
+                });
             }
         }
     </script>

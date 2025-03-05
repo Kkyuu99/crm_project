@@ -1,3 +1,8 @@
+@php
+    $user = Auth::user();
+    $prefix = $user->role === 'admin' ? 'admin' : 'user';
+@endphp
+
 <x-layout>
   
   <script>
@@ -109,27 +114,27 @@
     };
   </script>
 
-<header class="w-full p-6">
+  <header class="w-full p-6">
     <section class="grid grid-cols-1 md:grid-cols-4 gap-6">
-      <!-- Total Tickets -->
-      <div class="bg-violet-500 shadow-lg rounded-3xl py-4 flex justify-center items-center">
-        <h3 class="text-lg font-semibold text-white">Total Projects  :</h3>
-        <p class="text-3xl font-bold text-white px-2">{{ $totalProjects }}</p>
+      
+      <div class="dashboard-card">
+        <h3>Total Projects  :</h3>
+        <p>{{ $totalProjects }}</p>
       </div>
-      <!-- Due Today Tickets -->
-      <div class="bg-violet-500 shadow-lg rounded-3xl py-4 flex justify-center items-center">
-        <h3 class="text-lg font-semibold text-white">Total Tickets : </h3>
-        <p class="text-3xl font-bold text-white px-2">{{ $totalIssues }}</p>
+      
+      <div class="dashboard-card">
+        <h3>Total Tickets : </h3>
+        <p>{{ $totalIssues }}</p>
       </div>
-      <!-- Overdue Tickets -->
-      <div class="bg-violet-500 shadow-lg rounded-3xl py-4 flex justify-center items-center">
-        <h3 class="text-lg font-semibold text-white">Total Users : </h3>
-        <p class="text-3xl font-bold text-white px-2">{{ $totalUsers }}</p>
+      
+      <div class="dashboard-card">
+        <h3>Total Users : </h3>
+        <p>{{ $totalUsers }}</p>
       </div>
-      <!-- Closed Tickets -->
-      <div class="bg-violet-500 shadow-lg rounded-3xl py-4 flex justify-center items-center">
-        <h3 class="text-lg font-semibold text-white">Closed Tickets : </h3>
-        <p class="text-3xl font-bold text-white px-2">{{ $closedIssues }}</p>
+      
+      <div class="dashboard-card">
+        <h3>Closed Tickets : </h3>
+        <p>{{ $closedIssues }}</p>
       </div>
     </section>
   </header>
@@ -142,46 +147,52 @@
       <div class="bg-violet-500 shadow rounded-3xl p-2 flex flex-col items-center">
         <h2 class="text-white text-xl mb-3 text-left font-bold py-2">Tickets by Priority</h2>
         <div class="pie-chart">
-          <canvas id="myPieChart" width="300" height="300"></canvas>
+          <canvas id="myPieChart"></canvas>
           <div class="donut-hole"></div>
         </div>
       </div>
 
       <!-- Ticket status -->
       <div class="bg-violet-500 shadow rounded-3xl py-2 flex flex-col px-6 col-span-2">
-          <h1 class="text-white text-xl mb-8 text-left font-bold py-2">Ticket by status</h1>
-          <canvas id="myBarChart" width="400" height="200"></canvas>
+          <h1 class="text-white text-xl mb-4 text-left font-bold py-2">Ticket by status</h1>
+          <div class="bar-chart mr-4">
+            <canvas id="myBarChart"></canvas>
+          </div>
       </div>
     </section>
 
       <!-- Table Section (Footer) -->
-      <section class="bg-violet-500 text-white shadow rounded-3xl p-6 mt-6 text-center">
+      <section class="dashboard-gradient text-white shadow rounded-3xl p-6 mt-6 text-center">
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse">
             <thead>
-              <tr>
-                <th class="border-b p-4">ID</th>
+              <tr class="bg-white text-violet-600">
+                <th class="border-b p-4 rounded-tl-lg p-4">ID</th>
                 <th class="border-b p-4">Subject</th>
                 <th class="border-b p-4">Assignor</th>
                 <th class="border-b p-4">Priority</th>
                 <th class="border-b p-4">Status</th>
-                <th class="border-b p-4">Due Date</th>
+                <th class="border-b p-4 rounded-tr-lg p-4">Due Date</th>
               </tr>
             </thead>
             <tbody>
               @foreach ($issues as $issue)
-                <tr class>
+                <tr>
                   <td class="border-b p-4">{{ $issue->id }}</td>
                   <td class="border-b p-4">{{ $issue->subject }}</td>
-                  <td class="border-b p-4">{{ $issue->assignor_user }}</td>
+                  <td class="border-b p-4">{{ $issue->user->name }}</td>
                   <td class="border-b p-4">{{ $issue->priority }}</td>
                   <td class="border-b p-4">{{ $issue->issue_status }}</td>
                   <td class="border-b p-4">{{ $issue->due_date }}</td>
                 </tr>
               @endforeach
             </tbody>
-        </div>
-      </table>
+        </table>
+      </div>
+
+      <div class="mt-4">
+          <a href="{{ route($prefix . '.issue-list') }}" class="text-violet-300 hover:text-violet-600 font-medium text-md">See More</a>
+      </div>
     </section>
   </main>
 </x-layout>

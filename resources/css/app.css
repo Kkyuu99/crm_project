@@ -58,3 +58,37 @@
     opacity: 0;
     transform: translateX(100%);
 }
+.dashboard-gradient {
+    background: linear-gradient(to bottom, #8B5CF6 70%, #5c1fb1 100%);
+}
+
+.pie-chart canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+.bar-chart canvas {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.dashboard-card {
+    background-color: #8B5CF6; /* Violet-500 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow-lg */
+    border-radius: 1.5rem; /* Rounded-3xl */
+    padding: 1rem; /* py-4 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .dashboard-card h3 {
+    font-size: 1.125rem; /* text-lg */
+    font-weight: 600; /* font-semibold */
+    color: white;
+  }
+  .dashboard-card p {
+    font-size: 1.875rem; /* text-3xl */
+    font-weight: 700; /* font-bold */
+    color: white;
+    padding-left: 0.5rem; /* px-2 */
+    padding-right: 0.5rem; /* px-2 */
+  }

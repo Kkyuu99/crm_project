@@ -64,7 +64,9 @@
         </td>
         <td class="custom-table-cell text-md">{{$issue->issue_status}}</td>
         <td class="custom-table-cell text-md">{{$issue->due_date}}</td>
-        <td class="custom-table-cell text-md">{{$issue->assignor_user}}</td>
+        <td class="custom-table-cell text-md">
+          {{$issue->user->name}}
+        </td>
         <td class="custom-table-cell text-md">{{$issue->total_duration}}</td>
         <td class="custom-table-cell text-md text-md bg-[linear-gradient(to_bottom,_black_30%,_white_90%)] bg-clip-text text-transparent">
             <div class="solution" data-full-text="{{ $issue->solution }}">
