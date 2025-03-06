@@ -58,14 +58,14 @@
                             <input type="checkbox" name="remember" class="mr-2 rounded focus:outline-none">
                             Remember Me
                         </label>
-                        <a href="/auth/forgot-password" class="text-purple-200 hover:underline text-sm">Forgot Password?</a>
+                        <a href="{{ route('password.request') }}" class="text-purple-200 hover:underline text-sm">Forgot Password?</a>
                     </div>
 
                     <div class="w-32 mx-auto">
 
                         <button
                             type="submit"
-                            class="bg-violet-400 text-white px-6 py-1 rounded-md hover:bg-purple-500 font-medium text-sm">
+                            class="bg-violet-400 text-white px-6 py-1 rounded-md hover:bg-violet-700 font-medium text-sm">
                             Login
                         </button>
                     </div>
@@ -106,7 +106,7 @@
                 }, 100);
                 
                 setTimeout(function() {
-                    successMessage.classList.add('hidden');
+                    errorMessage.classList.add('hidden');
                 }, 3000);
             }
         };

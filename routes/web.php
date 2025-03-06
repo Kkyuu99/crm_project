@@ -7,6 +7,8 @@
     use App\Http\Controllers\DashboardController;
     use App\Http\Controllers\UserProfileController;
     use App\Http\Controllers\ChangePasswordController;
+    use App\Http\Controllers\ForgotPasswordController;
+    use App\Http\Controllers\ResetPasswordController;
     use Illuminate\Routing\RouteUri;
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Route;
@@ -20,9 +22,14 @@
         return redirect()->route('login');
     })->middleware('auth');
 
-    Route::get('/login', [AuthController::class, 'get_login'])->name('login')->middleware('guest');
-    Route::post('/login', [AuthController::class, 'post_login'])->name('login.post');
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+    Route::get('login', [AuthController::class, 'get_login'])->name('login')->middleware('guest');
+    Route::post('login', [AuthController::class, 'post_login'])->name('login.post');
+    Route::post('logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+
+    Route::get('forgot-password', [ForgotPasswordController::class, 'showForgotForm'])->name('password.request');
+    Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLink'])->name('password.email');
+    Route::get('reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+    Route::post('reset-password', [ResetPasswordController::class, 'resetPassword'])->name('password.update');
 
     Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'adminDashboard'])->name('admin.dashboard');
@@ -98,8 +105,6 @@
         Route::delete('/issues/{id}/remove-attachment', [IssueController::class, 'removeAttachment'])->name('user.remove-attachment');
 
     });
-
-    Route::get('/auth/forgot-password', [AuthController::class, 'forgot']);
 
 
 

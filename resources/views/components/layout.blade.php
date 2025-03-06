@@ -14,11 +14,11 @@
 
     <div class="min-h-screen flex flex-col gap-1">
         <div class="flex flex-1 flex-col">
-            @if(!request()->is('login')) <!-- Check if the current route is not the login page -->
+            @if(!request()->is('login') || !request()->is('forgot-password')  || request()->is('reset-password/*'))
                 <x-sidebar class="flex-1" />
             @endif
             <main class="flex-1 bg-white mx-auto mr-3 rounded-lg 
-            {{ request()->is('login') ? 'ml-0' : 'ml-64' }}">
+            {{ (request()->is('login') || request()->is('forgot-password') || request()->is('reset-password/*')) ? 'ml-0' : 'ml-64' }}">
                 {{ $slot}}
             </main>
         </div>
