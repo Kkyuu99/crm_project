@@ -13,7 +13,7 @@
         <hr class="mb-6">
     
         <div class="overflow-auto scrollbar scrollbar-blue-500 scrollbar-track-[#AB96FA]">
-            <table class="w-full w-auto border-collapse border border-gray-950 p-60 mb-3">
+            <table class="w-full border-collapse border border-gray-950 p-60 mb-3">
                 <thead class="bg-[#EEEEEE]">
                     <tr class="font-normal text-xs text-[#17147B] ">
                         <th class="border border-gray-300 px-2 py-1">Project-id</th>
