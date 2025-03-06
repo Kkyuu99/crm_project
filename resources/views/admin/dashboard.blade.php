@@ -31,9 +31,7 @@
           options: {
               responsive: true,
                 layout: {
-                   padding: {
-                       top: 20 // Adds space above the pie chart
-                   }
+                   padding: { top: 20 }
                 },
               plugins: {
                   legend: {
@@ -43,9 +41,7 @@
                           boxWidth: 12,
                           padding : 20,
                           usePointStyle: true,
-                          font: {
-                              size: 14
-                          }
+                          font: { size: 14 }
                     },
                   },
               tooltip: {
@@ -61,7 +57,11 @@
               }
             },
               borderWidth: 0,
-              cutout: '50%',
+              cutout: '50%',  
+              animation: {
+              animateScale: true,  // This enables scaling animation for doughnut charts
+              animateRotate: true  // This enables the rotation animation for doughnut charts
+          }
             }
         });
 

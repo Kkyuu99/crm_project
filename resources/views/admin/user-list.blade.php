@@ -10,8 +10,38 @@
         </div>
     @endif
     
-  <h1 class="text-2xl font-bold text-black my-4 text-center">User List</h1>
-  <hr class="border-t-1 border-gray-300 my-4" />
+    <div class="flex justify-between items-center">
+        <h1 class="text-2xl font-bold my-4 text-center flex-grow">User List</h1>
+
+        <button id="filter-button" class="bg-violet-400 text-white px-6 py-2 mr-4 rounded-md hover:bg-violet-500 font-medium text-sm">
+            Filter
+        </button>
+    </div>
+
+  <div id="filter-form" class="absolute right-0 mt-2 bg-white shadow-lg p-4 rounded-md hidden w-40">
+    <form action="{{ route('admin.user-list') }}" method="GET">
+        <div class="flex flex-wrap">
+            @foreach ($roles as $role)
+                <div class="mr-4">
+                    <label>
+                        <input type="checkbox" name="roles[]" value="{{ $role }}" class="mr-2"
+                            @if (request()->has('roles') && in_array($role, request()->input('roles'))) checked @endif>
+                        {{ $role }}
+                    </label>
+                </div>
+            @endforeach
+        </div>
+
+        <div class="flex justify-end mt-2">
+            <button type="submit" class="bg-gray-200 text-gray-400 px-6 py-2 rounded-md hover:bg-gray-300 font-medium text-sm">Apply Filter</button>
+        </div>
+        <a href="{{ route('admin.user-list') }}" class="block text-center text-red-500 text-sm mt-2 hover:underline">
+                    Remove All Filters
+        </a>
+    </form>
+</div>
+
+  <hr class="border-t-1 border-gray-300 mb-4" />
 
   <div class="overflow-x-auto overflow-y-auto max-w-full px-4 mb-2 rounded-md scrollbar-thin scrollbar-thumb-soft-purple scrollbar-track-gray-200">
     <table class="table-auto border-collapse border border-gray-300 custom-table users-table text-center">
@@ -29,7 +59,6 @@
 
       @foreach ($users as $user)
       @php
-        $prefix = Auth::user()->role === 'admin' ? 'admin' : 'user';
         $userDetailRoute = route($prefix . '.user-detail', $user->id);
       @endphp
       <tr class="hover:bg-gray-100 cursor-pointer" onclick="location.href='{{ $userDetailRoute }}'">
@@ -104,37 +133,20 @@
                 }, 100);
                 
                 setTimeout(function() {
-                    successMessage.classList.add('hidden');
+                    errorMessage.classList.add('hidden');
                 }, 3000);
             }
         };
+
+        document.addEventListener("DOMContentLoaded", function() {
+        const filterButton = document.getElementById('filter-button');
+        const filterForm = document.getElementById('filter-form');
+
+        if (filterButton && filterForm) {
+            filterButton.addEventListener('click', function() {
+                filterForm.classList.toggle('hidden');
+            });
+        }
+    });
 </script>
 
-<script>
-        window.onload = function() {
-            const successMessage = document.getElementById('success-message');
-            const errorMessage = document.getElementById('error-message');
-
-            if (successMessage) {
-                
-                setTimeout(function() {
-                    successMessage.classList.add('show');
-                }, 100);
-
-                setTimeout(function() {
-                    successMessage.classList.add('hidden');
-                }, 3000);
-            }
-
-            if (errorMessage) {
-
-                setTimeout(function() {
-                    errorMessage.classList.add('show');
-                }, 100);
-                
-                setTimeout(function() {
-                    successMessage.classList.add('hidden');
-                }, 3000);
-            }
-        };
-</script>

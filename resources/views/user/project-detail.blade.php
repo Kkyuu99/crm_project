@@ -67,6 +67,7 @@
                 class="bg-red-400 text-white px-6 py-2 rounded-md hover:bg-red-600 font-medium text-sm hover:text-white">
                 Back
             </a>
+            @if(Auth::user()->role === 'admin')
             <form action="{{ route($prefix . '.project-edit', $project->id) }}" method="POST">
                 @csrf
                 <input type="hidden" name="_method" value="PUT">
@@ -75,6 +76,7 @@
                 class="bg-purple-400 text-white px-6 py-2 rounded-md hover:bg-purple-700 font-medium text-sm hover:text-white">
                 Edit</button>
             </form>
+            @endif
         </div>
     </div>
 </x-layout>

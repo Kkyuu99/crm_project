@@ -1,8 +1,3 @@
-@php
-    $user = Auth::user();
-    $prefix = $user->role === 'admin' ? 'admin' : 'user';
-@endphp
-
 <x-layout>
 
     @if(session('success'))
@@ -16,15 +11,18 @@
     @endif
 
     <div class="flex justify-between items-center">
-        <h1 class="text-2xl font-bold my-4 text-center flex-grow">Project Lists</h1>
+        <h1 class="text-2xl font-bold my-4 text-center flex-grow">Project List</h1>
 
-        <!-- <button id="filter-button" class="bg-violet-400 text-white px-6 py-2 mr-4 rounded-md hover:bg-violet-500 font-medium text-sm">
+        <button id="filter-button" class="bg-violet-400 text-white px-6 py-2 mr-4 rounded-md hover:bg-violet-500 font-medium text-sm">
             Filter
-        </button> -->
+        </button>
     </div>
 
-    <!-- <div id="filter-form" class="bg-white shadow-lg p-4 rounded-md mb-4 hidden">
-        <form action="{{ route($prefix . '.project-list') }}" method="GET">
+
+    <div id="filter-form" class="absolute right-0 mt-2 bg-white shadow-lg p-4 rounded-md hidden w-40">
+       <form action="{{ route($prefix. '.project-list') }}" method="GET">
+       <div class="mb-2">
+            <h3 class="text-sm font-medium">Project Types</h3>
             <div class="flex flex-wrap">
                 @foreach ($projectTypes as $type)
                     <div class="mr-4">
@@ -36,12 +34,33 @@
                     </div>
                 @endforeach
             </div>
-            <div class="flex justify-end">
-                <button type="submit" class="bg-violet-400 text-white px-6 py-2 rounded-md hover:bg-violet-500 font-medium text-sm">Apply Filter</button>
+        </div>
+
+        <div class="mt-3">
+            <h3 class="text-sm font-medium">Status</h3>
+            <div class="flex flex-wrap">
+                @foreach ($statuses as $status)
+                    <div class="mr-4">
+                        <label>
+                            <input type="checkbox" name="statuses[]" value="{{ $status }}" class="mr-2"
+                                @if (request()->has('statuses') && in_array($status, request()->input('statuses'))) checked @endif>
+                            {{ $status }}
+                        </label>
+                    </div>
+                @endforeach
             </div>
-        </form>
-    </div> -->
-    
+        </div>
+
+        <div class="flex justify-end mt-2">
+            <button type="submit" class="bg-gray-200 text-gray-400 px-6 py-2 rounded-md hover:bg-gray-300 font-medium text-sm">Apply Filter</button>
+        </div>
+        
+        <a href="{{ route($prefix .'.project-list') }}" class="block text-center text-red-500 text-sm mt-2 hover:underline">
+                    Remove All Filters
+        </a>
+    </form>
+    </div>
+
     <hr class="border-t-1 border-gray-300 mb-4" />
 
     <div class="overflow-x-auto overflow-y-auto max-w-full px-4 mb-2 rounded-md scrollbar-thin scrollbar-thumb-soft-purple scrollbar-track-gray-200">
@@ -63,17 +82,12 @@
                     <th class="custom-table-column border border-gray-300 text-md">Action</th>
                     @endif
                 </tr>
-            </thead>
-
-            <tbody>
+            </thead><tbody>
                 @foreach ($projects as $project)
                   @php
                     $user = Auth::user();
-                    $prefix = $user->role === 'admin' ? 'admin' : 'user';
                     $projectDetailRoute = route($prefix . '.project-detail', $project->id);
-                  @endphp
-
-                <tr class="hover:bg-gray-100 cursor-pointer" onclick="location.href='{{ $projectDetailRoute }}'">
+                  @endphp<tr class="hover:bg-gray-100 cursor-pointer" onclick="location.href='{{ $projectDetailRoute }}'">
                     <td class="custom-table-cell">{{ $loop->iteration + (($projects->currentPage() - 1) * $projects->perPage()) }}</td>
                     <td class="custom-table-cell">{{ $project->id }}</td>
                     <td class="custom-table-cell">{{ $project->project_type }}</td>
@@ -97,7 +111,7 @@
                                 @method('DELETE')
                                 <button type="submit" class="bg-red-400 px-4 py-2 mx-2 text-black hover:bg-red-600 hover:text-white">Delete</button>
                             </form>
-                        </div>    
+                        </div>
                     </td>
                     @endif
                 </tr>
@@ -146,21 +160,19 @@
             }, 100);
             
             setTimeout(function() {
-                successMessage.classList.add('hidden');
+                errorMessage.classList.add('hidden');
             }, 3000);
         }
     };
 
-//     document.getElementById('filter-button').addEventListener('click', function() {
-//         const filterForm = document.getElementById('filter-form');
-//         filterForm.classList.toggle('hidden');
-//     });
+    document.addEventListener("DOMContentLoaded", function() {
+        const filterButton = document.getElementById('filter-button');
+        const filterForm = document.getElementById('filter-form');
 
-//     document.querySelector('form').addEventListener('submit', function(e) {
-//     e.preventDefault();
-//     console.log("Form is being submitted");
-//     this.submit();
-// });
-
-
+        if (filterButton && filterForm) {
+            filterButton.addEventListener('click', function() {
+                filterForm.classList.toggle('hidden');
+            });
+        }
+    });
 </script>

@@ -13,27 +13,37 @@ use Illuminate\Support\Facades\Auth;
 class IssueController extends Controller
 {
 
-    public function index()
-    {
+    public function index(Request $request)
+    {   
+        $prefix = Auth::user()->role;
+        $query = Issue::query();
+        $priorities = Issue::distinct()->pluck('priority')->toArray();
+        $statuses = Issue::distinct()->pluck('issue_status')->toArray();
+
+        if ($request->has('priorities')) {
+            $query->whereIn('priority', $request->input('priorities'));
+        }
+
+        if ($request->has('statuses')) {
+            $query->whereIn('issue_status', $request->input('statuses'));
+        }
+
         if (Auth::check()) {
             $userId = Auth::id();
             $userRole = Auth::user()->role;
             
             if ($userRole === 'admin') {
-                $issues = Issue::orderBy('created_at', 'desc')->paginate(5);
+                $issues = $query->orderBy('created_at', 'desc')->paginate(5);
             } else {
-                $issues = Issue::where('assignor_user', $userId)
+                $issues = $query->where('assignor_user', $userId)
                                ->orderBy('created_at', 'desc')
                                ->paginate(5);
             }
-        } else {
-        $issues = collect();
+        } 
+        else {
+            $issues = collect();
         }
-        $prefix = Auth::user()->role === 'admin' ? 'admin' : 'user';
-        return view('user.issue-list',[
-            'issues' => $issues,
-            'prefix' => $prefix
-        ]);
+        return view('user.issue-list',compact('issues','prefix','priorities','statuses','prefix'));
     }
 
     public function create(Request $request)

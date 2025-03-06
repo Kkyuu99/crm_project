@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Project;
@@ -8,32 +7,37 @@ use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
-
     public function index(Request $request)
     {
+        $prefix = Auth::user()->role;
+        $query = Project::query();
+
         $user = Auth::user();
 
-        $projectTypes = Project::distinct()->pluck('project_type');
-        
-        $projects = Project::query();
+        $projectTypes = Project::distinct()->pluck('project_type')->toArray();
+        $statuses = Project::distinct()->pluck('status')->toArray();
 
-        $selectedProjectTypes = $request->input('project_types');
-
-        if ($selectedProjectTypes) {
-            $projects = $projects->whereIn('project_type', $selectedProjectTypes);
+        if ($request->has('project_types')) {
+            $query->whereIn('project_type', $request->input('project_types'));
         }
 
-        if($user->role === 'admin'){
-            $projects = Project::orderBy('created_at', 'desc')->paginate(5);
-        }else{
-            $projects = Project::whereHas('users', function ($query) use ($user) {
-                $query->where('users.id', $user->id);
+        if ($request->has('statuses')) {
+            $query->whereIn('status', $request->input('statuses'));
+        }
+
+        if ($user->role === 'admin') {
+            $projects = $query->orderBy('created_at', 'desc')->paginate(5);
+        } else {
+            $projects = $query->whereHas('users', function ($q) use ($user) {
+                $q->where('users.id', $user->id);
             })->orderBy('created_at', 'desc')->paginate(5);
         }
-        return view('user.project-list',compact('projects','projectTypes'));
+
+        return view('user.project-list', compact('projects', 'projectTypes','statuses','prefix'));
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $project = Project::findOrFail($id);
 
         if (!$project) {
@@ -42,8 +46,8 @@ class ProjectController extends Controller
         return view('user.project-edit', compact('project'));
     }
 
-
-    public function create(){
+    public function create()
+    {
         return view('user.new-project');
     }
 
@@ -60,20 +64,20 @@ class ProjectController extends Controller
             'contact_email' => 'required|string|max:255',
             'status' => 'required|string',
         ]);
-        Project::create($validated);
 
         $validated['created_by'] = Auth::id();
         $validated['updated_by'] = Auth::id();
 
-         return redirect()->route($prefix . '.project-list')->with('success', 'Project created successfully!');
-     }
+        Project::create($validated);
 
-     public function show($id)
-     {
+        return redirect()->route($prefix . '.project-list')->with('success', 'Project created successfully!');
+    }
+
+    public function show($id)
+    {
         $project = Project::findOrFail($id);
         return view('user.project-detail', compact('project'));
-     }
-     
+    }
 
     public function update(Request $request, $id)
     {
@@ -92,7 +96,7 @@ class ProjectController extends Controller
             'contact_name' => 'required|string|max:255',
             'contact_phone' => 'nullable|string|max:255',
             'contact_email' => 'required|string|max:255',
-            'status' => 'required|string', 
+            'status' => 'required|string',
         ]);
 
         $validated['updated_by'] = Auth::id();
@@ -101,7 +105,8 @@ class ProjectController extends Controller
         return redirect()->route($prefix . '.project-list')->with('success', 'Project updated successfully!');
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         $project = Project::findOrFail($id);
         $project->deleted_by = Auth::id();
         $project->delete();

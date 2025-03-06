@@ -14,12 +14,17 @@ class UserController extends Controller
     public function index(){
         return view('admin.user-list');
     }
-    public function user_list()
+    public function user_list(Request $request)
     {
-        $users = User::orderBy('created_at', 'desc')->paginate(5);
-        return view('admin.user-list',[
-            'users' => $users
-        ]);
+        $prefix = Auth::user()->role;
+        $query = User::query();
+        $roles = User::distinct()->pluck('role')->toArray();
+
+        if ($request->has('roles')) {
+            $query->whereIn('role', $request->input('roles'));
+        }
+        $users = $query->orderBy('created_at', 'desc')->paginate(5);
+        return view('admin.user-list',compact('users','roles','prefix'));
     }
 
     public function create()
