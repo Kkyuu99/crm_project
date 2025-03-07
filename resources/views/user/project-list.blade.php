@@ -15,13 +15,11 @@
         </div>
     @endif
 
-    <div class="flex justify-between items-center">
         <h1 class="text-2xl font-bold my-4 text-center flex-grow">Project Lists</h1>
 
         <!-- <button id="filter-button" class="bg-violet-400 text-white px-6 py-2 mr-4 rounded-md hover:bg-violet-500 font-medium text-sm">
             Filter
         </button> -->
-    </div>
 
     <!-- <div id="filter-form" class="bg-white shadow-lg p-4 rounded-md mb-4 hidden">
         <form action="{{ route($prefix . '.project-list') }}" method="GET">
@@ -48,19 +46,19 @@
         <table class="table-auto border-collapse border border-gray-300 custom-table projects-table text-center">
             <thead>
                 <tr class="bg-white text-blue-b">
-                    <th class="custom-table-column border border-gray-300 text-md">No.</th>
-                    <th class="custom-table-column border border-gray-300 text-md">Project ID</th>
-                    <th class="custom-table-column border border-gray-300 text-md">Project Type</th>
-                    <th class="custom-table-column border border-gray-300 text-md">Project Name</th>
-                    <th class="custom-table-column border border-gray-300 text-md">Status</th>
-                    <th class="custom-table-column border border-gray-300 text-md">Organization Name</th>
-                    <th class="custom-table-column border border-gray-300 text-md">Contact Name</th>
-                    <th class="custom-table-column border border-gray-300 text-md">Contact Email</th>
-                    <th class="custom-table-column border border-gray-300 text-md">Contact Phone</th>
-                    <th class="custom-table-column border border-gray-300 text-md">Created Date</th>
+                    <th class="custom-table-column">No.</th>
+                    <th class="custom-table-column">Project ID</th>
+                    <th class="custom-table-column">Project Type</th>
+                    <th class="custom-table-column">Project Name</th>
+                    <th class="custom-table-column">Status</th>
+                    <th class="custom-table-column">Organization Name</th>
+                    <th class="custom-table-column">Contact Name</th>
+                    <th class="custom-table-column">Contact Email</th>
+                    <th class="custom-table-column">Contact Phone</th>
+                    <th class="custom-table-column">Created Date</th>
 
                     @if(Auth::user()->role === 'admin')
-                    <th class="custom-table-column border border-gray-300 text-md">Action</th>
+                    <th class="custom-table-column">Action</th>
                     @endif
                 </tr>
             </thead>
@@ -88,14 +86,12 @@
                     @if(Auth::user()->role === 'admin')
                     <td class="custom-table-cell">
                         <div class="flex">
-                            <a href="{{ route($prefix . '.project-edit', $project->id) }}" class="btn btn-update">
-                                    <button class="bg-yellow-400 px-4 py-2 text-center hover:bg-yellow-600 hover:text-white">Edit</button>
-                            </a>
+                            <a href="{{ route($prefix . '.project-edit', $project->id) }}" class="btn-edit">Edit</a>
 
                             <form action="{{ route($prefix . '.project-delete', $project->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="bg-red-400 px-4 py-2 mx-2 text-black hover:bg-red-600 hover:text-white">Delete</button>
+                                <button type="submit" class="btn-delete">Delete</button>
                             </form>
                         </div>    
                     </td>
@@ -108,7 +104,7 @@
 
     @if(Auth::user()->role === 'admin')
     <a href="{{ route('admin.project-create') }}">
-        <button class="flex items-center justify-start text-white bg-violet-400 px-6 py-2 rounded-lg hover:bg-violet-500 font-medium text-sm mx-5">
+        <button class="btn-add">
             Add New Project
         </button>
     </a>

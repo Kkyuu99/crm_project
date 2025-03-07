@@ -8,8 +8,8 @@
         @csrf
         @method('PUT')
 
-        <h1 class="text-xl font-bold text-center mb-4">Edit Project Details</h1>
-        <hr class="mb-6">
+        <h1 class="text-2xl font-bold text-center mb-4">Edit Project Details</h1>
+        <hr class="border-t-1 border-gray-300 my-4" />
 
         @if ($errors->any())
             <div class="bg-red-500 text-white p-4 rounded-md mb-4">
@@ -76,10 +76,10 @@
 
         <div class="flex flex-row-reverse  space-x-1 space-x-reverse">
             <a href="{{ route($prefix . '.project-list') }}"
-                class="bg-red-400 text-white px-6 py-2 rounded-md hover:bg-red-600 font-medium text-sm hover:text-white">
+                class="cancel-link">
                 Back
             </a>
-            <button type="submit" class="px-4 py-1 bg-violet-400 text-white font-normal rounded-lg shadow-md hover:bg-violet-600">
+            <button type="submit" class="create-button">
                 Update
             </button>
         </div>

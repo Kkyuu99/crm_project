@@ -18,19 +18,19 @@
         <thead>
         <tr class="bg-white text-blue-b">
           <th class="custom-table-column border border-gray-300 text-md">No.</th>
-          <th class="custom-table-column border border-gray-300 text-md">Issue ID</th>
-          <th class="custom-table-column border border-gray-300 text-md">Subject</th>
-          <th class="custom-table-column border border-gray-300 text-md">Description</th>
-          <th class="custom-table-column border border-gray-300 text-md">Project ID</th>
-          <th class="custom-table-column border border-gray-300 text-md">Priority</th>
-          <th class="custom-table-column border border-gray-300 text-md">Attachment</th>
-          <th class="custom-table-column border border-gray-300 text-md">Status</th>
-          <th class="custom-table-column border border-gray-300 text-md">Due date</th>
-          <th class="custom-table-column border border-gray-300 text-md">Assignor</th>
-          <th class="custom-table-column border border-gray-300 text-md">Duration</th>
-          <th class="custom-table-column border border-gray-300 text-md">Solution</th>
-          <th class="custom-table-column border border-gray-300 text-md">Remark</th>
-          <th class="custom-table-column border border-gray-300 text-md">Action</th>
+          <th class="custom-table-column">Issue ID</th>
+          <th class="custom-table-column">Subject</th>
+          <th class="custom-table-column">Description</th>
+          <th class="custom-table-column">Project ID</th>
+          <th class="custom-table-column">Priority</th>
+          <th class="custom-table-column">Attachment</th>
+          <th class="custom-table-column">Status</th>
+          <th class="custom-table-column">Due date</th>
+          <th class="custom-table-column">Assignor</th>
+          <th class="custom-table-column">Duration</th>
+          <th class="custom-table-column">Solution</th>
+          <th class="custom-table-column">Remark</th>
+          <th class="custom-table-column">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -85,10 +85,7 @@
             <form action="{{ route($prefix . '.issue-edit', $issue->id) }}" method="POST">
               @csrf
               <input type="hidden" name="_method" value="PUT">
-              <button
-              type="submit"
-              class="bg-yellow-400 px-4 py-2 text-center hover:bg-yellow-600 hover:text-white">
-              Edit</button>
+              <button type="submit"class="btn-edit">Edit</button>
             </form>
 
             <form action="{{ route($prefix . '.issue-delete', $issue->id) }}" method="POST">
@@ -96,7 +93,7 @@
                 @method('DELETE')
                 <button
                 type="submit"
-                class="bg-red-400 px-4 py-2 mx-2 text-black hover:bg-red-600 hover:text-white">Delete</button>
+                class="btn-delete">Delete</button>
             </form>
           </div> 
         </td>
@@ -107,9 +104,7 @@
   </div>
   
   <a href="{{ route($prefix . '.issue-create') }}">
-    <button class="flex items-center justify-start text-white bg-violet-400 px-6 py-2 rounded-lg hover:bg-violet-500 font-medium text-sm mx-5">
-      Add New Issue
-    </button>
+    <button class="btn-add"> Add New Issue</button>
   </a>
 
   <div class="my-4 flex justify-center">

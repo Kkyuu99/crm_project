@@ -166,24 +166,24 @@
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse">
             <thead>
-              <tr class="bg-white text-violet-600">
-                <th class="border-b p-4 rounded-tl-lg p-4">ID</th>
-                <th class="border-b p-4">Subject</th>
-                <th class="border-b p-4">Assignor</th>
-                <th class="border-b p-4">Priority</th>
-                <th class="border-b p-4">Status</th>
-                <th class="border-b p-4 rounded-tr-lg p-4">Due Date</th>
-              </tr>
+            <tr class="table-header">
+              <th class="th-rounded-left">ID</th>
+              <th class="th-common">Subject</th>
+              <th class="th-common">Assignor</th>
+              <th class="th-common">Priority</th>
+              <th class="th-common">Status</th>
+              <th class="th-rounded-right">Due Date</th>
+            </tr>
             </thead>
             <tbody>
               @foreach ($issues as $issue)
                 <tr>
-                  <td class="border-b p-4">{{ $issue->id }}</td>
-                  <td class="border-b p-4">{{ $issue->subject }}</td>
-                  <td class="border-b p-4">{{ $issue->user->name }}</td>
-                  <td class="border-b p-4">{{ $issue->priority }}</td>
-                  <td class="border-b p-4">{{ $issue->issue_status }}</td>
-                  <td class="border-b p-4">{{ $issue->due_date }}</td>
+                  <td class="table-data">{{ $issue->id }}</td>
+                  <td class="table-data">{{ $issue->subject }}</td>
+                  <td class="table-data">{{ $issue->user->name }}</td>
+                  <td class="table-data">{{ $issue->priority }}</td>
+                  <td class="table-data">{{ $issue->issue_status }}</td>
+                  <td class="table-data">{{ $issue->due_date }}</td>
                 </tr>
               @endforeach
             </tbody>

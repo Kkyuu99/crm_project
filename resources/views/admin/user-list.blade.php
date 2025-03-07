@@ -17,12 +17,12 @@
     <table class="table-auto border-collapse border border-gray-300 custom-table users-table text-center">
         <thead>
         <tr class="bg-white text-blue-b">
-          <th class="custom-table-column border border-gray-300 text-md" style="font-size: 16px;">No.</th>
-          <th class="custom-table-column border border-gray-300 text-md" style="font-size: 16px;">Name</th>
-          <th class="custom-table-column border border-gray-300 text-md" style="font-size: 16px;">user ID</th>
-          <th class="custom-table-column border border-gray-300 text-md" style="font-size: 16px;">Email</th>
-          <th class="custom-table-column border border-gray-300 text-md" style="font-size: 16px;">Role</th>
-          <th class="custom-table-column border border-gray-300 text-md" style="font-size: 16px;">Action</th>
+          <th class="custom-table-column" style="font-size: 16px;">No.</th>
+          <th class="custom-table-column" style="font-size: 16px;">Name</th>
+          <th class="custom-table-column" style="font-size: 16px;">user ID</th>
+          <th class="custom-table-column" style="font-size: 16px;">Email</th>
+          <th class="custom-table-column" style="font-size: 16px;">Role</th>
+          <th class="custom-table-column" style="font-size: 16px;">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -43,17 +43,12 @@
           <form action="{{ route('admin.user-edit', $user->id) }}" method="POST">
             @csrf
             <input type="hidden" name="_method" value="PUT">
-            <button
-            type="submit"
-            class="bg-yellow-400 px-4 py-2 text-center hover:bg-yellow-600 hover:text-white">
-            Edit</button>
+            <button type="submit" class="btn-edit">Edit</button>
           </form>
           <form action="{{ route('admin.user-delete', $user->id) }}" method="POST">
               @csrf
               @method('DELETE')
-              <button
-              type="submit"
-              class="bg-red-400 px-4 py-2 mx-2 text-black hover:bg-red-600 hover:text-white">Delete</button>
+              <button type="submit" class="btn-delete">Delete</button>
           </form>
           </div>
       </td>
@@ -64,11 +59,7 @@
   </div>
   
   <a href="{{ route('admin.user-register') }}">
-  <button
-    class="flex items-center justify-start text-white bg-violet-400 px-6 py-2 rounded-lg hover:bg-violet-500 font-medium text-sm mx-5"
-    >
-    Register new user
-  </button>
+  <button class="btn-add">Register new user</button>
   </a>
 
   <div class="my-4 flex justify-center">

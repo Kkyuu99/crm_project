@@ -157,12 +157,12 @@
 
             <div class="flex flex-row-reverse  space-x-1 space-x-reverse">
                 <a href="{{  route($prefix . '.issue-list')  }}"
-                    class="bg-red-400 text-white px-6 py-2 rounded-md hover:bg-red-600 font-medium text-sm hover:text-white">
+                    class="cancel-link">
                     Cancel
                 </a>
                 <button
                    type="submit"
-                   class="bg-violet-400 text-white px-6 py-2 rounded-md hover:bg-violet-700 font-medium text-sm hover:text-white">
+                   class="create-button">
                     Save
                 </button>
             </div>

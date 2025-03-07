@@ -9,7 +9,7 @@
         @csrf
         
         <h1 class="text-xl font-bold text-left mb-4">New Project</h1>
-        <hr class="mb-6">
+        <hr class="border-t-1 border-gray-300 mb-4" />
 
         @if ($errors->any())
                 <div class="text-red-500 text-sm mt-2 mb-6">
@@ -87,10 +87,10 @@
             </div>
 
             <div class="py-6 flex gap-2">
-                <button type="submit" class="w-full px-8 py-2 bg-violet-500 text-white text-sm font-regular rounded-lg shadow-sm hover:bg-violet-400">
+                <button type="submit" class="create-button">
                     Create
                 </button>
-                <a href="{{ route($prefix . '.project-list') }}" class="w-full px-8 py-2 bg-red-400 text-white text-sm font-regular rounded-lg shadow-sm hover:bg-red-600">
+                <a href="{{ route($prefix . '.project-list') }}" class="cancel-link">
                     Cancel
                 </a>
             </div>
