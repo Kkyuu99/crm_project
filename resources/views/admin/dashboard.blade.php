@@ -158,12 +158,12 @@
           <table class="w-full text-left border-collapse">
             <thead>
               <tr class="bg-white text-violet-600">
-                <th class="p-4 rounded-tl-lg p-4">ID</th>
-                <th class="p-4">Subject</th>
-                <th class="p-4">Assignor</th>
-                <th class="p-4">Priority</th>
-                <th class="p-4">Status</th>
-                <th class="p-4 rounded-tr-lg p-4">Due Date</th>
+                <th class="px-4 py-2 rounded-tl-lg">ID</th>
+                <th class="px-4 py-2">Subject</th>
+                <th class="px-4 py-2">Assignor</th>
+                <th class="px-4 py-2">Priority</th>
+                <th class="px-4 py-2">Status</th>
+                <th class="px-4 py-2 rounded-tr-lg">Due Date</th>
               </tr>
             </thead>
             <tbody class="text-white font-bold">

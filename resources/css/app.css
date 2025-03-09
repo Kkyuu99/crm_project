@@ -16,7 +16,7 @@
     @apply min-w-[2000px] w-auto;
 }
 .users-table {
-    @apply min-w-[1100px] w-auto;
+    @apply min-w-[980px] w-auto;
 }
 
 .custom-table-column{
@@ -40,7 +40,7 @@
 }
     
 .dashboard-gradient {
-    @apply bg-gradient-to-b from-violet-500 to-violet-400;
+    @apply bg-gradient-to-b from-violet-500 via-violet-500 to-violet-400;
 }
 
 .pie-chart canvas {

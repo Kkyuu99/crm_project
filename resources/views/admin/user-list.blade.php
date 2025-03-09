@@ -40,11 +40,11 @@
     <table class="table-auto border-collapse border border-gray-300 custom-table users-table text-center">
         <thead>
         <tr class="bg-white text-blue-b">
-          <th class="custom-table-column border border-gray-300 text-md" style="font-size: 16px;">No.</th>
-          <th class="custom-table-column border border-gray-300 text-md" style="font-size: 16px;">Name</th>
-          <th class="custom-table-column border border-gray-300 text-md" style="font-size: 16px;">Email</th>
-          <th class="custom-table-column border border-gray-300 text-md" style="font-size: 16px;">Role</th>
-          <th class="custom-table-column border border-gray-300 text-md" style="font-size: 16px;">Action</th>
+          <th class="custom-table-column border border-gray-300 text-md">No.</th>
+          <th class="custom-table-column border border-gray-300 text-md">Name</th>
+          <th class="custom-table-column border border-gray-300 text-md">Email</th>
+          <th class="custom-table-column border border-gray-300 text-md">Role</th>
+          <th class="custom-table-column border border-gray-300 text-md">Action</th>
         </tr>
       </thead>
       <tbody>

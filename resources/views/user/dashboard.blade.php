@@ -153,7 +153,6 @@
           <thead>
             <tr class="bg-white text-violet-500">
               <th class="border-b rounded-tl-lg px-2">No.</th>
-              <th class="border-b px-2">ID</th>
               <th class="border-b px-2">Project name</th>
               <th class="border-b px-2">Project type</th>
               <th class="border-b rounded-tr-lg px-2">Status</th>
@@ -163,7 +162,6 @@
             @foreach ($projects as $project)
               <tr>
                 <td class="border-b p-2">{{ $loop->iteration }}</td>
-                <td class="border-b p-2">{{ $project->id }}</td>
                 <td class="border-b p-2">{{ $project->project_name }}</td>
                 <td class="border-b p-2">{{ $project->project_type }}</td>
                 <td class="border-b p-2">{{ $project->status }}</td>
