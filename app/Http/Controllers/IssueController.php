@@ -60,7 +60,8 @@ class IssueController extends Controller
             $projectUsers[$project->id] = $project->users;
     
         }
-        return view('user.new-issue', compact('projects','users','projectUsers'));
+        $prefix = $user->role === 'admin' ? 'admin' : 'user';
+        return view('user.new-issue', compact('projects','users','projectUsers','prefix','user'));
     }
 
     public function store(Request $request)
@@ -91,6 +92,7 @@ class IssueController extends Controller
     {
         $issue = Issue::findOrFail($id);
         $user = Auth::user();
+        $prefix = $user->role === 'admin' ? 'admin' : 'user';
         if ($user->role === 'admin') {
             $projects = Project::all();
         } else {
@@ -102,13 +104,14 @@ class IssueController extends Controller
             $projectUsers[$project->id] = $project->users;
     
         }
-        return view('user.issue-detail', compact('issue','projects','users','projectUsers'));
+        return view('user.issue-detail', compact('issue','projects','users','projectUsers','user','prefix'));
     }
 
     public function edit($id)
     {
         $issue = Issue::findOrFail($id);
         $user = Auth::user();
+        $prefix = $user->role === 'admin' ? 'admin' : 'user';
         if ($user->role === 'admin') {
             $projects = Project::all();
         } else {
@@ -120,7 +123,7 @@ class IssueController extends Controller
             $projectUsers[$project->id] = $project->users;
     
         }
-        return view('user.issue-edit', compact('issue','projects','users','projectUsers'));
+        return view('user.issue-edit', compact('issue','projects','users','projectUsers','user','prefix'));
     }
 
     public function update(Request $request,$id)

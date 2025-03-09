@@ -12,7 +12,9 @@ class ChangePasswordController extends Controller
     
     public function showChangePasswordForm()
     {
-        return view('auth.change-password');
+        $user = Auth::user();
+        $prefix = $user->role === 'admin' ? 'admin' : 'user';
+        return view('auth.change-password',compact('user','prefix'));
     }
 
     public function changePassword(Request $request, $id)

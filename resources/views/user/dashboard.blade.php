@@ -1,7 +1,3 @@
-@php
-    $user = Auth::user();
-    $prefix = $user->role === 'admin' ? 'admin' : 'user';
-@endphp
 <x-layout>
 
   <script>
@@ -95,7 +91,7 @@
     },
             plugins: {
                 legend: {
-                    display: true, 
+                    display: false, 
                     labels: {
                         color: '#FFFFFF' // Labels color
                     }
@@ -139,15 +135,15 @@
     <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
 
       <!-- Pie Chart and Legend -->
-      <div class="bg-violet-500 shadow rounded-3xl p-4 flex flex-col items-center">
-        <h2 class="text-white text-xl font-bold text-left">Tickets by Priority</h2>
+      <div class="bg-violet-500 shadow rounded-3xl p-4 flex flex-col">
+        <h3 class="text-lg font-semibold text-white px-4 text-left">Tickets by Priority</h3>
         <div class="pie-chart">
           <canvas id="myPieChart"></canvas>
           <div class="donut-hole"></div>
         </div>
       </div>
 
-      <div class="bg-violet-500 shadow rounded-3xl p-4 flex flex-col px-6 col-span-2 items-center">
+      <div class="dashboard-gradient shadow rounded-3xl p-4 flex flex-col px-6 col-span-2 items-center">
         <div class="flex justify-start items-center w-full mb-4">
           <h3 class="text-lg font-semibold text-white">Total Projects : </h3>
           <p class="text-3xl font-bold text-white px-2">{{ $projectCount }}</p>
@@ -156,21 +152,21 @@
         <table class="w-full text-left border-collapse text-white">
           <thead>
             <tr class="bg-white text-violet-500">
-              <th class="border-b rounded-tl-lg p-4">No.</th>
-              <th class="border-b p-4">ID</th>
-              <th class="border-b p-4">Project name</th>
-              <th class="border-b p-4">Project type</th>
-              <th class="border-b rounded-tr-lg p-4">Status</th>
+              <th class="border-b rounded-tl-lg px-2">No.</th>
+              <th class="border-b px-2">ID</th>
+              <th class="border-b px-2">Project name</th>
+              <th class="border-b px-2">Project type</th>
+              <th class="border-b rounded-tr-lg px-2">Status</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="text-white">
             @foreach ($projects as $project)
-              <tr class=>
-                <td class="border-b p-4">{{ $loop->iteration }}</td>
-                <td class="border-b p-4">{{ $project->id }}</td>
-                <td class="border-b p-4">{{ $project->project_name }}</td>
-                <td class="border-b p-4">{{ $project->project_type }}</td>
-                <td class="border-b p-4">{{ $project->status }}</td>
+              <tr>
+                <td class="border-b p-2">{{ $loop->iteration }}</td>
+                <td class="border-b p-2">{{ $project->id }}</td>
+                <td class="border-b p-2">{{ $project->project_name }}</td>
+                <td class="border-b p-2">{{ $project->project_type }}</td>
+                <td class="border-b p-2">{{ $project->status }}</td>
               </tr>
             @endforeach
           </tbody>
@@ -188,7 +184,7 @@
     <!-- Table Section (Footer) -->
     <section class="bg-violet-500 text-white shadow rounded-3xl p-6 mt-6 text-center">
       <!-- Bar Chart -->
-      <h1 class="text-white text-xl font-bold text-left">Ticket Overview</h1>
+      <h1 class="text-lg font-semibold text-white px-4 text-left mb-4">Ticket Created</h1>
       <div class="bar-chart mr-4">
         <canvas id="myBarChart"></canvas>
       </div>

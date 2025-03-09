@@ -27,22 +27,25 @@ class IssueFactory extends Factory
         //     'attachment'=>fake()->word(),
         //     'remark'=>fake()->paragraph()
         // ];
+
+        $project = Project::inRandomOrder()->first() ?? Project::factory()->create();
+        $user = User::inRandomOrder()->first() ?? User::factory()->create();
         return [
-            'project_id' => Project::inRandomOrder()->first()->id ?? Project::factory(),
+            'project_id' => $project->id,
             'issue_status' => fake()->randomElement(['Open', 'Closed', 'In progress', 'Resolved']),
             'subject' => fake()->name(),
             'description' => fake()->text(),
             'priority' => fake()->randomElement(['Low', 'Medium', 'High', 'Urgent']),
             'attachment' => fake()->fileExtension(),
-            'assignor_user' => User::inRandomOrder()->first()->id ?? User::factory(),
+            'assignor_user' => $user->id,
             'remark' => fake()->text(),
             'solution' => fake()->text(),
             'total_duration' => fake()->numberBetween(1, 100),
             'due_date' => $this->faker->dateTimeBetween('now', '+30 days')->format('Y-m-d'),
 
-            'created_by' => User::inRandomOrder()->first()->id ?? User::factory(), 
-            'updated_by' => User::inRandomOrder()->first()->id ?? User::factory(),
-            'deleted_by' => User::inRandomOrder()->first()->id ?? User::factory(),
+            'created_by' => $user->id, 
+            'updated_by' => $user->id,
+            'deleted_by' => $user->id,
         ];
     }
 }

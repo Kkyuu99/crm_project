@@ -1,10 +1,5 @@
-@php
-    $user = Auth::user();
-    $prefix = $user->role === 'admin' ? 'admin' : 'user';
-@endphp
-
 <x-layout>
-    <h1 class="text-2xl font-bold text-black my-4 text-center">Issue Update Form</h1>
+    <h1 class="page-title">Issue Update Form</h1>
     <hr class="border-t-1 border-gray-300 my-4" />
     <div class="w-full mb-5 max-w-4xl mx-auto p-2">
         <form action="{{ route($prefix . '.issue-update', $issue->id) }}" method="POST"  enctype="multipart/form-data">
@@ -28,7 +23,7 @@
                 id="issue_id" 
                 name="issue_id" 
                 value="{{ old('issue_id', $issue->id) }}"
-                class="w-full px-4 py-2 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="w-full px-4 py-2 rounded-lg border input-boxes focus:outline-none"
                 disabled>
             </div>
             <div class="mb-4">
@@ -38,7 +33,7 @@
                     id="project_id"
                     name="project_id"
                     onchange="updateAssignorUserDropdown()"
-                    class="w-full px-4 py-2 rounded-lg border border-gray-300 bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    class="w-full px-4 py-2 rounded-lg border border-gray-300 input-boxes focus:outline-none"
                 >
                 <option value="">Select a project</option>
 
@@ -60,11 +55,11 @@
                 name="subject"
                 placeholder="Enter subject of the issue" 
                 value="{{ old('subject', $issue->subject) }}"
-                class="w-full px-4 py-2 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                class="w-full px-4 py-2 rounded-lg border input-boxes focus:outline-none">
             </div>
             <div class="mb-4">
                 <label for="description" class="block text-black text-sm mb-2">Description</label>
-                {{-- <input type="text" id="desc" class="w-full px-4 py-2 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"> --}}
+                {{-- <input type="text" id="desc" class="w-full px-4 py-2 rounded-lg border input-boxes focus:outline-none"> --}}
                 <textarea
                 required
                 name="description"
@@ -73,7 +68,7 @@
                 rows="4"
                 placeholder="Enter description"
                 style="resize: height; overflow: hidden; width:100%; height:100%; border-radius:8px; max-width:100%;"
-                class="px-4 py-2 border bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="px-4 py-2 border input-boxes focus:outline-none"
                 >{{ old('description', $issue->description) }}</textarea>
             </div>
             <div class="mb-4 flex justify-between space-x-4">
@@ -94,13 +89,13 @@
                         id="assignor_user"
                         name="assignor_user"
                         value="{{ old('assignor_user', $issue->assignor_user) }}"
-                        class="w-full px-4 py-2 text-sm rounded-lg border border-gray-300 bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        class="w-full px-4 py-2 text-sm rounded-lg border border-gray-300 input-boxes focus:outline-none"
                     >
                 </div> -->
                 <div class="flex-1">
                     <label for="assignor_user" class="block text-black text-sm mb-2">Assignor</label>
                     <select id="assignor_user" name="assignor_user"
-                        class="w-full px-4 py-2 text-sm rounded-lg border border-gray-300 bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        class="w-full px-4 py-2 text-sm rounded-lg border border-gray-300 input-boxes focus:outline-none">
                         <option value="">Select an assignor</option>
                             @foreach($users as $user)
                                 <option value="{{ $user->id }}" {{ old('assignor_user', $issue->assignor_user ?? '') == $user->id ? 'selected' : '' }}>
@@ -113,7 +108,7 @@
                     <label for="issue_status" class="block text-black text-sm mb-2">Status</label>
                     <select id="issue_status" name="issue_status" class="w-full bg-white border rounded-lg border-gray-300 px-4 py-2 text-sm leading-tight focus:outline-none appearance-none">
                         <option value="Open" {{ old('issue_status', $issue->issue_status) == 'Open' ? 'selected' : '' }}  class="bg-white-300 text-black">Open</option>
-                        <option value="In-progress" {{ old('issue_status', $issue->issue_status) == 'In-progress' ? 'selected' : '' }}  class="bg-gray-300 text-black">In progress</option>
+                        <option value="In-progress" {{ old('issue_status', $issue->issue_status) == 'In-progress' ? 'selected' : '' }}  class="input-boxes text-black">In progress</option>
                         <option value="Closed" {{ old('issue_status', $issue->issue_status) == 'Closed' ? 'selected' : '' }}  class="bg-red-400 text-white">Closed</option>
                         <option value="Resolved" {{ old('issue_status', $issue->issue_status) == 'Resolved' ? 'selected' : '' }}  class="bg-green-400 text-white">Resolved</option>
                     </select>
@@ -128,7 +123,7 @@
                 id="due_date"
                 name="due_date"
                 value="{{ old('subject', $issue->due_date) }}"
-                class="w-75 px-4 py-2 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                class="w-75 px-4 py-2 rounded-lg border input-boxes focus:outline-none">
             </div>
 
             <div class="mb-4">
@@ -137,7 +132,7 @@
                 type="file" 
                 id="attachment" 
                 name="attachment"
-                class="w-full px-4 py-2 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                class="w-full px-4 py-2 rounded-lg border input-boxes focus:outline-none">
                 
                 @if($issue->attachment)
                    <div class="mt-4">
@@ -163,45 +158,43 @@
                 id="total_duration"
                 value="{{ old('issue_id', $issue->total_duration) }}"
                 placeholder="Enter total duration in hour"
-                class="w-full px-4 py-2 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="w-full px-4 py-2 rounded-lg border input-boxes focus:outline-none"
                 >
             </div>
 
             <div class="mb-4">
                 <label for="solution" class="block text-black text-sm mb-2">Solution</label>
-                {{-- <input type="text" id="desc" class="w-full px-24 py-12 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"> --}}
                 <textarea
                 name="solution"
                 id="solution"
                 cols="100"
                 rows="4"
                 style="resize: height; overflow: hidden; width:100%; height:100%; border-radius:8px; max-width:100%;"
-                class="p-2 border bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="p-2 border input-boxes focus:outline-none"
                 >{{ old('solution', $issue->solution) }}</textarea>
             </div>
 
             <div class="mb-4">
                 <label for="remark" class="block text-black text-sm mb-2">Remark</label>
-                {{-- <input type="text" id="desc" class="w-full px-24 py-12 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"> --}}
                 <textarea
                 name="remark"
                 id="remark"
                 cols="100"
                 rows="4"
                 style="resize: height; overflow: hidden; width:100%; height:100%; border-radius:8px; max-width:100%;"
-                class="p-2 border bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="p-2 border input-boxes focus:outline-none"
                 >{{ old('remark', $issue->remark) }}</textarea>
             </div>
 
 
             <div class="flex flex-row-reverse  space-x-1 space-x-reverse">
             <a href="{{  route($prefix . '.issue-list')  }}"
-                    class="bg-red-400 text-white px-6 py-2 rounded-md hover:bg-red-600 font-medium text-sm hover:text-white">
+                    class="cancel-btn">
                     Cancel
                 </a>
                 <button 
                    type="submit"
-                   class="bg-purple-400 text-white px-6 py-2 rounded-md hover:bg-purple-700 font-medium text-sm hover:text-white">
+                   class="create-btn">
                     Update
                 </button>
             </div>
@@ -209,19 +202,16 @@
     </div>
 
     <script>
-        // Example user data for each project
-        var projectUsers = <?php echo json_encode($projectUsers); ?>; // Assuming you have this data passed to your view
+        var projectUsers = <?php echo json_encode($projectUsers); ?>;
 
         function updateAssignorUserDropdown() {
             const projectId = document.getElementById('project_id').value;
             const assignorDropdown = document.getElementById('assignor_user');
             const selectedAssignor = '{{ old("assignor_user", $issue->assignor_user) }}';
 
-            // Clear previous options
             assignorDropdown.innerHTML = '<option value="">Select an assignor</option>';
 
             if (projectId && projectUsers[projectId]) {
-                // Populate users based on selected project
                 projectUsers[projectId].forEach(user => {
                     const option = document.createElement('option');
                     option.value = user.id;

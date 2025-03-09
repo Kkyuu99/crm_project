@@ -17,13 +17,17 @@ class DashboardController extends Controller
     
     public function userDashboard()
     {   
+        $user = Auth::user();
         $userId = Auth::id();
+        $prefix = Auth::user()->role;
 
         $projects = Project::whereHas('users', function ($query) use ($userId) {
             $query->where('user_id', $userId);
-        })->get();
+        })->latest()->take(4)->get();
 
-        $projectCount = $projects->count();
+        $projectCount = Project::whereHas('users', function ($query) use ($userId) {
+            $query->where('user_id', $userId);
+        })->count();
         
         $issues = Issue::where('assignor_user', $userId)->latest()->take(5)->get();
 
@@ -67,14 +71,16 @@ class DashboardController extends Controller
         $highPercentage = ceil($totalIssues > 0 ? ($highIssues / $totalIssues) * 100 : 0);
         $lowPercentage = ceil($totalIssues > 0 ? ($lowIssues / $totalIssues) * 100 : 0);
         
-        return view('user.dashboard', compact('totalIssues','dueTodayIssues','overdueIssues','closedIssues',
+        return view('user.dashboard', compact('user','prefix','totalIssues','dueTodayIssues','overdueIssues','closedIssues',
                                             'urgentPercentage','mediumPercentage','highPercentage','lowPercentage',
                                         'issuesCount','issues','projects','projectCount'));
     }
 
     public function adminDashboard()
     { 
+        $user = Auth::user();
         $issues = Issue::latest()->take(5)->get();
+        $prefix = Auth::user()->role;
         
         $statusCounts = Issue::selectRaw('issue_status, COUNT(*) as count')
         ->groupBy('issue_status')
@@ -97,7 +103,7 @@ class DashboardController extends Controller
         $highPercentage = ceil($totalIssues > 0 ? ($highIssues / $totalIssues) * 100 : 0);
         $lowPercentage = ceil($totalIssues > 0 ? ($lowIssues / $totalIssues) * 100 : 0);
         
-        return view('admin.dashboard', compact('totalIssues','totalProjects','totalUsers','closedIssues',
+        return view('admin.dashboard', compact('user','prefix','totalIssues','totalProjects','totalUsers','closedIssues',
                                             'urgentPercentage','mediumPercentage','highPercentage','lowPercentage',
                                         'statusCounts','issues'));
     }

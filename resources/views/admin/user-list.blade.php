@@ -1,19 +1,12 @@
 <x-layout>
 
-  @if(session('success'))
-        <div id="success-message" class="popup-message bg-green-100 text-green-700 px-4 py-2 rounded-md mb-4">
-            {{ session('success') }}
-        </div>
-    @elseif(session('error'))
-        <div id="error-message" class="popup-message bg-red-100 text-red-700 px-4 py-2 rounded-md mb-4">
-            {{ session('error') }}
-        </div>
-    @endif
+@include('messages')
+@include('filter-scripts')
     
     <div class="flex justify-between items-center">
-        <h1 class="text-2xl font-bold my-4 text-center flex-grow">User List</h1>
+        <h1 class="page-title">User List</h1>
 
-        <button id="filter-button" class="bg-violet-400 text-white px-6 py-2 mr-4 rounded-md hover:bg-violet-500 font-medium text-sm">
+        <button id="filter-button" class="btn-2">
             Filter
         </button>
     </div>
@@ -33,7 +26,7 @@
         </div>
 
         <div class="flex justify-end mt-2">
-            <button type="submit" class="bg-gray-200 text-gray-400 px-6 py-2 rounded-md hover:bg-gray-300 font-medium text-sm">Apply Filter</button>
+            <button type="submit" class="apply-filter">Apply Filter</button>
         </div>
         <a href="{{ route('admin.user-list') }}" class="block text-center text-red-500 text-sm mt-2 hover:underline">
                     Remove All Filters
@@ -49,7 +42,6 @@
         <tr class="bg-white text-blue-b">
           <th class="custom-table-column border border-gray-300 text-md" style="font-size: 16px;">No.</th>
           <th class="custom-table-column border border-gray-300 text-md" style="font-size: 16px;">Name</th>
-          <th class="custom-table-column border border-gray-300 text-md" style="font-size: 16px;">user ID</th>
           <th class="custom-table-column border border-gray-300 text-md" style="font-size: 16px;">Email</th>
           <th class="custom-table-column border border-gray-300 text-md" style="font-size: 16px;">Role</th>
           <th class="custom-table-column border border-gray-300 text-md" style="font-size: 16px;">Action</th>
@@ -61,10 +53,9 @@
       @php
         $userDetailRoute = route($prefix . '.user-detail', $user->id);
       @endphp
-      <tr class="hover:bg-gray-100 cursor-pointer" onclick="location.href='{{ $userDetailRoute }}'">
+      <tr class="odd:bg-white even:bg-gray-100 odd:hover:bg-gray-100 even:hover:bg-gray-200 cursor-pointer" onclick="location.href='{{ $userDetailRoute }}'">
         <td class="custom-table-cell text-md">{{ $loop->iteration + (($users->currentPage() - 1) * $users->perPage()) }}</td>
         <td class="custom-table-cell text-md">{{$user->name}}</td>
-        <td class="custom-table-cell text-md">{{$user->id}}</td>
         <td class="custom-table-cell text-md">{{$user->email}}</td>
         <td class="custom-table-cell text-md">{{$user->role}}</td>
         <td class="custom-table-cell">
@@ -74,7 +65,7 @@
             <input type="hidden" name="_method" value="PUT">
             <button
             type="submit"
-            class="bg-yellow-400 px-4 py-2 text-center hover:bg-yellow-600 hover:text-white">
+            class="btn-edit">
             Edit</button>
           </form>
           <form action="{{ route('admin.user-delete', $user->id) }}" method="POST">
@@ -82,7 +73,7 @@
               @method('DELETE')
               <button
               type="submit"
-              class="bg-red-400 px-4 py-2 mx-2 text-black hover:bg-red-600 hover:text-white">Delete</button>
+              class="btn-delete">Delete</button>
           </form>
           </div>
       </td>
@@ -94,8 +85,7 @@
   
   <a href="{{ route('admin.user-register') }}">
   <button
-    class="flex items-center justify-start text-white bg-violet-400 px-6 py-2 rounded-lg hover:bg-violet-500 font-medium text-sm mx-5"
-    >
+    class="btn-2 mt-1 inline-block">
     Register new user
   </button>
   </a>
@@ -109,44 +99,4 @@
   </div>
   </div>
 </x-layout>
-
-<script>
-        window.onload = function() {
-            const successMessage = document.getElementById('success-message');
-            const errorMessage = document.getElementById('error-message');
-
-            if (successMessage) {
-                
-                setTimeout(function() {
-                    successMessage.classList.add('show');
-                }, 100);
-
-                setTimeout(function() {
-                    successMessage.classList.add('hidden');
-                }, 3000);
-            }
-
-            if (errorMessage) {
-
-                setTimeout(function() {
-                    errorMessage.classList.add('show');
-                }, 100);
-                
-                setTimeout(function() {
-                    errorMessage.classList.add('hidden');
-                }, 3000);
-            }
-        };
-
-        document.addEventListener("DOMContentLoaded", function() {
-        const filterButton = document.getElementById('filter-button');
-        const filterForm = document.getElementById('filter-form');
-
-        if (filterButton && filterForm) {
-            filterButton.addEventListener('click', function() {
-                filterForm.classList.toggle('hidden');
-            });
-        }
-    });
-</script>
 

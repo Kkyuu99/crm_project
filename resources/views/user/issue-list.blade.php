@@ -1,23 +1,15 @@
 <x-layout>
 
-  @if(session('success'))
-      <div id="success-message" class="popup-message bg-green-100 text-green-700 px-4 py-2 rounded-md mb-4">
-          {{ session('success') }}
-      </div>
-  @elseif(session('error'))
-      <div id="error-message" class="popup-message bg-red-100 text-red-700 px-4 py-2 rounded-md mb-4">
-          {{ session('error') }}
-      </div>
-  @endif
+@include('messages')
+@include('filter-scripts')
 
   <div class="flex justify-between items-center">
-        <h1 class="text-2xl font-bold my-4 text-center flex-grow">Issue List</h1>
+        <h1 class="page-title">Issue List</h1>
 
-        <button id="filter-button" class="bg-violet-400 text-white px-6 py-2 mr-4 rounded-md hover:bg-violet-500 font-medium text-sm">
+        <button id="filter-button" class="btn-2">
             Filter
         </button>
     </div>
-
 
     <div id="filter-form" class="absolute right-0 mt-2 bg-white shadow-lg p-4 rounded-md hidden w-40">
        <form action="{{ route($prefix. '.issue-list') }}" method="GET">
@@ -52,7 +44,7 @@
         </div>
 
         <div class="flex justify-end mt-2">
-            <button type="submit" class="bg-gray-200 text-gray-400 px-6 py-2 rounded-md hover:bg-gray-300 font-medium text-sm">Apply Filter</button>
+            <button type="submit" class="apply-filter">Apply Filter</button>
         </div>
         
         <a href="{{ route($prefix .'.issue-list') }}" class="block text-center text-red-500 text-sm mt-2 hover:underline">
@@ -68,13 +60,12 @@
         <thead>
         <tr class="bg-white text-blue-b">
           <th class="custom-table-column border border-gray-300 text-md">No.</th>
-          <th class="custom-table-column border border-gray-300 text-md">Issue ID</th>
           <th class="custom-table-column border border-gray-300 text-md">Subject</th>
           <th class="custom-table-column border border-gray-300 text-md">Description</th>
-          <th class="custom-table-column border border-gray-300 text-md">Project ID</th>
+          <th class="custom-table-column border border-gray-300 text-md">Project Name</th>
           <th class="custom-table-column border border-gray-300 text-md">Priority</th>
-          <th class="custom-table-column border border-gray-300 text-md">Attachment</th>
           <th class="custom-table-column border border-gray-300 text-md">Status</th>
+          <th class="custom-table-column border border-gray-300 text-md">Attachment</th>
           <th class="custom-table-column border border-gray-300 text-md">Due date</th>
           <th class="custom-table-column border border-gray-300 text-md">Assignor</th>
           <th class="custom-table-column border border-gray-300 text-md">Duration</th>
@@ -89,9 +80,8 @@
       @php
         $issueDetailRoute = route($prefix . '.issue-detail', $issue->id);
       @endphp
-      <tr class="hover:bg-gray-100 cursor-pointer" onclick="location.href='{{ $issueDetailRoute }}'">
+      <tr class="odd:bg-white even:bg-gray-100 odd:hover:bg-gray-100 even:hover:bg-gray-200 cursor-pointer" onclick="location.href='{{ $issueDetailRoute }}'">
         <td class="custom-table-cell text-md">{{ $loop->iteration + (($issues->currentPage() - 1) * $issues->perPage()) }}</td>
-        <td class="custom-table-cell text-md">{{$issue->id}}</td>
         <td class="custom-table-cell text-md">{{$issue->subject}}</td>
         <td class="custom-table-cell text-md bg-[linear-gradient(to_bottom,_black_30%,_white_90%)] bg-clip-text text-transparent">
             <div class="description" data-full-text="{{ $issue->description }}">
@@ -99,18 +89,22 @@
               <span class="full-text hidden">{{ $issue->description }}</span>
             </div>
         </td>
-        <td class="custom-table-cell text-md">{{$issue->project_id}}</td>
+        <td class="custom-table-cell text-md">
+          @if($issue->project)
+            {{ $issue->project->project_name }}
+          @endif
+        </td>
         <td class="custom-table-cell text-md">{{$issue->priority}}</td>
+        <td class="custom-table-cell text-md">{{$issue->issue_status}}</td>
         <td class="custom-table-cell text-md">       
             @if ($issue->attachment)
-              <a href="{{ asset('storage/' . $issue->attachment) }}" target="_blank" class="text-blue-500 underline">
+              <a href="{{ asset('storage/' . $issue->attachment) }}" target="_blank" class="text-blue-500 underline" onclick="event.stopPropagation();">
               View Attachment
               </a>
             @else
               <span class="text-gray-500">No Attachment</span>
             @endif
         </td>
-        <td class="custom-table-cell text-md">{{$issue->issue_status}}</td>
         <td class="custom-table-cell text-md">{{$issue->due_date}}</td>
         <td class="custom-table-cell text-md">
           {{$issue->user->name}}
@@ -135,7 +129,7 @@
               <input type="hidden" name="_method" value="PUT">
               <button
               type="submit"
-              class="bg-yellow-400 px-4 py-2 text-center hover:bg-yellow-600 hover:text-white">
+              class="btn-edit">
               Edit</button>
             </form>
 
@@ -144,7 +138,7 @@
                 @method('DELETE')
                 <button
                 type="submit"
-                class="bg-red-400 px-4 py-2 mx-2 text-black hover:bg-red-600 hover:text-white">Delete</button>
+                class="btn-delete">Delete</button>
             </form>
           </div> 
         </td>
@@ -155,7 +149,7 @@
   </div>
   
   <a href="{{ route($prefix . '.issue-create') }}">
-    <button class="flex items-center justify-start text-white bg-violet-400 px-6 py-2 rounded-lg hover:bg-violet-500 font-medium text-sm mx-5">
+    <button class="btn-2 mt-1 inline-block">
       Add New Issue
     </button>
   </a>
@@ -169,43 +163,3 @@
   </div>
 </div>
 </x-layout>
-
-<script>
-        window.onload = function() {
-            const successMessage = document.getElementById('success-message');
-            const errorMessage = document.getElementById('error-message');
-
-            if (successMessage) {
-                
-                setTimeout(function() {
-                    successMessage.classList.add('show');
-                }, 100);
-
-                setTimeout(function() {
-                    successMessage.classList.add('hidden');
-                }, 3000);
-            }
-
-            if (errorMessage) {
-
-                setTimeout(function() {
-                    errorMessage.classList.add('show');
-                }, 100);
-                
-                setTimeout(function() {
-                    successMessage.classList.add('hidden');
-                }, 3000);
-            }
-        };
-
-        document.addEventListener("DOMContentLoaded", function() {
-        const filterButton = document.getElementById('filter-button');
-        const filterForm = document.getElementById('filter-form');
-
-        if (filterButton && filterForm) {
-            filterButton.addEventListener('click', function() {
-                filterForm.classList.toggle('hidden');
-            });
-        }
-    });
-</script>

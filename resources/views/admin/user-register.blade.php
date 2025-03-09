@@ -1,11 +1,6 @@
-@php
-    $user = Auth::user();
-    $prefix = $user->role === 'admin' ? 'admin' : 'user';
-@endphp
-
 <x-layout>
 
-    <h1 class="text-2xl font-bold text-black my-4 text-center">User Register Form</h1>
+    <h1 class="page-title">User Register Form</h1>
     <hr class="border-t-1 border-gray-300 my-4" />
     <div class="w-full mb-5 max-w-3xl mx-auto p-2">
         <form action="{{ route($prefix . '.user-store') }}" method="POST" enctype="multipart/form-data">
@@ -26,7 +21,7 @@
                 id="name"
                 name="name"
                 placeholder="Enter Name"
-                class="flex-1 px-4 py-2 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                class="flex-1 px-4 py-2 border input-boxes focus:outline-none">
             </div>
 
             <div class="flex gap-4 items-center mb-4">
@@ -37,7 +32,7 @@
                 id="email"
                 name="email"
                 placeholder="Enter email"
-                class="flex-1 px-4 py-2 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                class="flex-1 px-4 py-2 border input-boxes focus:outline-none">
             </div>
 
             <div class="flex gap-4 items-center mb-4">
@@ -48,7 +43,7 @@
                 id="password"
                 name="password"
                 placeholder="Enter password"
-                class="flex-1 px-4 py-2 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                class="flex-1 px-4 py-2 border input-boxes focus:outline-none">
             </div>
 
             <div class="flex gap-4 items-center mb-4">
@@ -59,12 +54,12 @@
                 id="password_confirmation" 
                 name="password_confirmation"
                 placeholder="Confirm password"
-                class="flex-1 px-4 py-2 rounded-lg border border-gray-300 bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                class="flex-1 px-4 py-2 border input-boxes focus:outline-none">
             </div>
 
             <div class="flex gap-4 mb-4">
                 <label for="project_id" class="block text-black text-sm text-right mt-2 mb-2 w-16">Project</label>
-                <div class="flex-1 px-4 py-2 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <div class="flex-1 px-4 py-2 border input-boxes focus:outline-none">
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
                     @foreach($projects as $project)
                         <label class="block">
@@ -78,7 +73,7 @@
             
             <div class="flex gap-4 items-center mb-4">
                 <label for="role" class="block text-black text-sm text-right mb-2 w-16">Role</label>
-                    <select id="role" name="role" class="flex-1 px-4 py-2 rounded-lg border border-gray-300 bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <select id="role" name="role" class="flex-1 px-4 py-2 border input-boxes focus:outline-none">
                         <option value="admin">Admin</option>
                         <option value="user">User</option>
                     </select>    
@@ -86,12 +81,12 @@
 
             <div class="flex flex-row-reverse  space-x-1 space-x-reverse">
                 <a href="{{ route($prefix. '.user-list') }}"
-                    class="bg-red-400 text-white px-6 py-2 rounded-md hover:bg-red-600 font-medium text-sm hover:text-white">
+                    class="cancel-btn">
                     Cancel
                 </a>
                 <button
                    type="submit"
-                   class="bg-purple-400 text-white px-6 py-2 rounded-md hover:bg-purple-700 font-medium text-sm hover:text-white">
+                   class="create-btn">
                     Register
                 </button>
             </div>

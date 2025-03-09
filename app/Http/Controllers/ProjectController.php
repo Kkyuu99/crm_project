@@ -38,17 +38,21 @@ class ProjectController extends Controller
 
     public function edit($id)
     {
+        $user = Auth::user();
+        $prefix = $user->role === 'admin' ? 'admin' : 'user';
         $project = Project::findOrFail($id);
 
         if (!$project) {
             return redirect()->route('user.project-list')->with('error', 'Project not found');
         }
-        return view('user.project-edit', compact('project'));
+        return view('user.project-edit', compact('project','user','prefix'));
     }
 
     public function create()
-    {
-        return view('user.new-project');
+    {   
+        $user = Auth::user();
+        $prefix = $user->role === 'admin' ? 'admin' : 'user';
+        return view('user.new-project',compact('user','prefix'));
     }
 
     public function store(Request $request)
@@ -76,7 +80,9 @@ class ProjectController extends Controller
     public function show($id)
     {
         $project = Project::findOrFail($id);
-        return view('user.project-detail', compact('project'));
+        $user = Auth::user();
+        $prefix = $user->role === 'admin' ? 'admin' : 'user';
+        return view('user.project-detail', compact('project','user','prefix'));
     }
 
     public function update(Request $request, $id)

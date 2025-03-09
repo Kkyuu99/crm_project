@@ -12,8 +12,9 @@ class UserProfileController extends Controller
     public function show()
     {
         $user = Auth::user();
+        $prefix = $user->role;
         if (Auth::check() && (Auth::id() === $user->id || Auth::user()->role === 'admin')) {
-            return view('admin.profile', compact('user'));
+            return view('admin.profile', compact('user','prefix'));
         }
         return redirect()->route('login')->with('error', 'You are not authorized to view this profile.');
     }
@@ -21,7 +22,8 @@ class UserProfileController extends Controller
     public function edit()
     {
         $user = Auth::user();
-        return view('admin.profile-edit', compact('user'));
+        $prefix = $user->role;
+        return view('admin.profile-edit', compact('user','prefix'));
     }
 
     public function update(Request $request, $id)

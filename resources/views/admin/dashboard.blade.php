@@ -1,11 +1,6 @@
-@php
-    $user = Auth::user();
-    $prefix = $user->role === 'admin' ? 'admin' : 'user';
-@endphp
-
 <x-layout>
   
-  <script>
+<script>
     window.onload = function() {
       const ctx = document.getElementById('myPieChart').getContext('2d');
       new Chart(ctx, {
@@ -57,11 +52,7 @@
               }
             },
               borderWidth: 0,
-              cutout: '50%',  
-              animation: {
-              animateScale: true,  // This enables scaling animation for doughnut charts
-              animateRotate: true  // This enables the rotation animation for doughnut charts
-          }
+              cutout: '50%',
             }
         });
 
@@ -144,9 +135,9 @@
     <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
 
       <!-- Pie Chart and Legend -->
-      <div class="bg-violet-500 shadow rounded-3xl p-2 flex flex-col items-center">
-        <h2 class="text-white text-xl mb-3 text-left font-bold py-2">Tickets by Priority</h2>
-        <div class="pie-chart">
+      <div class="bg-violet-500 shadow rounded-3xl p-2 flex flex-col">
+        <h2 class="text-white text-xl mb-3 text-left font-bold py-2 px-6">Tickets by Priority</h2>
+        <div class="pie-chart px-1">
           <canvas id="myPieChart"></canvas>
           <div class="donut-hole"></div>
         </div>
@@ -175,12 +166,16 @@
                 <th class="p-4 rounded-tr-lg p-4">Due Date</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody class="text-white font-bold">
               @foreach ($issues as $issue)
                 <tr>
                   <td class="border-b p-4">{{ $issue->id }}</td>
                   <td class="border-b p-4">{{ $issue->subject }}</td>
-                  <td class="border-b p-4">{{ $issue->user->name }}</td>
+                  <td class="border-b p-4 flex items-center">
+                    <img src="{{ $issue->user->profile_pic ? asset('storage/' . $issue->user->profile_pic) : asset('storage/images/default-profile.png') }}"
+                      alt="Profile Picture" 
+                      class="mr-3 w-8 h-8 rounded-full object-cover">
+                      {{ $issue->user->name }}</td>
                   <td class="border-b p-4">{{ $issue->priority }}</td>
                   <td class="border-b p-4">{{ $issue->issue_status }}</td>
                   <td class="border-b p-4">{{ $issue->due_date }}</td>

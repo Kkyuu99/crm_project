@@ -1,11 +1,6 @@
-@php
-    $user = Auth::user();
-    $prefix = $user && $user->role === 'admin' ? 'admin' : 'user';
-@endphp
-
 <x-layout>
 
-    <h1 class="text-2xl font-bold text-black my-4 text-center">User Profile Edit</h1>
+    <h1 class="page-title">User Profile Edit</h1>
     <hr class="border-t-1 border-gray-300 my-4 w-full" />
 
     <form class="w-full mx-auto max-w-lg p-2" action="{{ route($prefix . '.profile-update', $user->id) }}" method="POST" enctype="multipart/form-data">
@@ -27,10 +22,10 @@
             <div class="flex gap-6 mb-6 items-center">
                 <img id="profile_pic_preview" 
                 src="{{ $user->profile_pic ? asset('storage/' . $user->profile_pic) : asset('storage/images/default-profile.png') }}"
-                alt="Profile picture" class="h-40 w-40 rounded-full border-2 border-black shadow-sm"/>
+                alt="Profile picture" class="h-40 w-40 rounded-full border-2 border-gray-400 shadow-sm"/>
 
                 <div class="flex flex-col">
-                <label for="profile_pic" class="change-avatar-btn bg-violet-400 text-white px-6 py-2 rounded-md hover:bg-violet-600 font-medium text-sm hover:text-white">Change Avatar</label>
+                <label for="profile_pic" class="create-btn">Change Avatar</label>
                 <input type="file" class="hidden" id="profile_pic" name="profile_pic" onchange="previewImage(event)">
 
                 <div class="mt-2">
@@ -42,13 +37,13 @@
             </div>
 
             <div class="mb-3">
-                <input type="text" id="name" name="name" class="w-full p-1 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" 
+                <input type="text" id="name" name="name" class="w-full px-4 py-2 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" 
                 placeholder="Name"
                 value="{{ old('name', $user->name) }}">
             </div>
 
             <div class="mb-3">
-                <input type="email" id="email" name="email" class="w-full p-1 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" 
+                <input type="email" id="email" name="email" class="w-full px-4 py-2 text-slate-600 bg-neutral-100 border border-gray-300 rounded-lg shadow-sm" 
                 placeholder="Email"
                 value="{{ old('email', $user->email) }}">
             </div>
@@ -56,16 +51,16 @@
             <div class="text-left">
                 <div class="flex justify-between items-center">
                     <a href="{{ route($prefix. '.change-password', $user->id) }}"
-                        class="bg-violet-400 text-white px-6 py-2 rounded-md hover:bg-violet-600 font-medium text-sm hover:text-white">
+                        class="create-btn">
                             Change password
                     </a>
 
                     <div class="flex justify-end space-x-1">
-                        <button type="submit" class="bg-violet-400 text-white px-6 py-2 rounded-md hover:bg-violet-600 font-medium text-sm hover:text-white">
+                        <button type="submit" class="create-btn">
                             Save
                         </button>
-                        <a href="{{ route($prefix . '.change-password', $user->id) }}"
-                            class="bg-red-400 text-white px-6 py-2 rounded-md hover:bg-red-600 font-medium text-sm hover:text-white">
+                        <a href="{{ route($prefix . '.user-profile', $user->id) }}"
+                            class="cancel-btn">
                             Cancel
                         </a>
                     </div>

@@ -1,10 +1,5 @@
-@php
-    $user = Auth::user();
-    $prefix = $user->role === 'admin' ? 'admin' : 'user';
-@endphp
-
 <x-layout>
-    <h1 class="text-2xl font-bold text-black my-4 text-center">Issue Create Form</h1>
+    <h1 class="page-title">Issue Create Form</h1>
     <hr class="border-t-1 border-gray-300 my-4" />
     <div class="w-full mb-5 max-w-4xl mx-auto p-2">
         <form action="{{ route($prefix . '.issue-store') }}" method="POST" enctype="multipart/form-data">
@@ -20,13 +15,13 @@
             @endif
             
             <div class="mb-4">
-                <label for="project_id" class="block text-black text-sm mb-2">Project ID</label>
+                <label for="project_id" class="block text-black text-sm mb-2">Project</label>
                 <select
                     required
                     id="project_id"
                     name="project_id"
                     onchange="updateAssignorUserDropdown()"
-                    class="w-full px-4 py-2 rounded-lg border border-gray-300 bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    class="w-full px-4 py-2 rounded-lg border input-boxes focus:outline-none">
                     <option value="">Select a project</option>
                     @foreach($projects as $project)
                         <option value="{{ $project->id }}" {{ request('project_id') == $project->id ? 'selected' : '' }}>
@@ -43,12 +38,12 @@
                 id="subject"
                 name="subject"
                 placeholder="Enter subject of the issue"
-                class="w-full px-4 py-2 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                class="w-full px-4 py-2 rounded-lg input-boxes focus:outline-none">
             </div>
 
             <div class="mb-4">
                 <label for="description" class="block text-black text-sm mb-2">Description</label>
-                {{-- <input type="text" id="desc" class="w-full px-4 py-2 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"> --}}
+                {{-- <input type="text" id="desc" class="w-full px-4 py-2 rounded-lg input-boxes focus:outline-none"> --}}
                 <textarea
                 require
                 name="description"
@@ -58,7 +53,7 @@
                 rows="4"
                 placeholder="Enter description"
                 style="resize: height; overflow: hidden; width:100%; height:100%; border-radius:8px; max-width:100%;"
-                class="px-4 py-2 border bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="px-4 py-2 border input-boxes focus:outline-none"
                 ></textarea>
             </div>
 
@@ -76,7 +71,7 @@
                 <div class="flex-1">
                     <label for="assignor_user" class="block text-black text-sm mb-2">Assignor</label>
                     <select id="assignor_user" name="assignor_user"
-                        class="w-full px-4 py-2 text-sm rounded-lg border border-gray-300 bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        class="w-full px-4 py-2 text-sm rounded-lg border input-boxes focus:outline-none">
                         <option value="">Select an assignor</option>
                         @foreach($users as $user)
                             <option value="{{ $user->id }}">{{ $user->id }} : {{ $user->name }}</option>
@@ -88,7 +83,7 @@
                     <label for="issue_status" class="block text-black text-sm mb-2">Status</label>
                     <select id="issue_status" name="issue_status" class="w-full bg-white border rounded-lg border-gray-300 px-4 py-2 text-sm leading-tight focus:outline-none">
                         <option value="Open" class="bg-white-300 text-black">Open</option>
-                        <option value="In-progress" class="bg-gray-300 text-black">In progress</option>
+                        <option value="In-progress" class="input-boxes text-black">In progress</option>
                         <option value="Closed" class="bg-red-400 text-white">Closed</option>
                         <option value="Pending" class="bg-green-400 text-white">Resolved</option>
                     </select>
@@ -102,7 +97,7 @@
                 type="date"
                 id="du_date"
                 name="due_date"
-                class="w-75 px-4 py-2 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                class="w-75 px-4 py-2 rounded-lg input-boxes focus:outline-none">
             </div>
 
             <div class="mb-4">
@@ -115,7 +110,7 @@
                 name="attachment"
                 style="width: 100%; padding: 12px; height: auto;" 
                 placeholder="JPG, PNG, PDF only"
-                class="w-full px-4 py-2 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                class="w-full px-4 py-2 rounded-lg input-boxes focus:outline-none">
             </div>
 
             <div class="mb-4">
@@ -126,43 +121,43 @@
                 name="total_duration"
                 id="total_duration"
                 placeholder="Enter total duration in hour"
-                class="w-full px-4 py-2 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                class="w-full px-4 py-2 rounded-lg input-boxes focus:outline-none">
             </div>
 
             <div class="mb-4">
                 <label for="solution" class="block text-black text-sm mb-2">Solution</label>
-                {{-- <input type="text" id="desc" class="w-full px-24 py-12 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"> --}}
+                {{-- <input type="text" id="desc" class="w-full px-24 py-12 rounded-lg input-boxes focus:outline-none"> --}}
                 <textarea
                 name="solution"
                 id="solution"
                 cols="100"
                 rows="4"
                 style="resize: height; overflow: hidden; width:100%; height:100%; border-radius:8px; max-width:100%;"
-                class="p-2 border bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="p-2 border input-boxes focus:outline-none"
                 ></textarea>
             </div>
 
             <div class="mb-4">
                 <label for="remark" class="block text-black text-sm mb-2">Remark</label>
-                {{-- <input type="text" id="desc" class="w-full px-24 py-12 rounded-lg border border-gray-g bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"> --}}
+                {{-- <input type="text" id="desc" class="w-full px-24 py-12 rounded-lg input-boxes focus:outline-none"> --}}
                 <textarea
                 name="remark"
                 id="remark"
                 cols="100"
                 rows="4"
                 style="resize: height; overflow: hidden; width:100%; height:100%; border-radius:8px; max-width:100%;"
-                class="p-2 border bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="p-2 border input-boxes focus:outline-none"
                 ></textarea>
             </div>
 
             <div class="flex flex-row-reverse  space-x-1 space-x-reverse">
                 <a href="{{  route($prefix . '.issue-list')  }}"
-                    class="bg-red-400 text-white px-6 py-2 rounded-md hover:bg-red-600 font-medium text-sm hover:text-white">
+                    class="cancel-btn">
                     Cancel
                 </a>
                 <button
                    type="submit"
-                   class="bg-violet-400 text-white px-6 py-2 rounded-md hover:bg-violet-700 font-medium text-sm hover:text-white">
+                   class="create-btn">
                     Save
                 </button>
             </div>

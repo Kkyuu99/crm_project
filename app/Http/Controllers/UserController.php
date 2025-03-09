@@ -29,8 +29,10 @@ class UserController extends Controller
 
     public function create()
     {
-        $projects = Project::all();;
-        return view('admin.user-register', compact('projects'));
+        $projects = Project::all();
+        $user = Auth::user();
+        $prefix = $user->role === 'admin' ? 'admin' : 'user';
+        return view('admin.user-register', compact('projects','user','prefix'));
     }
 
     public function store()
@@ -59,14 +61,16 @@ class UserController extends Controller
 
      public function show($id){
         $user = User::findOrFail($id);
+        $prefix = Auth::user()->role;
         $projects = Project::all();
-        return view('admin.user-detail', compact('projects','user'));
+        return view('admin.user-detail', compact('projects','user','prefix'));
     }
 
     public function edit($id){
         $user = User::findOrFail($id);
+        $prefix = Auth::user()->role;
         $projects = Project::all();
-        return view('admin.user-edit',compact('projects','user'));
+        return view('admin.user-edit',compact('projects','user','prefix'));
     }
 
     public function update(User $user,$id)
